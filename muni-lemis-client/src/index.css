@@ -1,0 +1,22 @@
+
+@import url("https://fonts.googleapis.com/css?family=Codystar:300&display=swap");
+*{
+  margin: 0;
+  padding: 0;
+}
+header,nav,main,section,footer,aside,article,div{
+  display: block;
+}
+nav li{
+  display: inline;
+}
+
+body{
+
+  min-width: 100%;
+  min-height: '100vh';
+  
+}
+a{
+  text-decoration: none;
+}
