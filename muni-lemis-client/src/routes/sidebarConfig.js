@@ -1,27 +1,19 @@
-
-import {Home,AddBusiness,FamilyRestroom,PieChart} from '@mui/icons-material';
-const styleIcon = {fontSize:"40px"};
-
-export const sidebarConfig = [
+const sidebarConfig = [
   {
     title: 'TOP/LAST MUNICIPALITIES',
-    path: "/",
-    
+    path: '/',
   },
   {
     title: 'STATISTICAL REPORT',
-    path: "/",
-    
+    path: '/',
   },
   {
     title: 'COMPARE MUNICIPALITIES',
-    path: "/",
-    
+    path: '/',
   },
   {
     title: 'MAP VISUALIZED',
-    path: "/",
-    
-  }
+    path: '/',
+  },
 ];
-
+export default sidebarConfig;
