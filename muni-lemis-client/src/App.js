@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './routes/loginPage';
 import HomePage from './routes/homePage';
-// import RegisterPage from './routes/register/registerPage';
+import StatisticPage from './routes/statisticPage';
 // import { PrivateRoute } from './component/routing';
 import NotFoundPage from './routes/page404';
 import MapPage from './routes/mapPage';
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/homepage" element={<HomePage />} />
         <Route exact path="/" element={<LoginPage />} />
+        <Route exact path="/statisticPage" element={<StatisticPage />} />
         <Route exact path="/mappage" element={<MapPage />} />
         {/* <Route
         exact

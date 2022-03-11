@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
+import {
+  GoogleMap,
+  LoadScript,
+  Marker,
+  Autocomplete,
+  InfoWindow,
+} from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 import { Header, Menu } from '../component/util/board';
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const containerStyle = {
   height: '500px',
   paddingTop: '10px',
@@ -15,6 +22,8 @@ const containerStyle = {
 
 function Map() {
   const [place, setPlace] = useState('');
+  const [markers, setMarkers] = React.useState([]);
+  const [selected, setSelected] = React.useState(null);
   const [dataLocation, setLocation] = useState({
     city: '',
     height: 400,
@@ -72,6 +81,16 @@ function Map() {
       },
     });
   };
+  const onMapClick = React.useCallback((e) => {
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+        time: new Date(),
+      },
+    ]);
+  }, []);
 
   return (
     <>
@@ -93,10 +112,45 @@ function Map() {
         </h1>
         <LoadScript googleMapsApiKey={api} libraries={['places']}>
           <GoogleMap
+            onClick={onMapClick}
             mapContainerStyle={containerStyle}
             center={dataLocation.mapPosition}
             zoom={15}
           >
+            {markers.map((marker) => (
+              <Marker
+                key={`${marker.lat}-${marker.lng}`}
+                position={{ lat: marker.lat, lng: marker.lng }}
+                onClick={() => {
+                  setSelected(marker);
+                }}
+                icon={{
+                  url: `/bear.svg`,
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                  scaledSize: new window.google.maps.Size(30, 30),
+                }}
+              />
+            ))}
+
+            {selected ? (
+              <InfoWindow
+                position={{ lat: selected.lat, lng: selected.lng }}
+                onCloseClick={() => {
+                  setSelected(null);
+                }}
+              >
+                <div>
+                  <h2>
+                    <span role="img" aria-label="bear">
+                      🐻
+                    </span>{' '}
+                    Alert
+                  </h2>
+                  <p>Spotted </p>
+                </div>
+              </InfoWindow>
+            ) : null}
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
               <input
                 type="text"
