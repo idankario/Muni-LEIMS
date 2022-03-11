@@ -3,10 +3,9 @@ import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
 import { Header, Menu } from '../component/util/board';
 
-Geocode.setApiKey('AIzaSyBzXEub211xlxP4b3aVBfmdYZXIQCjbULw');
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
-const api = 'AIzaSyBzXEub211xlxP4b3aVBfmdYZXIQCjbULw';
-
+const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 const containerStyle = {
   height: '500px',
   paddingTop: '10px',
