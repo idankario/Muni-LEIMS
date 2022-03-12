@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+<h1 align="center"> Muni-LEIMS⚡🌍 </h1>
+<h3 align="center"> Object Detection </h3>
+<h5 align="center"> Final Project <a href="https://www.shenkar.ac.il/he">Shenkar Collage</a> (2022) </h5>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>Muni-Light	Energy Intensity  Mapping System </p>
 
-## Available Scripts
+<h2> :floppy_disk: Project Files Description</h2>
 
-In the project directory, you can run:
+<p>This Project includes eslint airbnb prettier and react hooks </p>
 
-### `npm start`
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h2> :book: Introduction</h2>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<p>In recent years, there have been significant changes in the global energy economy to reduce greenhouse gas emissions and air pollutants.
+The Prime Minister, Naftali Bennett, and the Minister of Energy, Karin Elharar, agreed on 2050, Israel will reach zero [ref 9].
+Our system, Muni-LEIMS, is developed to support municipalities’ efforts to manage their energy resource and promote energy efficiency moves.
+Global electricity consumption is increasing by around 3% each year. Outdoor lighting is responsible for 15–19% of global electricity consumption, lighting represents about 2.4% of the annual energetic resources of humanity, accounting for 5–6% of the total greenhouse gas emissions to the atmosphere. Atmospheric concentrations of carbon dioxide (CO2), methane, and nitrous oxide have increased by 40% compared to the pre-industrial era, mainly due to the burning of fossil fuels. According to estimates, cities consume almost 75% of global energy, and outdoor urban lighting alone can account for as much as 20–40% of budget expenditure related to power [ref12].
+Street lighting is an important part of municipalities infrastructure, which its planning has many considerations. One of them is security, since it reduces crime rates at night [ref 11].
 
-### `npm test`
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h2> :clipboard: Execution Instruction</h2>
+<p>The order of execution of the program files is as follows:</p>
+<p>First, git clone https://github.com/idankario/Muni-LEIMS
+</p>
+<p><b>2) npm i</b></p>
 
-### `npm run build`
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h2> :books: Refrences</h2>
+<ul>
+  <li><p>
+  Authors: Abdul Qayyum, Naufal M. Saad, Nidal Kamel, Aamir Saeed Malik
+Date: February 2018
+Document Title: Deep convolutional neural network processing of aerial stereo imagery to
+monitor vulnerable zones near power lines
+  </p>
+     
+  </li>
+  <li><p>Authors: Upesh Nepal Hossein Eslamiat
+Date: 2022
+Document Title: Comparing YOLOv3, YOLOv4 and YOLOv5 for Autonomous Landing Spot Detection in Faulty UAVs</p>
+  </li>
+  <li><p>Authors: Hezbullah  Shah  &  Tariq  Rahim  Soomro
+Date: June 2017
+Document Title: Node.jsChallenges in Implementation</p>
+  </li>
+  <li><p>Authors: Jaakko Kaski
+Date: Spring 2021
+Document Title: Evolution of Yolo Algorithm and Yolov5: The State-Of-The-Art Object Detection Algorithm</p>
+  </li>
+  <li><p>	Authors: Kiran Maraiya, Kamal Kant, Nitin Gupta
+Date: April -2011
+Document Title: Wireless Sensor Network: A Review on Data Aggregation
+</p>
+  </li>
+  <li><p>Authors: Prabu Mohandas Jerline Sheebha Anni Dhanarajb Xiao-ZhiGaoc 
+Date: July 2019
+Document Title: Artificial Neural Network based Smart and Energy Efficient Street Lighting System: A Case Study for Residential area in Hosur</p>
+  </li>
+    <li><p>
+    Authors: Hezbullah Shah & Tariq Rahim Soomro
+Date: June 2017
+Document Title: Node.js Challenges in Implementation
+    </p>
+  </li>
+      <li><p>	Authors: Ekaterina Petukhova
+Date: 2019
+Document Title: Sitecore JavaScript Services Framework Comparison
+    </p>
+  </li>
+</ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- CREDITS -->
+<h2 id="credits"> :scroll: Credits</h2>
 
-### `npm run eject`
+Mohammad Idan Kario 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![GitHub Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/idankario)
+[![LinkedIn Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/idan-kario/)
