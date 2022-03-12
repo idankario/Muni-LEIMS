@@ -7,13 +7,6 @@
 <h2> :floppy_disk: Project Files Description</h2>
 
 <p>This Project includes eslint airbnb prettier and react hooks </p>
-<h4>Executable Files:</h4>
-<ul>
-  <li><b>spam_detector.py</b> - Includes all functions required for classification operations.</li>
-  <li><b>train.py</b> - Uses thefunctions defined in the spam_detector.py file and generates the model.txt file after execution.</li>
-  <li><b>test.py</b> - Uses the functions defined in the spam_detector.py file and, after execution, generates the result.txt as well as evaluation.txt files.</li>
-</ul>
-
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
