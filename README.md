@@ -37,62 +37,6 @@ Street lighting is an important part of municipalities infrastructure, which its
 
 <h2> :books: Refrences</h2>
 <ul>
-1.	Authors: Prof. Gershon Grossman, Tal Goldrath, Michal Nachmani.
-Date: February 2011.
-Document Title: Summary and Recommendations Discussion Forum Energy No. 19 Samuel Neaman Institute, Technion,  [pages 3-7 pages doc 22-33].
-2.	Authors: Ministry of National Infrastructure, Energy and Water
-Date: February 2015
-Document Title: The National Energy Efficiency Plan 2016 - 2030, [pages 2-7]
-3.	Authors: Ministry of Energy
-Date: 2020
-Document Title: National State Energy Efficiency Plan November 2020-2030, [pages 2,7]
-4.	Authors: The State Comptroller
-Date: July 2020
-Document Title: The State Comptroller Reports on the Audit of Local Government for 2020, [pages 3]
-5.	Authors: The State Comptroller
-Date: 2020
-Document Title: State Comptroller Reports on the Audit of Local Government 2020,   [pages 2,7 pages doc 299]
-6.	Authors: Ministry of Energy
-Date: January 2015
-Document Title: Ministry of Energy National Energy Efficiency Plan 2016-2030, [pages 3]
-7.	Authors: Dr. Shachar Dolev, The Israeli Energy Forum
-Date: December 2010
-Document Title: The Energy Chapter in the Environmental Tag Program Energy Efficiency A Guide for Local Authorities 2010, [pages 6-8]
-8.	Authors: Maariv
-Date: September 2017
-Document Title: Waste in Local Authorities: NIS 220 Million a Year due to outdated Lighting Maariv, [page 2-9]
-9.	Authors: Government Spokeswoman Announcements
-Date: October 2021
-Document Title: Prime Minister Bennett and Minister of Energy Elharar agreed on setting a national target, zero greenhouse gas emissions by 2050 [page 2]
-10.	Authors: Y M Jagadeesha, S Akilesha , S Karthika*, Prasantha
-Date: October2015-----
-Document Title: Intelligent Street Lights 
-11.	Authors: Department of Electrical Engineering Education, Universitas Pendidikan Indonesia
-Date: 2019
-Document Title: Performance analysis of Light Emitting Diode, High Sodium Pressure and Metal Halide Lights
-12.	Authors: Umberto Berardi
-Date: May 2021
-Document Title: Intelligent Street Lighting in a Smart City Concepts—A Direction to Energy Saving in Cities: An Overview and Case Study
-13.	Authors: Alexandru Ioan Cuza University, Carol I Blvd., No. 22, 700505 Iași, Romania
-Date: Dec 2021
-Document Title: Front-End Frameworks for Development of Spa and Mpa Web Applications
-14.	Authors: Masaryk University Faculty of Informatics
-Date: 2020
-Document Title: Development of Modern User Interfaces in Angular Framework
-15.	Authors: Faculty of Science University of Helsinki
-Date: April 2021
-Document Title: A performance comparison of rendering strategies in open source web frontend frameworks
-16.	Authors: Nishtha Jatana Sahil Puri Mehak Ahuja Ishita Kathuria Dishant Gosain
-Date: Aug 2012
-Document Title: A Survey and Comparison of Relational and Non-Relational Database
-17.	Authors: Cornelia Győrödi, Robert Győrödi,  Romania, Roxana Sotoc
-Date: Nov 2015
-Document Title: A Comparative Study of Relational and NonRelational Database Models in a Web- Based Application
-18.	Authors: Benymol Josea, Sajimon Abraham
-Date: 2020
-Document Title: Performance analysis of NoSQL and relational databases with MongoDB and MySQL
-19.
-
   <li><p>
   Authors: Abdul Qayyum, Naufal M. Saad, Nidal Kamel, Aamir Saeed Malik
 Date: February 2018
