@@ -22,7 +22,7 @@ Street lighting is an important part of municipalities infrastructure, which its
 
 <h2> :clipboard: Execution Instruction</h2>
 <p>The order of execution of the program files is as follows:</p>
-<p>First, git clone git@github.com:jorgemcdev/react-tensorflowjs.git
+<p>First, git clone https://github.com/idankario/Muni-LEIMS
 </p>
 <p><b>2) npm i</b></p>
 
