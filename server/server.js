@@ -2,12 +2,21 @@ const express = require('express');
 const cors = require('cors');
 const usersCtl = require('./controllers/users.js');
 const switchboardsCtl = require('./controllers/swithchboards.js');
+const imageUploadCtl = require('./controllers/imageUpload.js');
 const imagesCtl = require('./controllers/images.js');
 const officesCtl = require('./controllers/office.js');
 const areaCtl = require('./controllers/area.js');
 const boxesCtl = require('./controllers/boundingbox.js');
 const app = express();
 const port = process.env.PORT || 3000;
+
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+// in latest body-parser use like below.
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.set('port', port);
 app.use(cors());
@@ -38,6 +47,11 @@ app.post('/images/uplaodImage', imagesCtl.uplaodImage);//uplad new image without
 /*** BoundingBoxes routes ***/
 app.post('/addboundingBoxes/addboundingBox', boxesCtl.addboundingBox);//add new BoundingBoxes 
 app.post('/addboundingBoxes/addboundingBox', boxesCtl.addboundingBoximage);//add new BoundingBoxes 
+
+/*** image upload routes ***/
+const multer = require('multer')
+app.post('/imgupload/upload', multer().single('file'), imageUploadCtl.uploadImage);//get all users in the system : ;
+
 
 app.all('*', (req, res) => { res.send("Wrong route, please try again.") });
 
