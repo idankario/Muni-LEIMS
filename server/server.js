@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 const usersCtl = require('./controllers/users.js');
@@ -10,10 +11,9 @@ const boxesCtl = require('./controllers/boundingbox.js');
 const app = express();
 const port = process.env.PORT || 3000;
 
-
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({extended: true}));
 // in latest body-parser use like below.
 app.use(bodyParser.urlencoded({ extended: true }));
 
