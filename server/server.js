@@ -1,17 +1,23 @@
-require('dotenv').config()
-const express = require('express');
-const cors = require('cors');
-const usersCtl = require('./controllers/users.js');
-const switchboardsCtl = require('./controllers/swithchboards.js');
-const imageUploadCtl = require('./controllers/imageUpload.js');
-const imagesCtl = require('./controllers/images.js');
-const officesCtl = require('./controllers/office.js');
-const areaCtl = require('./controllers/area.js');
-const boxesCtl = require('./controllers/boundingbox.js');
+import dotenv from 'dotenv'
+dotenv.config()
+import express from 'express'
+import multer from 'multer'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import * as usersCtl from './controllers/users'
+import * as switchboardsCtl from './controllers/swithchboards'
+import * as imageUploadCtl from './controllers/imageUpload'
+import * as imagesCtl from './controllers/images'
+import * as reportsCtl from './controllers/reports'
+import * as officesCtl from './controllers/office'
+import * as areaCtl from './controllers/area'
+import * as boxesCtl from './controllers/boundingbox'
+
 const app = express();
 const port = process.env.PORT || 3000;
 
-var bodyParser = require('body-parser');
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // in latest body-parser use like below.
@@ -49,9 +55,13 @@ app.post('/addboundingBoxes/addboundingBox', boxesCtl.addboundingBox);//add new 
 app.post('/addboundingBoxes/addboundingBox', boxesCtl.addboundingBoximage);//add new BoundingBoxes 
 
 /*** image upload routes ***/
-const multer = require('multer')
+
 app.post('/imgupload/upload', multer().single('file'), imageUploadCtl.uploadImage);//get all users in the system : ;
 
+
+/*** db data routes ***/
+app.get('/data/municipalities', reportsCtl.getMunicipalities)
+app.get('/data/cities', reportsCtl.getCities)
 
 app.all('*', (req, res) => { res.send("Wrong route, please try again.") });
 

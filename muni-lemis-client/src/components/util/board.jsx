@@ -32,6 +32,7 @@ export const Menu = styled('main')({
     textAlign: 'center',
   },
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${MenuImage}) no-repeat`,
+  
   minHeight: '100vh',
   '& section': {
     width: '400px',

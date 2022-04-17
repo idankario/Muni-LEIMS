@@ -1,7 +1,7 @@
 import React from 'react';
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 // import { TextField, Button } from '@mui/material';
-import { Header, Login } from '../component/util/board';
+import { Header, Login } from '../components/util/board';
 
 function StatisticPage() {
   return (
