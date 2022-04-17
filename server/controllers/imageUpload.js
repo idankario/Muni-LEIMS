@@ -20,7 +20,7 @@ async function updateDb(city, area, consumption, classType, count) {
     VALUES ('${city}', '${area}', ${consumption}, '${classType}', '${count}')`;
 
     db.query(query, function (err, result) {
-        console.log(err)
+        if (err) console.log(err)
     })
 }
 
@@ -57,9 +57,10 @@ async function sliceImage(scriptPath, file, outFolder) {
     // python.stderr.pipe(process.stderr);
     // python.stdout.pipe(process.stdout);
     await new Promise( (resolve, reject) => {
+        python.on("error", (err) => reject('python execute error'))
         python.on('exit', (code) => {
             if (code != 0) {
-                reject()
+                reject('python execute error')
             } else {
                 resolve()
             }
@@ -96,20 +97,19 @@ export async function uploadImage(req, res) {
 
 
     let file = path.resolve(_dirname, `./py-slice/${filename}`)
-    console.log(`trying to open ${file}`)
     let outFolder = path.resolve(_dirname, `./py-slice/out`)
     let scriptPath = path.resolve(_dirname, `./py-slice/main.py`)
     fs.writeFileSync(file, req.file.buffer)
     try {
         await sliceImage(scriptPath, file, outFolder)
-    } catch {
-        res.status(500).send(`python execute error`);
+        res.status(200).send('Image received and will scanned...')
+        const files = await fs.promises.readdir(outFolder);
+        await scanImages(files, outFolder, city, area, consumption)
+        console.log('done slicing')
+    } catch(err) {
+        res.status(500).send(err);
+        console.log(err)
     }
-    res.status(200).send('Image received and will scanned...')
-    console.log('done slicing')
- 
-    const files = await fs.promises.readdir(outFolder);
-    await scanImages(files, outFolder, city, area, consumption)
 
 }
 

@@ -32,7 +32,7 @@ export default function ImageUpload() {
 
   const [area, setArea] = useState({city: null, area: null, consumption: null})
   const [selectedFile, setSelectedFile] = useState('')
-  const [apiRes, setApiRes] = useState(null)
+  const [apiRes, setApiRes] = useState({error: false, text: ''})
   const [loading, setLoading] = useState(false)
 
   async function handleFileInput(file) {
@@ -40,10 +40,12 @@ export default function ImageUpload() {
     Object.keys(area).forEach(i => 
         area[i] = area[i].toLowerCase()
     )
-    const result = await Api.uploadImage(file, area.city, area.area, area.consumption)
+    const res = await Api.uploadImage(file, area.city, area.area, area.consumption)
     setLoading(false)
     setArea({city: null, area: null, consumption: null})
-    setApiRes(`Image uploaded and will be scanned...`)
+    if (res.ok) setApiRes({error: false, text: `Image uploaded and will be scanned...`})
+    else setApiRes({error: true, text: `Server error`})
+
   }
 
 
@@ -82,9 +84,9 @@ export default function ImageUpload() {
     </Button>
       </Container>
       }
-      {apiRes && !loading &&
+      {apiRes.text && !loading &&
         <ResContainer>
-          <Alert severity="success">{apiRes}</Alert>
+          <Alert severity={apiRes.error ? "error" : 'success'}>{apiRes.text}</Alert>
         </ResContainer>
       }
 
