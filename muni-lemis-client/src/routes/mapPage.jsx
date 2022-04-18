@@ -7,7 +7,7 @@ import {
   InfoWindow,
 } from '@react-google-maps/api';
 import Geocode from 'react-geocode';
-import { Header, Menu } from '../component/util/board';
+import { Header, Menu } from '../components/util/board';
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();

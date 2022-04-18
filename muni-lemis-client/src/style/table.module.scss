@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .table {
     display: block;
     font-weight: bold;
@@ -56,4 +57,64 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: white;
+=======
+.table {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    width: 75vw;
+    font-size: 2.3em;
+    margin-top: 20px;
+    border-collapse: collapse;
+    max-height: 70vh;
+    overflow: auto;
+
+
+    tbody::before {
+        content: '';
+        display: block;
+        height: 15px;
+    }
+
+    th {
+        width: 33.3%;
+        color: white;
+        border-bottom: 3px solid white;
+    }
+
+    td {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: 0;
+    }
+
+    td:nth-child(2n) {
+        border-left: 2px solid white;
+        border-right: 2px solid white;
+    }
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 18px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba($color: white, $alpha: 0.2);
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: white;
+>>>>>>> b0a9b7bcad0826e3a2a408539c7e6e4fab3fc0b8
 }

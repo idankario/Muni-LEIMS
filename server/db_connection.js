@@ -1,12 +1,14 @@
-const mysql=require("mysql");
-const consts = require('./constants' );
-const { DB_HOST, DB_USER, DB_PORT,DB_PASS } = consts;
-const db =mysql.createConnection({
+import mysql from 'mysql'
+import { DB_HOST, DB_USER, DB_PORT,DB_PASS } from './constants'
+
+
+const db = mysql.createConnection({
     host:DB_HOST,
     port:DB_PORT,
     user:DB_USER,
     password:DB_PASS,
-    database:""
+    database:"MuniLEIMS",
+    acquireTimeout: 1000000
 })
 db.connect(err=>{
     if(err){
@@ -15,4 +17,4 @@ db.connect(err=>{
     }
     console.log("DB AWS connected");
 });
-module.exports = db;
+export default db
