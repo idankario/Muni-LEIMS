@@ -7,18 +7,11 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import Geocode from "react-geocode";
-import { Header, Menu } from "../components/util/board";
+import { Header, MenuL } from "../components/util/board";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
-const containerStyle = {
-  height: "500px",
-  paddingTop: "10px",
-  margin: "0 auto",
-  maxWidth: "700px",
-};
 
 function Map() {
   const [place, setPlace] = useState("");
@@ -99,21 +92,11 @@ function Map() {
           <span>Muni-LEIMS</span>
         </a>
       </Header>
-      <Menu>
-        <h1
-          style={{
-            background: "#fff",
-            maxWidth: "700px",
-            margin: "auto",
-            textAlign: "center",
-          }}
-        >
-          {dataLocation.city}
-        </h1>
+      <MenuL>
+        <h1>{dataLocation.city}</h1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
             onClick={onMapClick}
-            mapContainerStyle={containerStyle}
             center={dataLocation.mapPosition}
             zoom={15}
           >
@@ -174,7 +157,7 @@ function Map() {
             </Autocomplete>
           </GoogleMap>
         </LoadScript>
-      </Menu>
+      </MenuL>
     </>
   );
 }

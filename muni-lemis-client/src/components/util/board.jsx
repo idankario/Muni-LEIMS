@@ -25,23 +25,39 @@ export const Header = styled("header")({
 });
 
 export const Menu = styled("main")({
+  paddingTop: "20px",
   "& h2": {
     fontSize: "45px",
     color: "#CDFA00",
-    marginTop: "10px",
-    textAlign: "center",
   },
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${MenuImage}) no-repeat`,
-
+  minHeight: "100vh",
   "& section": {
-    width: "350px",
+    textAlign: "center",
     margin: "auto",
+    width: "350px",
   },
   "& button": {
     margin: "20px",
   },
 });
-
+export const MenuL = styled(Menu)({
+  "& h1": {
+    margin: "auto",
+    textAlign: "center",
+    width: "700px",
+    maxWidth: "95%",
+    background: "#fff",
+    paddingTop: "10px",
+    fontSize: "45px",
+  },
+  "& div+div": {
+    height: "500px",
+    width: "700px",
+    maxWidth: "95%",
+    margin: "auto",
+  },
+});
 export const Login = styled("form")({
   paddingTop: "35px",
   minHeight: "100vh",
