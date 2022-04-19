@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   GoogleMap,
   LoadScript,
   Marker,
   Autocomplete,
   InfoWindow,
-} from '@react-google-maps/api';
-import Geocode from 'react-geocode';
-import { Header, Menu } from '../components/util/board';
+} from "@react-google-maps/api";
+import Geocode from "react-geocode";
+import { Header, Menu } from "../components/util/board";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const containerStyle = {
-  height: '500px',
-  paddingTop: '10px',
-  margin: '0 auto',
-  maxWidth: '700px',
+  height: "500px",
+  paddingTop: "10px",
+  margin: "0 auto",
+  maxWidth: "700px",
 };
 
 function Map() {
-  const [place, setPlace] = useState('');
+  const [place, setPlace] = useState("");
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [dataLocation, setLocation] = useState({
-    city: '',
+    city: "",
     height: 400,
     mapPosition: {
       lat: 31.804381,
@@ -33,13 +33,13 @@ function Map() {
     },
   });
   const getCity = (addressArray) => {
-    let city = '';
+    let city = "";
     for (let i = 0; i < addressArray.length; i += 1) {
       if (addressArray[i].types[0]) {
         for (let j = 0; j < addressArray[i].types.length; j += 1) {
           if (
-            addressArray[i].types[j] === 'sublocality_level_1' ||
-            addressArray[i].types[j] === 'locality'
+            addressArray[i].types[j] === "sublocality_level_1" ||
+            addressArray[i].types[j] === "locality"
           ) {
             city = addressArray[i].long_name;
             return city;
@@ -55,7 +55,7 @@ function Map() {
         const addressArray = response.results[0].address_components;
         const city = getCity(addressArray);
         setLocation({
-          city: city || '',
+          city: city || "",
           mapPosition: {
             lat: 31.804381,
             lng: 34.655314,
@@ -74,7 +74,7 @@ function Map() {
     const latValue = place.getPlace().geometry.location.lat();
     const lngValue = place.getPlace().geometry.location.lng();
     setLocation({
-      city: city || '',
+      city: city || "",
       mapPosition: {
         lat: latValue,
         lng: lngValue,
@@ -102,15 +102,15 @@ function Map() {
       <Menu>
         <h1
           style={{
-            background: '#fff',
-            maxWidth: '700px',
-            margin: 'auto',
-            textAlign: 'center',
+            background: "#fff",
+            maxWidth: "700px",
+            margin: "auto",
+            textAlign: "center",
           }}
         >
           {dataLocation.city}
         </h1>
-        <LoadScript googleMapsApiKey={api} libraries={['places']}>
+        <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
             onClick={onMapClick}
             mapContainerStyle={containerStyle}
@@ -144,7 +144,7 @@ function Map() {
                   <h2>
                     <span role="img" aria-label="bear">
                       🐻
-                    </span>{' '}
+                    </span>{" "}
                     Alert
                   </h2>
                   <p>Spotted </p>
@@ -166,9 +166,9 @@ function Map() {
                   fontSize: `14px`,
                   outline: `none`,
                   textOverflow: `ellipses`,
-                  position: 'absolute',
-                  left: '50%',
-                  marginLeft: '-120px',
+                  position: "absolute",
+                  left: "50%",
+                  marginLeft: "-120px",
                 }}
               />
             </Autocomplete>

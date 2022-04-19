@@ -1,5 +1,5 @@
-import React from 'react';
-import Styles from '../style/table.module.scss';
+import React from "react";
+import Styles from "../style/table.module.scss";
 
 function Table({ rows, dataName }) {
   return (
@@ -12,11 +12,11 @@ function Table({ rows, dataName }) {
       <tbody>
         {rows.map((row) => (
           <tr
-            style={{ color: row.consumption_average > 321 ? 'red' : 'green' }}
+            style={{ color: row.consumption_average > 321 ? "red" : "green" }}
           >
             <td>{row.count}</td>
             <td>{row.city || row.area}</td>
-            <td>{row.consumption_average || row['consumption average']}</td>
+            <td>{row.consumption_average || row["consumption average"]}</td>
           </tr>
         ))}
       </tbody>

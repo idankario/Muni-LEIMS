@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-$yellow: #CDFA00;
-
 main {
     background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../components/images/login.svg') no-repeat;
     -webkit-background-size: cover;
@@ -15,7 +12,7 @@ main {
     flex-direction: column;
     
   .title {
-    color: $yellow;
+    color: yellow;
     margin-top: 20px;
   }
 }
@@ -23,29 +20,3 @@ main {
 
 
 
-=======
-$yellow: #CDFA00;
-
-main {
-    background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url('../components/images/login.svg') no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: calc(100vh - 60px);
-    width: 100vw;
-    display: flex;
-    // justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    
-  .title {
-    color: $yellow;
-    margin-top: 20px;
-  }
-}
-
-
-
-
->>>>>>> b0a9b7bcad0826e3a2a408539c7e6e4fab3fc0b8
