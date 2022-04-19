@@ -51,12 +51,6 @@ export const MenuL = styled(Menu)({
     paddingTop: "10px",
     fontSize: "45px",
   },
-  "& div+div": {
-    height: "500px",
-    width: "700px",
-    maxWidth: "95%",
-    margin: "auto",
-  },
 });
 export const Login = styled("form")({
   paddingTop: "35px",

@@ -12,7 +12,12 @@ import { Header, MenuL } from "../components/util/board";
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
+const containerStyle = {
+  height: "500px",
+  width: "700px",
+  maxWidth: "95%",
+  margin: "auto",
+};
 function Map() {
   const [place, setPlace] = useState("");
   const [markers, setMarkers] = React.useState([]);
@@ -96,6 +101,7 @@ function Map() {
         <h1>{dataLocation.city}</h1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
+            mapContainerStyle={containerStyle}
             onClick={onMapClick}
             center={dataLocation.mapPosition}
             zoom={15}
