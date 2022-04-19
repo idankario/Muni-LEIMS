@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import { Header } from "../components/util/board";
 import Styles from "../style/reports.module.scss";
-import Table from "../components/table";
+import Table from "../components/Table";
 
 async function loadData(dataType) {
   let data =
