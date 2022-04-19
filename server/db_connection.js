@@ -6,7 +6,8 @@ const db =mysql.createConnection({
     port:DB_PORT,
     user:DB_USER,
     password:DB_PASS,
-    database:""
+    database:"MuniLEIMS",
+    acquireTimeout: 1000000
 })
 db.connect(err=>{
     if(err){

@@ -1,4 +1,4 @@
-import { Button, Input } from '@mui/material';
+import { Button, Input, TextField, Snackbar, Alert } from '@mui/material';
 import React from 'react';
 import { useState } from 'react'
 import styled from '@emotion/styled';
@@ -20,24 +20,31 @@ const ResContainer = styled.div`
 `
 
 export default function ImageUpload() {
+
+  const [area, setArea] = useState('')
+
   async function handleFileInput(file) {
     setApiRes(null)
     setImage(null)
     setLoading(true)
-    const result = await Api.uploadImage(file)
+    const result = await Api.uploadImage(file, area)
     setLoading(false)
-    setImage(result.image)
-    setApiRes(`Found ${result.data.predictions.length} poles`)
+    // setImage(result.image)
+    setApiRes(`Found `)
   }
   const [selectedFile, setSelectedFile] = useState('')
   const [img, setImage] = useState()
   const [apiRes, setApiRes] = useState('')
   const [loading, setLoading] = useState(false)
+
   return (
     <>
     <h1 style={{textAlign: 'center', fontSize: '3em', marginTop: '20px'}}>Upload Image</h1>
-    <Container>
+    <Container display="flex" style={{flexDirection: 'column', gap: '10px', width: '25vw', margin: 'auto'}}>
+    <TextField id="standard-basic" label="Area name" variant="standard" onChange={(e) => setArea(e.target.value)} />
+
         <Button
+        disabled={area ? false: true}
           variant="contained"
           component="label"
           style={{textAlign: 'center'}}
@@ -56,8 +63,7 @@ export default function ImageUpload() {
       {apiRes && 
         <ResContainer>
           
-        <img src={`data:image/jpeg;base64,${img}`} width="340px" height="340px" />
-        <p style={{fontSize: '2em', marginTop: '10px'}}>{apiRes}</p>
+          <h2>Image uploaded and will be scanned...</h2>
         </ResContainer>
       }
       
