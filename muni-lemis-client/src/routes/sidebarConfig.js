@@ -1,11 +1,19 @@
 const sidebarConfig = [
   {
     title: 'TOP/LAST MUNICIPALITIES',
-    path: '/',
+    path: '/municipalities',
+  },
+  {
+    title: 'TOP/LAST CITIES',
+    path: '/cities'
+  },
+  {
+    title: 'UPLOAD IMAGE',
+    path: '/ImgUpload'
   },
   {
     title: 'STATISTICAL REPORT',
-    path: '/',
+    path: '/statisticPage',
   },
   {
     title: 'COMPARE MUNICIPALITIES',
