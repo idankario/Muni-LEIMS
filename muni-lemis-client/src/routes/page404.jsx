@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/util/board';
-import image404 from '../components/images/404.svg';
+import { Button } from 'components/util/board';
+import image404 from 'components/images/404.svg';
 
 export default function Page404() {
   return (

@@ -1,12 +1,35 @@
 import React, { useEffect, useState } from 'react'
 // import { styled } from '@mui/material/styles';
-import BgImage from '../components/images/login.svg'
+import BgImage from 'components/images/login.svg'
 import {loadCities, loadMunicipalities} from '../Api'
-import { Header } from '../components/util/board';
-import Styles from '../style/reports.module.scss';
+import { Header } from 'components/util/board';
 
 import { CircularProgress } from '@mui/material';
-import Table from '../components/Table'
+import Table from 'components/Table'
+import styled from '@emotion/styled';
+import BackgroundImage from 'components/images/login.svg'
+import BackButton from 'components/BackButton';
+
+const yellow = '#CDFA00'
+const MainStyle = styled.div`
+  background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${BackgroundImage}) no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: calc(100vh - 60px);
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
+
+const MainTitle = styled.h1`
+  color: ${yellow};
+  margin-top: 20px;
+`
+
+
 
 async function loadData(dataType) {
     let data = dataType === 'cities' 
@@ -44,13 +67,14 @@ function reports({dataType}) {
           <span>Muni-LEIMS</span>
         </a>
       </Header>
-      <main className={Styles[`main`]}>
-      <h1 className={Styles.title}>LAST {dataType === 'cities' ? 'CITIES' : 'MUNICIPALITY'}</h1>
+      <MainStyle>
+      <MainTitle>LAST {dataType === 'cities' ? 'CITIES' : 'MUNICIPALITY'}</MainTitle>
       {rows 
           ? <Table rows={rows} dataName={dataType === 'cities' ? 'CITIES' : 'MUNICIPALITY'}/> 
           : <CircularProgress style={{marginTop: '20vh', color: 'yellow'}} />
       }
-      </main>  
+      <BackButton path='/homePage'/>
+      </MainStyle>  
     </>
   )
 }

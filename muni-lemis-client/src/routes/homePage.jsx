@@ -1,6 +1,6 @@
 import React from 'react';
 import sidebarConfig from './sidebarConfig';
-import { Header, Button, Menu } from '../components/util/board';
+import { Header, Button, Menu } from 'components/util/board';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {

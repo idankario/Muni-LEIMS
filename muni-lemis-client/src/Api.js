@@ -27,3 +27,24 @@ export async function loadCities() {
 }
 
 
+export async function getLowestCentral() {
+    let res = await fetch(`${API_URL}/statistics/low_central`, {method: 'GET'})
+    let json = await res.json()
+    return json
+}
+
+
+export async function getHighestCentral() {
+    let res = await fetch(`${API_URL}/statistics/high_central`, {method: 'GET'})
+    let json = await res.json()
+    return json
+}
+
+
+export async function getTopCentral() {
+    let res = await fetch(`${API_URL}/statistics/top_central`, {method: 'GET'})
+    
+    let json = await res.json()
+    console.log(json)
+    return json
+}
