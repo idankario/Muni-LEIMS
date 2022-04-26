@@ -57,6 +57,7 @@ export const Login = styled("form")({
   minHeight: "100vh",
   textAlign: "center",
   "& img": {
+    display: "block",
     width: "170px",
     height: "110px",
     marginTop: "-20px",

@@ -3,8 +3,9 @@ import React, { useState } from "react";
 
 import styled from "@emotion/styled";
 import CircularProgress from "@mui/material/CircularProgress";
-import * as Api from "../Api";
+// import * as Api from "../Api";
 import { Header } from "../components/util/board";
+import UploadImage from "../components/util/uploadImage";
 
 const Container = styled.div`
   background-image: "../components/images/login.svg";
@@ -43,12 +44,13 @@ export default function ImageUpload() {
     Object.keys(area).forEach((i) => {
       area[i] = area[i].toLowerCase();
     });
-    const res = await Api.uploadImage(
-      file,
-      area.city,
-      area.area,
-      area.consumption
-    );
+    const res = UploadImage(file);
+    // const res = await Api.uploadImage(
+    //   file,
+    //   area.city,
+    //   area.area,
+    //   area.consumption
+    // );
     setLoading(false);
     setArea({ city: null, area: null, consumption: null });
     if (res.ok)
