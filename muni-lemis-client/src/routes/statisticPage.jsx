@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import styled from '@emotion/styled';
 import React, { useEffect, useState } from 'react';
 import BackButton from 'components/BackButton';
@@ -137,6 +138,12 @@ export default function StatisticPage() {
     setData({ highest: highest[0], lowest: lowest[0], top: top, loading: false })
   }, [])
 
+=======
+import React from "react";
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import { TextField, Button } from '@mui/material';
+import { Header, Login } from "../components/util/board";
+>>>>>>> origin/master
 
   return (
     <>
