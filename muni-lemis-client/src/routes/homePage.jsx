@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+import React from 'react';
+import sidebarConfig from './sidebarConfig';
+import { Header, Button, Menu } from 'components/util/board';
+import { useNavigate } from 'react-router-dom';
+=======
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Header, Button, Menu } from "../components/util/board";
 import sidebarConfig from "./sidebarConfig";
+>>>>>>> origin/master
 
 function HomePage() {
   const navigate = useNavigate();

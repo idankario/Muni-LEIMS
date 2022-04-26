@@ -5,9 +5,15 @@ import {
   Marker,
   Autocomplete,
   InfoWindow,
+<<<<<<< HEAD
+} from '@react-google-maps/api';
+import Geocode from 'react-geocode';
+import { Header, Menu } from 'components/util/board';
+=======
 } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 import { Header, MenuL } from "../components/util/board";
+>>>>>>> origin/master
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();

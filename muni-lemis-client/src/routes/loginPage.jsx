@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+import React from 'react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { TextField, Button } from '@mui/material';
+import Logo from 'components/images/logo.svg';
+import { Header, Login } from 'components/util/board';
+=======
 import React from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { TextField, Button } from "@mui/material";
 import Logo from "../components/images/logo.svg";
 import { Header, Login } from "../components/util/board";
+>>>>>>> origin/master
 
 function LoginPage() {
   return (
