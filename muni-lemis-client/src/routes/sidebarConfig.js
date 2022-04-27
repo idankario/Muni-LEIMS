@@ -17,11 +17,11 @@ const sidebarConfig = [
   },
   {
     title: 'COMPARE MUNICIPALITIES',
-    path: '/',
+    path: '/municipalities',
   },
   {
     title: 'MAP VISUALIZED',
-    path: '/',
+    path: '/mappage',
   },
 ];
 export default sidebarConfig;
