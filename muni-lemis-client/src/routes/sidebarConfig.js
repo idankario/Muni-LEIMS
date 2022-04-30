@@ -1,27 +1,27 @@
 const sidebarConfig = [
   {
-    title: "TOP/LAST MUNICIPALITIES",
-    path: "/municipalities",
-  },
-  // {
-  //   title: "TOP/LAST CITIES",
-  //   path: "/cities",
-  // },
-  {
-    title: "UPLOAD IMAGE",
-    path: "/ImgUpload",
+    title: 'TOP/LAST MUNICIPALITIES',
+    path: '/municipalities',
   },
   {
-    title: "STATISTICAL REPORT",
-    path: "/statisticPage",
+    title: 'TOP/LAST CITIES',
+    path: '/cities'
   },
   {
-    title: "COMPARE MUNICIPALITIES",
-    path: "/",
+    title: 'UPLOAD IMAGE',
+    path: '/ImgUpload'
   },
   {
-    title: "MAP VISUALIZED",
-    path: "/mappage",
+    title: 'STATISTICAL REPORT',
+    path: '/statisticPage',
+  },
+  {
+    title: 'COMPARE MUNICIPALITIES',
+    path: '/',
+  },
+  {
+    title: 'MAP VISUALIZED',
+    path: '/',
   },
 ];
 export default sidebarConfig;
