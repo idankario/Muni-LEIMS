@@ -4,7 +4,7 @@ import { Header, Button, Menu } from 'components/util/board';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <>
       <Header>
@@ -13,12 +13,13 @@ function HomePage() {
         </a>
       </Header>
       <Menu>
+        <h2>Menu:</h2>
         <section>
           {sidebarConfig.map((navigation) => (
-            <Button
-              onClick={() => navigate(navigation.path)}
-              key={navigation.title}
-              sx={{ width: "100%" }}
+            <Button 
+                onClick={() => navigate(navigation.path)} 
+                key={navigation.title} 
+                sx={{ width: '100%' }}
             >
               <h2>{navigation.title} </h2>
             </Button>
