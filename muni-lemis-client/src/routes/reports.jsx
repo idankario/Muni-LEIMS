@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import { Header } from "../components/util/board";
-import Styles from "../style/reports.module.scss";
 import Table from "../components/Table";
 
 async function loadData(dataType) {
@@ -51,10 +50,8 @@ function reports({ dataType }) {
           <span>Muni-LEIMS</span>
         </a>
       </Header>
-      <main className={Styles.main}>
-        <h1 className={Styles.title}>
-          LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
-        </h1>
+      <main>
+        <h1>LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}</h1>
         {rows ? (
           <Table
             rows={rows}
