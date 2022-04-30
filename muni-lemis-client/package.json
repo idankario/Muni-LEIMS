@@ -37,6 +37,11 @@
     "lint": "eslint --fix",
     "pretty": "prettier --write ."
   },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

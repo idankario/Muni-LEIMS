@@ -1,0 +1,18 @@
+import axios from "axios";
+
+async function UploadImage(filename) {
+  // get secure url from our server
+  const res = await axios
+    .get("https://api.muni-leims.ml/presignedurl")
+    .then(async (response) => {
+      await fetch(response.data, {
+        method: "PUT",
+        body: filename,
+      });
+      return 1;
+    })
+    .catch(() => 0);
+  console.log(res);
+  return res;
+}
+export default UploadImage;

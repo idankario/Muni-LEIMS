@@ -1,11 +1,10 @@
-import { styled } from '@mui/material/styles';
-import button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-// import Select from 'react-select';
-import { Card } from '@mui/material';
-import MenuImage from '../images/word.svg';
-import Logo from '../images/logo.svg';
-import LoginImage from '../images/login.svg';
+import { styled } from "@mui/material/styles";
+import button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import { Card } from "@mui/material";
+import MenuImage from "../images/word.svg";
+import Logo from "../images/logo.svg";
+import LoginImage from "../images/login.svg";
 
 export const Header = styled('header')({
   padding: '10px',
@@ -39,58 +38,58 @@ export const Menu = styled('main')({
     margin: 'auto',
   },
 });
-export const Login = styled('form')({
-  paddingTop: '35px',
-  minHeight: '100vh',
-  textAlign: 'center',
-  '& img': {
-    width: '170px',
-    height: '110px',
-    marginTop: '-20px',
-    verticalAlign: 'middle',
-  },
-  '& h2': {
-    display: 'inline-block',
-    fontSize: '45px',
-    color: '#CDFA00',
-    marginLeft: '10px',
-  },
+export const Login = styled("form")({
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${LoginImage}) no-repeat`,
-  '& section': {
-    width: '400px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    margin: 'auto',
-    alignItems: 'center',
+  paddingTop: "35px",
+  minHeight: "100vh",
+  textAlign: "center",
+  "& img": {
+    width: "170px",
+    height: "110px",
+    marginTop: "-20px",
+    verticalAlign: "middle",
   },
-  '& section >*': {
-    marginBottom: '20px',
+  "& h2": {
+    display: "inline-block",
+    fontSize: "45px",
+    color: "#CDFA00",
+    marginLeft: "10px",
   },
-  '& .MuiOutlinedInput-root': {
-    background: '#fff',
-    marginRight: '9px',
-    borderRadius: '30px 30px',
-    opacity: '0.9',
-    width: '326px',
-    height: '52px',
-    boxShadow: '0px 24px 24px rgba(0, 0, 0, 0.02)',
+  "& section": {
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    margin: "auto",
+    alignItems: "center",
   },
-  '& .MuiButton-root': {
-    width: '350px',
-    height: '44px',
-    borderRadius: '30px 30px',
-    opacity: '0.9',
-    backgroundColor: '#CDFA00',
-    color: '#000',
-    ':hover': {
-      backgroundColor: '#ECB22F',
+  "& section >*": {
+    marginBottom: "20px",
+  },
+  "& .MuiOutlinedInput-root": {
+    background: "#fff",
+    marginRight: "9px",
+    borderRadius: "30px 30px",
+    opacity: "0.9",
+    width: "326px",
+    height: "52px",
+    boxShadow: "0px 24px 24px rgba(0, 0, 0, 0.02)",
+  },
+  "& .MuiButton-root": {
+    width: "350px",
+    height: "44px",
+    borderRadius: "30px 30px",
+    opacity: "0.9",
+    backgroundColor: "#CDFA00",
+    color: "#000",
+    ":hover": {
+      backgroundColor: "#ECB22F",
     },
   },
-  '& .css-i4bv87-MuiSvgIcon-root ': {
-    backgroundColor: 'white',
-    borderRadius: '50%',
-    fontSize: '100px',
+  "& section svg": {
+    backgroundColor: "white",
+    borderRadius: "50%",
+    fontSize: "8em",
   },
 });
 

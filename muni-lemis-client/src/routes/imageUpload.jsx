@@ -1,20 +1,12 @@
-import { Button, Input, TextField, Snackbar, Alert } from '@mui/material';
-import React, { useState } from 'react';
-import styled from '@emotion/styled';
-import CircularProgress from '@mui/material/CircularProgress';
-import * as Api from 'Api'
-import { Header } from 'components/util/board'
-import BackButton from 'components/BackButton';
-import BackgroundImage from 'components/images/login.svg'
-import { css } from '@emotion/react';
+/* eslint-disable no-unused-vars */
+import { Button, TextField, Alert } from "@mui/material";
+import React, { useState } from "react";
 
-const PageMain = styled.main`
-  background: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(${BackgroundImage}) no-repeat;
-  height: calc(100vh - 60px);
-  width: 100vw;
-  display: grid;
-  place-items: center;
-`
+import styled from "@emotion/styled";
+import CircularProgress from "@mui/material/CircularProgress";
+// import * as Api from "../Api";
+import { Header } from "../components/util/board";
+import UploadImage from "../components/util/uploadImage";
 
 const Container = styled.div`
   display: flex;
@@ -38,31 +30,17 @@ const Title = styled.h1`
 
 
 export default function ImageUpload() {
-  const [selectedFile, setSelectedFile] = useState('')
+  const [area, setArea] = useState({
+    city: "",
+    area: "",
+    consumption: "",
+  });
 
-  const [area, setArea] = useState({ city: '', area: '', consumption: '' })
-  const [data, setData] = useState({
-    res: { error: false, text: '' },
-    loading: false,
-  })
+  const [loading, setLoading] = useState(false);
 
-  async function upload(file) {
-    setData({ ...data, loading: true })
-    const res = await Api.uploadImage(file, area.city, area.area, area.consumption)
-    setArea({ city: '', area: '', consumption: '' })
-    setData({ ...data, loading: false })
-
-    if (res.ok) setData({ ...data, res: { error: false, text: `Image uploaded and will be scanned...` } })
-    else setData({ ...data, res: { error: true, text: `Server error` } })
+  async function handleFileInput(file) {
+    const res = await UploadImage(file);
   }
-
-  async function fileHandler(file) {
-    Object.keys(area).forEach(i =>
-      area[i] = area[i].toLowerCase()
-    )
-    upload(file)
-  }
-
   return (
     <>
       <Header>
@@ -78,11 +56,15 @@ export default function ImageUpload() {
             <TextField autoComplete='off' value={area.city} id="standard-basic" label="City" variant="standard"
               onChange={(e) => setArea(prev => ({ ...area, city: e.target.value }))}
             />
-            <TextField autoComplete='off' value={area.area} id="standard-basic" label="Area" variant="standard"
-              onChange={(e) => setArea(prev => ({ ...area, area: e.target.value }))}
-            />
-            <TextField autoComplete='off' value={area.consumption} id="standard-basic" label="Consumption" variant="standard"
-              onChange={(e) => setArea(prev => ({ ...area, consumption: e.target.value }))}
+            <TextField
+              autoComplete="off"
+              value={area.consumption}
+              id="standard-basic"
+              label="Consumption"
+              variant="standard"
+              onChange={(e) =>
+                setArea(() => ({ ...area, consumption: e.target.value }))
+              }
             />
 
             <Button
@@ -108,12 +90,8 @@ export default function ImageUpload() {
               </Alert>
             }
           </Container>
-        }
-        {
-          data.loading && <CircularProgress style={{color: 'yellow'}}/> 
-        }
-        <BackButton path='/homePage' />
-      </PageMain>
+        )}
+      </main>
     </>
   )
 }
