@@ -9,25 +9,26 @@ import { Header } from "../components/util/board";
 import UploadImage from "../components/util/uploadImage";
 
 const Container = styled.div`
+  background-image: "../components/images/login.svg";
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
   justify-content: center;
   flex-direction: column;
   background: white;
+  /* padding: 15px 20px; */
   border-radius: 8px;
   max-width: 35vw;
-  height: 90%;
-  padding: 0 25px;
-  position: relative;
-`
+  padding: 20px 20px;
+`;
 
-const Title = styled.h1`
-  text-align: center;
-  font-size: 3em;
+const ResContainer = styled.div`
   margin-top: 20px;
-`
-
-
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export default function ImageUpload() {
   const [area, setArea] = useState({
@@ -48,13 +49,27 @@ export default function ImageUpload() {
           <span>Muni-LEIMS</span>
         </a>
       </Header>
-      <PageMain>
-        {
-          !data.loading &&
+      <main>
+        {!loading && (
           <Container>
-            <Title>Upload Image</Title>
-            <TextField autoComplete='off' value={area.city} id="standard-basic" label="City" variant="standard"
-              onChange={(e) => setArea(prev => ({ ...area, city: e.target.value }))}
+            <h1
+              style={{
+                textAlign: "center",
+                fontSize: "3em",
+                marginTop: "20px",
+              }}
+            >
+              Upload Image
+            </h1>
+            <TextField
+              autoComplete="off"
+              value={area.city}
+              id="standard-basic"
+              label="City"
+              variant="standard"
+              onChange={(e) =>
+                setArea(() => ({ ...area, city: e.target.value }))
+              }
             />
             <TextField
               autoComplete="off"
@@ -68,30 +83,22 @@ export default function ImageUpload() {
             />
 
             <Button
-              disabled={Object.values(area).some(i => i === null) ? true : false}
+              disabled={!!Object.values(area).some((i) => i === null)}
               variant="contained"
               component="label"
-              style={{ textAlign: 'center', marginTop: '7px' }}
+              style={{ textAlign: "center" }}
             >
               Upload Image
-              <input type="file" accept='image/*' hidden
-                onChange={(e) => fileHandler(e.target.files[0])}
+              <input
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={(e) => handleFileInput(e.target.files[0])}
               />
             </Button>
-            {
-              data.res.text
-              &&
-              <Alert
-                style={{ bottom: '25px', position: 'absolute' }}
-                onClose={() => setData({ ...data, res: { error: false, text: '' } })}
-                severity={data.res.error ? "error" : 'success'}
-              >
-                {data.res.text}
-              </Alert>
-            }
           </Container>
         )}
       </main>
     </>
-  )
+  );
 }
