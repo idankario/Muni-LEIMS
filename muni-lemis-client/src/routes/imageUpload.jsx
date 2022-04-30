@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Button, TextField, Alert } from "@mui/material";
 import React, { useState } from "react";
 
@@ -31,36 +32,16 @@ const ResContainer = styled.div`
 
 export default function ImageUpload() {
   const [area, setArea] = useState({
-    city: null,
-    area: null,
-    consumption: null,
+    city: "",
+    area: "",
+    consumption: "",
   });
-  // const [selectedFile, setSelectedFile] = useState("");
-  const [apiRes, setApiRes] = useState({ error: false, text: "" });
+
   const [loading, setLoading] = useState(false);
 
   async function handleFileInput(file) {
-    setLoading(true);
-    Object.keys(area).forEach((i) => {
-      area[i] = area[i].toLowerCase();
-    });
-    const res = UploadImage(file);
-    // const res = await Api.uploadImage(
-    //   file,
-    //   area.city,
-    //   area.area,
-    //   area.consumption
-    // );
-    setLoading(false);
-    setArea({ city: null, area: null, consumption: null });
-    if (res.ok)
-      setApiRes({
-        error: false,
-        text: `Image uploaded and will be scanned...`,
-      });
-    else setApiRes({ error: true, text: `Server error` });
+    const res = await UploadImage(file);
   }
-
   return (
     <>
       <Header>
@@ -92,16 +73,6 @@ export default function ImageUpload() {
             />
             <TextField
               autoComplete="off"
-              value={area.area}
-              id="standard-basic"
-              label="Area"
-              variant="standard"
-              onChange={(e) =>
-                setArea(() => ({ ...area, area: e.target.value }))
-              }
-            />
-            <TextField
-              autoComplete="off"
               value={area.consumption}
               id="standard-basic"
               label="Consumption"
@@ -126,26 +97,6 @@ export default function ImageUpload() {
               />
             </Button>
           </Container>
-        )}
-        {apiRes.text && !loading && (
-          <ResContainer>
-            <Alert severity={apiRes.error ? "error" : "success"}>
-              {apiRes.text}
-            </Alert>
-          </ResContainer>
-        )}
-
-        {loading && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "80vh",
-            }}
-          >
-            <CircularProgress style={{ color: "yellow" }} />
-          </div>
         )}
       </main>
     </>

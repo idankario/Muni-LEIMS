@@ -1,7 +1,6 @@
 import { styled } from "@mui/material/styles";
 import button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-// import Select from 'react-select';
 import { Card } from "@mui/material";
 import MenuImage from "../images/word.svg";
 import Logo from "../images/logo.svg";
@@ -53,11 +52,11 @@ export const MenuL = styled(Menu)({
   },
 });
 export const Login = styled("form")({
+  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${LoginImage}) no-repeat`,
   paddingTop: "35px",
   minHeight: "100vh",
   textAlign: "center",
   "& img": {
-    display: "block",
     width: "170px",
     height: "110px",
     marginTop: "-20px",
@@ -69,7 +68,6 @@ export const Login = styled("form")({
     color: "#CDFA00",
     marginLeft: "10px",
   },
-  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${LoginImage}) no-repeat`,
   "& section": {
     width: "400px",
     display: "flex",
@@ -101,10 +99,10 @@ export const Login = styled("form")({
       backgroundColor: "#ECB22F",
     },
   },
-  "& .css-i4bv87-MuiSvgIcon-root ": {
+  "& section svg": {
     backgroundColor: "white",
     borderRadius: "50%",
-    fontSize: "100px",
+    fontSize: "8em",
   },
 });
 

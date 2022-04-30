@@ -17,7 +17,6 @@ function LoginPage() {
         <h2>Muni-LEIMS</h2>
         <section>
           <AccountCircleIcon />
-          <h2>USER LOGIN:</h2>
           <TextField type="USERNAME" placeholder="USERNAME" />
           <TextField type="PASSWORD" placeholder="PASSWORD" />
           <Button>LOGIN</Button>
