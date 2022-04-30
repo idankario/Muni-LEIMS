@@ -12,6 +12,7 @@ import * as reportsCtl from './controllers/reports'
 import * as officesCtl from './controllers/office'
 import * as areaCtl from './controllers/area'
 import * as boxesCtl from './controllers/boundingbox'
+import * as statisticsCtl from './controllers/statistics'
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -58,6 +59,11 @@ app.post('/addboundingBoxes/addboundingBox', boxesCtl.addboundingBoximage);//add
 
 app.post('/imgupload/upload', multer().single('file'), imageUploadCtl.uploadImage);//get all users in the system : ;
 
+
+/*** statistics ***/
+app.get('/statistics/high_central', statisticsCtl.highestCentral)
+app.get('/statistics/low_central', statisticsCtl.lowestCentral)
+app.get('/statistics/top_central', statisticsCtl.getTopFiveCentral)
 
 /*** db data routes ***/
 app.get('/data/municipalities', reportsCtl.getMunicipalities)

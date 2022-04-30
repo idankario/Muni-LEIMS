@@ -6,49 +6,36 @@ import MenuImage from "../images/word.svg";
 import Logo from "../images/logo.svg";
 import LoginImage from "../images/login.svg";
 
-export const Header = styled("header")({
-  padding: "10px",
-  "& a": {
-    display: "inline-block",
-    backgroundImage: `url(${Logo})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "50px 40px",
+export const Header = styled('header')({
+  padding: '10px',
+  '& a': {
+    display: 'inline-block',
+    backgroundImage: `url(${Logo}) `,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '50px 40px',
   },
-  "& span": {
-    color: "#CDFA00",
-    fontSize: "31px",
-    paddingLeft: "70px",
+  '& span': {
+    color: '#CDFA00',
+    fontSize: '31px',
+    paddingLeft: '70px',
   },
-  height: "40px",
-  backgroundColor: "#2E2E2E ",
+  height: '40px',
+  backgroundColor: '#2E2E2E ',
 });
 
-export const Menu = styled("main")({
-  paddingTop: "20px",
-  "& h2": {
-    fontSize: "45px",
-    color: "#CDFA00",
+export const Menu = styled('main')({
+  padding: '25px',
+  '& h2': {
+    fontSize: '45px',
+    color: '#CDFA00',
+    textAlign: 'center',
   },
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${MenuImage}) no-repeat`,
-  minHeight: "100vh",
-  "& section": {
-    textAlign: "center",
-    margin: "auto",
-    width: "350px",
-  },
-  "& button": {
-    margin: "20px",
-  },
-});
-export const MenuL = styled(Menu)({
-  "& h1": {
-    margin: "auto",
-    textAlign: "center",
-    width: "700px",
-    maxWidth: "95%",
-    background: "#fff",
-    paddingTop: "10px",
-    fontSize: "45px",
+  
+  minHeight: '100vh',
+  '& section': {
+    width: '400px',
+    margin: 'auto',
   },
 });
 export const Login = styled("form")({
@@ -107,49 +94,49 @@ export const Login = styled("form")({
 });
 
 export const Button = styled(button)(({ theme }) => ({
-  boxShadow: "0 0 6px hsl(210 14% 90%)",
-  height: "80px",
-  margin: "30px 0px",
-  background: theme.color ? theme.color : "#000000",
-  borderRadius: "10px",
-  ":hover": {
-    backgroundColor: theme.hover ? theme.hover : "#ECB22F",
+  boxShadow: '0 0 6px hsl(210 14% 90%)',
+  height: '80px',
+  margin: '30px 0px',
+  background: theme.color ? theme.color : '#000000',
+  borderRadius: '10px',
+  ':hover': {
+    backgroundColor: theme.hover ? theme.hover : '#ECB22F',
   },
-  "& h2": {
-    fontSize: "22px",
+  '& h2': {
+    fontSize: '22px',
   },
 }));
 
-export const WhiteBoard = styled("section")({
-  width: "390px",
-  minHeight: "350px",
-  background: "#fff",
-  marginBottom: "40px",
-  padding: "20px",
-  borderRadius: "20px 20px 20px 20px",
+export const WhiteBoard = styled('section')({
+  width: '390px',
+  minHeight: '350px',
+  background: '#fff',
+  marginBottom: '40px',
+  padding: '20px',
+  borderRadius: '20px 20px 20px 20px',
 });
 
 export const StyledLink = styled(Link)({
-  textDecoration: "none",
-  color: "orange",
-  "&:focus, &:hover": {
-    textDecoration: "none",
-    color: "#7790F6",
+  textDecoration: 'none',
+  color: 'orange',
+  '&:focus, &:hover': {
+    textDecoration: 'none',
+    color: '#7790F6',
   },
 });
 export const SqButton = styled(button)(({ theme }) => ({
-  flexDirection: "column",
-  fontSize: "12px",
-  boxShadow: "0 0 6px hsl(210 14% 90%)",
-  width: "80px",
-  height: "80px",
-  margin: "20px",
-  fontFamily: "Segoe UI",
-  color: "#fff",
-  background: theme.color ? theme.color : "#28D38A",
-  borderRadius: "10px",
-  ":hover": {
-    backgroundColor: theme.hover ? theme.hover : "#ECB22F",
+  flexDirection: 'column',
+  fontSize: '12px',
+  boxShadow: '0 0 6px hsl(210 14% 90%)',
+  width: '80px',
+  height: '80px',
+  margin: '20px',
+  fontFamily: 'Segoe UI',
+  color: '#fff',
+  background: theme.color ? theme.color : '#28D38A',
+  borderRadius: '10px',
+  ':hover': {
+    backgroundColor: theme.hover ? theme.hover : '#ECB22F',
   },
 }));
 
@@ -162,48 +149,48 @@ export const SqButton = styled(button)(({ theme }) => ({
 //     }
 // });
 
-export const ProgressStyle = styled("progress")({
-  padding: "20px",
-  marginTop: "10px",
-  width: "150px",
+export const ProgressStyle = styled('progress')({
+  padding: '20px',
+  marginTop: '10px',
+  width: '150px',
 });
 
-export const FlexSection = styled("section")({
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  height: "45px",
-  width: "390px",
-  paddingBottom: "30px",
+export const FlexSection = styled('section')({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  height: '45px',
+  width: '390px',
+  paddingBottom: '30px',
 });
 
-export const H5styles = styled("h5")({
-  fontFamily: "Segoe UI",
-  color: "#6441a4",
-  marginTop: "20px",
+export const H5styles = styled('h5')({
+  fontFamily: 'Segoe UI',
+  color: '#6441a4',
+  marginTop: '20px',
 });
 
 export const CardStyle = styled(Card)({
   width: 320,
-  margin: "auto",
+  margin: 'auto',
   height: 170,
-  textAlign: "center",
-  borderRadius: "21px",
-  backgroundColor: "#884EA0",
-  padding: "5px",
-  "& p:nth-of-type(1)": {
-    color: "#ECB22F",
-    fontSize: "38px",
+  textAlign: 'center',
+  borderRadius: '21px',
+  backgroundColor: '#884EA0',
+  padding: '5px',
+  '& p:nth-of-type(1)': {
+    color: '#ECB22F',
+    fontSize: '38px',
   },
-  "& p:nth-of-type(2)": {
-    fontSize: "20px",
+  '& p:nth-of-type(2)': {
+    fontSize: '20px',
     opacity: 0.8,
   },
-  "& p": {
-    fontFamily: "cursive",
-    fontWeight: "700",
+  '& p': {
+    fontFamily: 'cursive',
+    fontWeight: '700',
   },
-  "& button": {
-    width: "10px",
+  '& button': {
+    width: '10px',
   },
 });
