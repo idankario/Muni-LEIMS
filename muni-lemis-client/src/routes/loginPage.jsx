@@ -1,8 +1,12 @@
 import React from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { TextField, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 import Logo from "../components/images/logo.svg";
-import { Header, Login } from "../components/util/board";
+import { Login } from "../components/util/board";
+import Header from "../components/header";
+import { H_2 } from "../components/h2";
 
 function LoginPage() {
   return (
@@ -14,7 +18,7 @@ function LoginPage() {
       </Header>
       <Login>
         <img src={Logo} alt="logo" title="logo" />
-        <h2>Muni-LEIMS</h2>
+        <H_2>Muni-LEIMS</H_2>
         <section>
           <AccountCircleIcon />
           <TextField type="USERNAME" placeholder="USERNAME" />

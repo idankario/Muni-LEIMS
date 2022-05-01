@@ -17,6 +17,12 @@ module.exports = {
   plugins: ["react", "prettier", "@typescript-eslint"],
   rules: {
     "react/prop-types": 0,
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: ["@mui/*/*/*", "!@mui/material/test-utils/*"],
+      },
+    ],
     "prettier/prettier": [
       "error",
       {

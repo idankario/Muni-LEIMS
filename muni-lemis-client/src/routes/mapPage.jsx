@@ -7,24 +7,20 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import Geocode from "react-geocode";
-import { Header, MenuL } from "../components/util/board";
+import { Menu } from "../components/util/board";
+import Header from "../components/header";
+import { Input, H1, ContainerStyle } from "../components/map";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-const containerStyle = {
-  height: "500px",
-  width: "700px",
-  maxWidth: "95%",
-  margin: "auto",
-};
+
 function Map() {
   const [place, setPlace] = useState("");
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [dataLocation, setLocation] = useState({
-    city: "",
-    height: 400,
+    city: "Ashdod",
     mapPosition: {
       lat: 31.804381,
       lng: 34.655314,
@@ -97,11 +93,11 @@ function Map() {
           <span>Muni-LEIMS</span>
         </a>
       </Header>
-      <MenuL>
-        <h1>{dataLocation.city}</h1>
+      <Menu>
+        <H1>{dataLocation.city}</H1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
-            mapContainerStyle={containerStyle}
+            mapContainerStyle={ContainerStyle}
             onClick={onMapClick}
             center={dataLocation.mapPosition}
             zoom={15}
@@ -141,29 +137,11 @@ function Map() {
               </InfoWindow>
             ) : null}
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
-              <input
-                type="text"
-                placeholder="Customized your placeholder"
-                style={{
-                  boxSizing: `border-box`,
-                  border: `1px solid transparent`,
-                  width: `240px`,
-                  height: `32px`,
-                  padding: `0 12px`,
-                  borderRadius: `3px`,
-                  boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-                  fontSize: `14px`,
-                  outline: `none`,
-                  textOverflow: `ellipses`,
-                  position: "absolute",
-                  left: "50%",
-                  marginLeft: "-120px",
-                }}
-              />
+              <Input type="text" placeholder="Search location" />
             </Autocomplete>
           </GoogleMap>
         </LoadScript>
-      </MenuL>
+      </Menu>
     </>
   );
 }

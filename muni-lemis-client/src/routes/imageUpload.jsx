@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { Button, TextField, Alert } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import React, { useState } from "react";
-
 import styled from "@emotion/styled";
 import CircularProgress from "@mui/material/CircularProgress";
+import Header from "../components/header";
 // import * as Api from "../Api";
-import { Header } from "../components/util/board";
 import UploadImage from "../components/util/uploadImage";
 
 const Container = styled.div`

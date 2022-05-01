@@ -1,4 +1,4 @@
-import db from "../db_connection";
+import db from '../db_connection'
 
 export async function getAllUsers(req, res) {
   console.log("getAllUsers()");
@@ -13,6 +13,7 @@ export async function getAllUsers(req, res) {
     console.error(error);
   }
 }
+
 
 // create new user in db
 export async function createNewUser(req, res) {
@@ -39,6 +40,7 @@ export async function createNewUser(req, res) {
   }
 }
 
+
 export async function checkUser(req, res) {
   console.log("checkUser()");
 
@@ -55,3 +57,4 @@ export async function checkUser(req, res) {
     console.error(error);
   }
 }
+

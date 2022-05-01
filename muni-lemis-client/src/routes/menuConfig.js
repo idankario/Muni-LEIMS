@@ -1,12 +1,12 @@
-const sidebarConfig = [
+const MenuConfig = [
   {
     title: "TOP/LAST MUNICIPALITIES",
     path: "/municipalities",
   },
-  // {
-  //   title: "TOP/LAST CITIES",
-  //   path: "/cities",
-  // },
+  {
+    title: "TOP/LAST SWITCHBOARDS",
+    path: "/switchboards",
+  },
   {
     title: "UPLOAD IMAGE",
     path: "/ImgUpload",
@@ -16,12 +16,8 @@ const sidebarConfig = [
     path: "/statisticPage",
   },
   {
-    title: "COMPARE MUNICIPALITIES",
-    path: "/",
-  },
-  {
     title: "MAP VISUALIZED",
     path: "/mappage",
   },
 ];
-export default sidebarConfig;
+export default MenuConfig;

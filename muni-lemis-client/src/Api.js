@@ -28,3 +28,29 @@ export async function loadCities() {
   const json = await res.json();
   return json;
 }
+
+export async function getLowestCentral() {
+  const res = await fetch(`${API_URL}/statistics/low_central`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function getHighestCentral() {
+  const res = await fetch(`${API_URL}/statistics/high_central`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function getTopCentral() {
+  const res = await fetch(`${API_URL}/statistics/top_central`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}

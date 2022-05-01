@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "muni-lemis",
+  "name": "muni-lemis",
   "icons": [
     {
       "src": "favicon.ico",
