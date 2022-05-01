@@ -1,5 +1,4 @@
-import db from '../db_connection'
-
+import db from "../db_connection";
 
 export async function addStreetLightType(req, res) {
   console.log("addStreetLightType()");

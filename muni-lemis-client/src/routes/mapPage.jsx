@@ -10,6 +10,7 @@ import Geocode from "react-geocode";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
 import { Input, H1, ContainerStyle } from "../components/map";
+import BackButton from "../components/backButton";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -88,11 +89,7 @@ function Map() {
 
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
+      <Header />
       <Menu>
         <H1>{dataLocation.city}</H1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
@@ -132,7 +129,7 @@ function Map() {
                     </span>{" "}
                     Alert
                   </h2>
-                  <p>Spotted </p>
+                  <p>Sttreet </p>
                 </div>
               </InfoWindow>
             ) : null}
@@ -141,6 +138,7 @@ function Map() {
             </Autocomplete>
           </GoogleMap>
         </LoadScript>
+        <BackButton />
       </Menu>
     </>
   );

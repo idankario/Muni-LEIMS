@@ -2,37 +2,39 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import React, { useState } from "react";
-import styled from "@emotion/styled";
-import CircularProgress from "@mui/material/CircularProgress";
+import { styled } from "@mui/material/styles";
+import BackgroundImage from "../components/images/login.svg";
+import BackButton from "../components/backButton";
 import Header from "../components/header";
-// import * as Api from "../Api";
 import UploadImage from "../components/util/uploadImage";
+import { H2 } from "../components/h2";
 
-const Container = styled.div`
-  background-image: "../components/images/login.svg";
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10vh;
-  justify-content: center;
-  flex-direction: column;
-  background: white;
-  /* padding: 15px 20px; */
-  border-radius: 8px;
-  max-width: 35vw;
-  padding: 20px 20px;
-`;
+// import * as Api from "../Api";
+const Menu = styled("main")({
+  paddingTop: "35px",
+  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${BackgroundImage}) no-repeat`,
+  minHeight: "100vh",
+  width: "100%",
+  "& section": {
+    textAlign: "center",
+    margin: "auto",
+    height: "500px",
+    opacity: "90%",
+    borderRadius: "50px",
+    background: "#fff",
+    width: "400px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "5%",
+  },
+  "& section >*": {
+    marginBottom: "60px",
+  },
+});
 
-const ResContainer = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export default function ImageUpload() {
+function ImageUpload() {
   const [area, setArea] = useState({
-    city: "",
+    municipality: "",
     area: "",
     consumption: "",
   });
@@ -42,63 +44,70 @@ export default function ImageUpload() {
   async function handleFileInput(file) {
     const res = await UploadImage(file);
   }
+
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
-      <main>
-        {!loading && (
-          <Container>
-            <h1
-              style={{
-                textAlign: "center",
-                fontSize: "3em",
-                marginTop: "20px",
-              }}
-            >
-              Upload Image
-            </h1>
-            <TextField
-              autoComplete="off"
-              value={area.city}
-              id="standard-basic"
-              label="City"
-              variant="standard"
-              onChange={(e) =>
-                setArea(() => ({ ...area, city: e.target.value }))
-              }
-            />
-            <TextField
-              autoComplete="off"
-              value={area.consumption}
-              id="standard-basic"
-              label="Consumption"
-              variant="standard"
-              onChange={(e) =>
-                setArea(() => ({ ...area, consumption: e.target.value }))
-              }
-            />
+      <Header />
+      <Menu>
+        <section>
+          <H2
+            style={{
+              textAlign: "center",
+              fontSize: "3em",
+              marginTop: "20px",
+            }}
+          >
+            Upload Image
+          </H2>
+          <TextField
+            autoComplete="off"
+            value={area.municipality}
+            id="standard-basic"
+            label="Municipality"
+            variant="standard"
+            onChange={(e) =>
+              setArea(() => ({ ...area, municipality: e.target.value }))
+            }
+          />
+          <TextField
+            autoComplete="off"
+            value={area.consumption}
+            id="standard-basic"
+            label="Consumption"
+            variant="standard"
+            onChange={(e) =>
+              setArea(() => ({ ...area, consumption: e.target.value }))
+            }
+          />
+          <TextField
+            autoComplete="off"
+            value={area.area}
+            id="standard-basic"
+            label="Put cordinate of area"
+            variant="standard"
+            onChange={(e) =>
+              setArea((prev) => ({ ...area, area: e.target.value }))
+            }
+          />
 
-            <Button
-              disabled={!!Object.values(area).some((i) => i === null)}
-              variant="contained"
-              component="label"
-              style={{ textAlign: "center" }}
-            >
-              Upload Image
-              <input
-                type="file"
-                accept="image/*"
-                hidden
-                onChange={(e) => handleFileInput(e.target.files[0])}
-              />
-            </Button>
-          </Container>
-        )}
-      </main>
+          <Button
+            disabled={!!Object.values(area).some((i) => i === null)}
+            variant="contained"
+            component="label"
+            style={{ textAlign: "center" }}
+          >
+            Upload Image
+            <input
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={(e) => handleFileInput(e.target.files[0])}
+            />
+          </Button>
+        </section>
+      </Menu>
+      <BackButton />
     </>
   );
 }
+export default ImageUpload;

@@ -10,11 +10,7 @@ function HomePage() {
   const navigate = useNavigate();
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
+      <Header />
       <Menu>
         <section>
           {MenuConfig.map((navigation) => (

@@ -1,7 +1,4 @@
-const HOST = "localhost";
-const PROTOCOL = "http";
-const PORT = 3000;
-const API_URL = `${PROTOCOL}://${HOST}:${PORT}`;
+const API_URL = `https://muni-leims.herokuapp.com`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
@@ -13,7 +10,6 @@ export async function uploadImage(file, city, area, consumption) {
     method: "POST",
     body: data,
   });
-  // res = await res.json()
   return res;
 }
 

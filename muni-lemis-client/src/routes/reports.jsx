@@ -47,11 +47,7 @@ function reports({ dataType }) {
 
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
+      <Header />
       <main>
         <h1>LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}</h1>
         {rows ? (

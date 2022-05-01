@@ -1,96 +1,93 @@
+// import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
-import styled from "@emotion/styled";
 import Plot from "react-plotly.js";
 import CircularProgress from "@mui/material/CircularProgress";
+import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import BackgroundImage from "../components/images/login.svg";
 import { getHighestCentral, getLowestCentral, getTopCentral } from "../Api";
 
-const PageMain = styled.main`
-  background: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-    url(${BackgroundImage}) no-repeat;
-  height: calc(100vh - 60px);
-  width: 100vw;
-`;
+const PageMain = styled("main")(() => ({
+  background: `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${BackgroundImage}) no-repeat`,
+  height: `calc(100vh - 60px)`,
+  width: `100vw`,
+}));
+const Title = styled("h1")(() => ({
+  color: `#cdfa00`,
+  textAlign: `center`,
+  paddingTop: `17px`,
+}));
 
-const Title = styled.h1`
-  color: #cdfa00;
-  text-align: center;
-  padding-top: 17px;
-`;
-const CenterContainer = styled.div`
-  display: flex;
-  width: 80vw;
-  height: calc(100vh - 150px);
-  justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-`;
+const CenterContainer = styled("div")(() => ({
+  display: `flex`,
+  width: `80vw`,
+  height: `calc(100vh - 150px)`,
+  justifyContent: `space-around`,
+  marginLeft: `auto`,
+  marginRight: `auto`,
+  position: `relative`,
+}));
 
-const Sep = styled.div`
-  height: 100%;
-  width: 2px;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  background: #cdfa00;
-`;
+const Sep = styled("div")(() => ({
+  height: `100%`,
+  width: `2px`,
+  position: `absolute`,
+  left: `50%`,
+  top: `0`,
+  background: `#cdfa00`,
+}));
 
-const PlotWrapper = styled.div`
-  width: 50%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-`;
+const PlotWrapper = styled("div")(() => ({
+  width: `50%`,
+  height: `100%`,
+  display: `grid`,
+  placeitems: `center`,
+}));
 
-const DataWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  position: relative;
-  margin-left: auto;
-`;
+const DataWrapper = styled("div")(() => ({
+  display: `flex`,
+  flexDirection: `column`,
+  width: `50%`,
+  position: `relative`,
+  marginLeft: `auto`,
+}));
 
-const DataInner = styled.div`
-  height: 50%;
-  display: flex;
-  flex-direction: row;
-  ${(props) => `color: ${props.color};`}
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  word-wrap: break-word;
-  gap: 5%;
-  > p {
-    text-align: center;
-    width: 40%;
-    font-size: 1.3em;
-    text-shadow: 2px 2px black;
-  }
-`;
-
-const DataInnerSep = styled.div`
-  height: 60%;
-  width: 5px;
-  ${(props) => `background: ${props.background};`}
-`;
-
-const DataInnerData = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  > span {
-    font-size: 4em;
-  }
-  > p {
-    font-size: 0.9em;
-    color: white;
-  }
-`;
+const DataInner = styled("div")(() => ({
+  height: `50%`,
+  display: `flex`,
+  flexDirection: `row`,
+  // ${(props) => `color: ${props.color};`},
+  alignItems: `center`,
+  justifyContent: `center`,
+  fontWeight: `bold`,
+  wordWrap: `break-word`,
+  gap: ` 5%`,
+  "& > p": {
+    textAlign: `center`,
+    width: `40%`,
+    fontSize: `1.3em`,
+    textShadow: `2px 2px black`,
+  },
+}));
+const DataInnerSep = styled("h2")(() => ({
+  height: `60%`,
+  width: `5px`,
+}));
+const DataInnerData = styled("div")(() => ({
+  display: `flex`,
+  flexDirection: `column`,
+  height: `100%`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  "& > span": {
+    fontSize: `4em`,
+  },
+  "& > p": {
+    fontSize: `0.9em`,
+    color: `white`,
+  },
+}));
 
 function ConsumptionData({ title, kwh, color }) {
   return (

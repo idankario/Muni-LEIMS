@@ -11,11 +11,7 @@ import { H_2 } from "../components/h2";
 function LoginPage() {
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
+      <Header />
       <Login>
         <img src={Logo} alt="logo" title="logo" />
         <H_2>Muni-LEIMS</H_2>

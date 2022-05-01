@@ -6,7 +6,7 @@ import StatisticPage from "./routes/statisticPage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
 import ImgUpload from "./routes/imageUpload";
-import Reports from "./routes/reports";
+// import Reports from "./routes/reports";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/homepage" element={<HomePage />} />
-        <Route
+        {/* <Route
           exact
           path="/switchboards"
           element={<Reports dataType="switchboards" />}
@@ -23,7 +23,7 @@ function App() {
           exact
           path="/municipalities"
           element={<Reports dataType="municipalities" />}
-        />
+        /> */}
         <Route exact path="/imgUpload" element={<ImgUpload />} />
         <Route exact path="/statisticPage" element={<StatisticPage />} />
         <Route exact path="/mappage" element={<MapPage />} />

@@ -1,7 +1,8 @@
+import React from "react";
 import { styled } from "@mui/material/styles";
 import Logo from "./images/logo.svg";
 
-const Header = styled("header")({
+const HeaderTemplate = styled("header")({
   padding: "10px",
   "& a": {
     display: "inline-block",
@@ -17,4 +18,12 @@ const Header = styled("header")({
   height: "40px",
   backgroundColor: "#2E2E2E ",
 });
-export default Header;
+export default function Header() {
+  return (
+    <HeaderTemplate>
+      <a href="/#">
+        <span>Muni-LEIMS</span>
+      </a>
+    </HeaderTemplate>
+  );
+}

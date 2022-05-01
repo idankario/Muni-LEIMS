@@ -1,6 +1,4 @@
-import db from '../db_connection'
-
-
+import db from "../db_connection";
 
 export async function creatOffice(req, res) {
   console.log("creatoffice()");

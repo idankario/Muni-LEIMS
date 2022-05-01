@@ -1,4 +1,4 @@
-import db from '../db_connection'
+import db from "../db_connection";
 
 export async function creatNewSwitchboard(req, res) {
   console.log("creatNewSwitchboard()");
@@ -19,7 +19,6 @@ export async function creatNewSwitchboard(req, res) {
     console.error(error);
   }
 }
-
 
 export async function updateswitchboard(req, res) {
   console.log("updateswitchboard()");

@@ -15,5 +15,4 @@ const Button = styled(button)(({ theme }) => ({
     fontSize: "22px",
   },
 }));
-
 export default Button;

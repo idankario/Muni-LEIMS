@@ -19,11 +19,11 @@ export const Button = styled("button")({
     transform: "scale(1.2)",
   },
 });
-function BackButton({ path }) {
+function BackButton() {
   const navigate = useNavigate();
 
   return (
-    <Button onClick={() => navigate(path)}>
+    <Button onClick={() => navigate("/homePage")}>
       <ArrowCircleLeftIcon
         style={{
           color: "white",

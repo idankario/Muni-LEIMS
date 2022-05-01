@@ -1,5 +1,4 @@
-import db from '../db_connection'
-
+import db from "../db_connection";
 
 export async function uplaodImage(req, res) {
   console.log("uplaodImage()");
@@ -7,8 +6,6 @@ export async function uplaodImage(req, res) {
   const userId = req.body.user_id;
   const switchboardId = req.body.switchboard_id;
   const scale = req.body.scale;
-
-
 
   try {
     const areaQuery = `INSERT INTO MuniLEIMS.image

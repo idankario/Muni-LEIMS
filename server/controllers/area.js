@@ -1,11 +1,9 @@
-import db from '../db_connection'
-
+import db from "../db_connection";
 
 export async function creatArea(req, res) {
   console.log("creatArea()");
 
   const areaName = req.body.area_name;
-
 
   try {
     const areaQuery = `INSERT INTO MuniLEIMS.area
