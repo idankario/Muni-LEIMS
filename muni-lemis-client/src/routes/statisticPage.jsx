@@ -37,14 +37,12 @@ const Sep = styled("div")(() => ({
   top: `0`,
   background: `#cdfa00`,
 }));
-
 const PlotWrapper = styled("div")(() => ({
   width: `50%`,
   height: `100%`,
   display: `grid`,
-  placeitems: `center`,
+  placeItems: `center`,
 }));
-
 const DataWrapper = styled("div")(() => ({
   display: `flex`,
   flexDirection: `column`,
@@ -52,12 +50,11 @@ const DataWrapper = styled("div")(() => ({
   position: `relative`,
   marginLeft: `auto`,
 }));
-
-const DataInner = styled("div")(() => ({
+const DataInner = styled("div")((color) => ({
   height: `50%`,
   display: `flex`,
   flexDirection: `row`,
-  // ${(props) => `color: ${props.color};`},
+  color: `${color.color}`,
   alignItems: `center`,
   justifyContent: `center`,
   fontWeight: `bold`,
@@ -70,9 +67,11 @@ const DataInner = styled("div")(() => ({
     textShadow: `2px 2px black`,
   },
 }));
-const DataInnerSep = styled("h2")(() => ({
+
+const DataInnerSep = styled("h2")((background) => ({
   height: `60%`,
   width: `5px`,
+  background: `${background.background}`,
 }));
 const DataInnerData = styled("div")(() => ({
   display: `flex`,
@@ -110,27 +109,25 @@ export default function StatisticPage() {
     top: [],
   });
 
-  useEffect(async () => {
-    const highest = await getHighestCentral();
-    const lowest = await getLowestCentral();
-    const top = await getTopCentral();
-    console.log(data.top.map((o) => o.intensity));
-
-    setData({
-      highest: highest[0],
-      lowest: lowest[0],
-      top,
-      loading: false,
-    });
+  useEffect(() => {
+    async function getDataDB() {
+      const highest = await getHighestCentral();
+      const lowest = await getLowestCentral();
+      const top = await getTopCentral();
+      console.log(data.top.map((o) => o.intensity));
+      setData({
+        highest: highest[0],
+        lowest: lowest[0],
+        top,
+        loading: false,
+      });
+    }
+    getDataDB();
   }, []);
 
   return (
     <>
-      <Header>
-        <a href="/#">
-          <span>Muni-LEIMS</span>
-        </a>
-      </Header>
+      <Header />
       <PageMain>
         <Title>STATISTICAL REPORT:</Title>
         <CenterContainer>
@@ -188,7 +185,7 @@ export default function StatisticPage() {
             </>
           )}
         </CenterContainer>
-        <BackButton path="/homePage" />
+        <BackButton />
       </PageMain>
     </>
   );

@@ -1,18 +1,32 @@
 import React, { useEffect, useState } from "react";
-// import { styled } from '@mui/material/styles';
-// import BgImage from '../components/images/login.svg';
+import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
-
-// import Styles from "../style/reports.module.scss";
+import BackgroundImage from "../components/images/login.svg";
+import BackButton from "../components/backButton";
 import Table from "../components/Table";
+
+const yellow = "#CDFA00";
+const MainStyle = styled("div")(() => ({
+  background: ` linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),url(${BackgroundImage}) no-repeat`,
+  backgroundSize: `cover`,
+  height: `calc(100vh - 60px)`,
+  width: `100vw`,
+  display: `flex`,
+  alignItems: `center`,
+  flexDirection: `column`,
+}));
+const MainTitle = styled("h1")(() => ({
+  color: `${yellow}`,
+  marginTop: `20px`,
+}));
 
 async function loadData(dataType) {
   let data =
     dataType === "cities" ? await loadCities() : await loadMunicipalities();
-  // console.log(data);
-  await data.forEach((value, idx) => {
+  console.log(data);
+  await data.forEach((_value, idx) => {
     data[idx].count = String(idx + 1).padStart(2, "0"); // 1 => 01, 2 => 02
     if (!Number.isInteger(data[idx].consumption_average))
       // Remove long float points
@@ -39,17 +53,22 @@ async function loadData(dataType) {
 
 function reports({ dataType }) {
   const [rows, setRows] = useState(null);
-
-  useEffect(async () => {
-    const data = await loadData(dataType);
-    setRows(data);
+  let data;
+  useEffect(() => {
+    async function getDataDB() {
+      data = await loadData(dataType);
+      setRows(data);
+    }
+    getDataDB();
   }, []);
 
   return (
     <>
       <Header />
-      <main>
-        <h1>LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}</h1>
+      <MainStyle>
+        <MainTitle>
+          LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
+        </MainTitle>
         {rows ? (
           <Table
             rows={rows}
@@ -58,7 +77,8 @@ function reports({ dataType }) {
         ) : (
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
         )}
-      </main>
+        <BackButton />
+      </MainStyle>
     </>
   );
 }

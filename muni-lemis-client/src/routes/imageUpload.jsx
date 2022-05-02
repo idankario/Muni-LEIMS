@@ -13,12 +13,12 @@ import { H2 } from "../components/h2";
 const Menu = styled("main")({
   paddingTop: "35px",
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${BackgroundImage}) no-repeat`,
-  minHeight: "100vh",
+  minHeight: `calc(100vh - 95px)`,
   width: "100%",
   "& section": {
     textAlign: "center",
     margin: "auto",
-    height: "500px",
+    height: "450px",
     opacity: "90%",
     borderRadius: "50px",
     background: "#fff",
@@ -50,15 +50,7 @@ function ImageUpload() {
       <Header />
       <Menu>
         <section>
-          <H2
-            style={{
-              textAlign: "center",
-              fontSize: "3em",
-              marginTop: "20px",
-            }}
-          >
-            Upload Image
-          </H2>
+          <H2>Upload Image</H2>
           <TextField
             autoComplete="off"
             value={area.municipality}
