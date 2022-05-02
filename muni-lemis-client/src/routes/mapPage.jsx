@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -17,7 +17,7 @@ Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map() {
-  const [place, setPlace] = useState('');
+  const [place, setPlace] = useState("");
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [dataLocation, setLocation] = useState({
@@ -28,13 +28,13 @@ function Map() {
     },
   });
   const getCity = (addressArray) => {
-    let city = '';
+    let city = "";
     for (let i = 0; i < addressArray.length; i += 1) {
       if (addressArray[i].types[0]) {
         for (let j = 0; j < addressArray[i].types.length; j += 1) {
           if (
-            addressArray[i].types[j] === 'sublocality_level_1' ||
-            addressArray[i].types[j] === 'locality'
+            addressArray[i].types[j] === "sublocality_level_1" ||
+            addressArray[i].types[j] === "locality"
           ) {
             city = addressArray[i].long_name;
             return city;
@@ -50,7 +50,7 @@ function Map() {
         const addressArray = response.results[0].address_components;
         const city = getCity(addressArray);
         setLocation({
-          city: city || '',
+          city: city || "",
           mapPosition: {
             lat: 31.804381,
             lng: 34.655314,
@@ -69,7 +69,7 @@ function Map() {
     const latValue = place.getPlace().geometry.location.lat();
     const lngValue = place.getPlace().geometry.location.lng();
     setLocation({
-      city: city || '',
+      city: city || "",
       mapPosition: {
         lat: latValue,
         lng: lngValue,
@@ -93,8 +93,8 @@ function Map() {
       <Menu>
         <H1>{dataLocation.city}</H1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
-        <GoogleMap
-            mapContainerStyle={containerStyle}
+          <GoogleMap
+            mapContainerStyle={ContainerStyle}
             onClick={onMapClick}
             center={dataLocation.mapPosition}
             zoom={15}
@@ -126,7 +126,7 @@ function Map() {
                   <h2>
                     <span role="img" aria-label="bear">
                       🐻
-                    </span>{' '}
+                    </span>{" "}
                     Alert
                   </h2>
                   <p>Sttreet </p>

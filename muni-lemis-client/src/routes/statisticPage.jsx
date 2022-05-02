@@ -188,5 +188,5 @@ export default function StatisticPage() {
         <BackButton />
       </PageMain>
     </>
-  )
+  );
 }
