@@ -84,4 +84,3 @@ function reports({ dataType }) {
 }
 
 export default reports;
-

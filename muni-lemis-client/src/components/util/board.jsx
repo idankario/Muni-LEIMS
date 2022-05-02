@@ -5,7 +5,7 @@ import LoginImage from "../images/login.svg";
 export const Menu = styled("main")({
   paddingTop: "35px",
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${MenuImage}) no-repeat`,
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 60px)",
   "& section": {
     textAlign: "center",
     margin: "auto",
@@ -18,7 +18,7 @@ export const Menu = styled("main")({
 export const Login = styled("form")({
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${LoginImage}) no-repeat`,
   paddingTop: "35px",
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 60px)",
   textAlign: "center",
   "& img": {
     width: "170px",

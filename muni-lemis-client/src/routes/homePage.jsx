@@ -7,12 +7,11 @@ import MenuConfig from "./menuConfig";
 import { H2 } from "../components/h2";
 
 function HomePage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <Header />
       <Menu>
-        <h2>Menu:</h2>
         <section>
           {MenuConfig.map((navigation) => (
             <Button
