@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/button";
 import image404 from "../components/images/404.svg";
-=======
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from 'components/util/board';
-import image404 from 'components/images/404.svg';
->>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 
 export default function Page404() {
   return (
