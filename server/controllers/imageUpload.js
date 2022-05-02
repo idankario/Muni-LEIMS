@@ -47,6 +47,7 @@ async function scanFile(fromPath) {
   return [null, null];
 }
 
+<<<<<<< HEAD
 function checkProc(proc, procName) {
   return new Promise((resolve, reject) => {
     proc.on("error", (err) => {
@@ -74,6 +75,30 @@ async function sliceImage(scriptPath, file, outFolder) {
   let procName = "python" + (py3_exists ? "3" : "");
   const proc = spawn(procName, [scriptPath, file, outFolder]);
   await checkProc(proc, procName);
+=======
+
+function checkProc(proc, procName) {
+    return new Promise((resolve, reject) => {
+        proc.on('error', err => {
+            reject(`Failed to spawn ${procName}`)
+        })
+        proc.on('exit', code => {
+            if (code != 0) {
+                proc.stdout.on('data', data => console.log(`process[stdout]: ${data.toString()}`))
+                proc.stderr.on('data', data => console.log(`process[stderr]: ${data.toString()}`))
+                reject('Python exited with error')
+            }
+            resolve()
+        })
+    }) 
+}
+async function sliceImage(scriptPath, file, outFolder) {    
+    let py3_exists = false
+    try { py3_exists = await commandExists('python3') } catch {} // throws error or true...
+    let procName =  'python' + (py3_exists ? '3' : '')
+    const proc = spawn(procName, [scriptPath, file, outFolder]);
+    await checkProc(proc, procName)
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 }
 
 async function scanImages(files, outFolder, city, area, consumption) {

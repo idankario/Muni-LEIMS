@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
+<<<<<<< HEAD
 import Header from "../components/header";
 import BackgroundImage from "../components/images/login.svg";
 import BackButton from "../components/backButton";
+=======
+import { Header } from "../components/util/board";
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 import Table from "../components/Table";
 
 const yellow = "#CDFA00";
@@ -64,11 +68,21 @@ function reports({ dataType }) {
 
   return (
     <>
+<<<<<<< HEAD
       <Header />
       <MainStyle>
         <MainTitle>
           LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
         </MainTitle>
+=======
+      <Header>
+        <a href="/#">
+          <span>Muni-LEIMS</span>
+        </a>
+      </Header>
+      <main>
+        <h1>LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}</h1>
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
         {rows ? (
           <Table
             rows={rows}
@@ -84,3 +98,4 @@ function reports({ dataType }) {
 }
 
 export default reports;
+

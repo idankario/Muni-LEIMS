@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -13,6 +14,23 @@ import * as officesCtl from "./controllers/office";
 import * as areaCtl from "./controllers/area";
 import * as boxesCtl from "./controllers/boundingbox";
 import * as statisticsCtl from "./controllers/statistics";
+=======
+import dotenv from 'dotenv'
+dotenv.config()
+import express from 'express'
+import multer from 'multer'
+import bodyParser from 'body-parser'
+import cors from 'cors'
+import * as usersCtl from './controllers/users'
+import * as switchboardsCtl from './controllers/swithchboards'
+import * as imageUploadCtl from './controllers/imageUpload'
+import * as imagesCtl from './controllers/images'
+import * as reportsCtl from './controllers/reports'
+import * as officesCtl from './controllers/office'
+import * as areaCtl from './controllers/area'
+import * as boxesCtl from './controllers/boundingbox'
+import * as statisticsCtl from './controllers/statistics'
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -73,6 +91,11 @@ app.post(
 app.get("/statistics/high_central", statisticsCtl.highestCentral);
 app.get("/statistics/low_central", statisticsCtl.lowestCentral);
 app.get("/statistics/top_central", statisticsCtl.getTopFiveCentral);
+
+/*** statistics ***/
+app.get('/statistics/high_central', statisticsCtl.highestCentral)
+app.get('/statistics/low_central', statisticsCtl.lowestCentral)
+app.get('/statistics/top_central', statisticsCtl.getTopFiveCentral)
 
 /*** db data routes ***/
 app.get("/data/municipalities", reportsCtl.getMunicipalities);

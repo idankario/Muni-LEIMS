@@ -21,18 +21,36 @@ def tile(filename, out_folder, d):
         print(out, flush=True)
         img.crop(box).save(out)
 
+def recreate_folder(f):
+    if os.path.isdir(f):
+            shutil.rmtree(f)
+    os.mkdir(f)
 
+
+<<<<<<< HEAD
 def recreate_folder(f):
     if os.path.isdir(f):
         shutil.rmtree(f)
     os.mkdir(f)
 
 
+=======
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 def main():
     infile = pathlib.Path(sys.argv[1])
     outfolder = pathlib.Path(sys.argv[2])
     PIL.Image.MAX_IMAGE_PIXELS = 933120000
     recreate_folder(outfolder)
+<<<<<<< HEAD
+
+    try:
+        tile(infile, outfolder, 400)
+        infile.unlink(missing_ok=True)
+    except Exception as e:
+        print(e, flush=True)
+        exit(1)
+=======
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
 
     try:
         tile(infile, outfolder, 400)
@@ -41,6 +59,9 @@ def main():
         print(e, flush=True)
         exit(1)
 
-
 if __name__ == '__main__':
+<<<<<<< HEAD
     main()
+=======
+    main()
+>>>>>>> d575c30f48cb674b8f3f5faa4782b648122fa246
