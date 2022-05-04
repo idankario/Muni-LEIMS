@@ -3,7 +3,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import Logo from "../components/images/logo.svg";
+import Logo from "../components/images/logoBody.png";
 import { Login } from "../components/util/board";
 import Header from "../components/header";
 import { H_2 } from "../components/h2";

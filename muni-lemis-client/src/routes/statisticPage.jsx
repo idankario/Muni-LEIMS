@@ -5,13 +5,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import BackgroundImage from "../components/images/login.svg";
+import BackgroundImage from "../components/images/login.png";
 import { getHighestCentral, getLowestCentral, getTopCentral } from "../Api";
 
 const PageMain = styled("main")(() => ({
   background: `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${BackgroundImage}) no-repeat`,
-  height: `calc(100vh - 60px)`,
-  width: `100vw`,
+  minHeight: "calc(100vh - 95px)",
+  backgroundSize: "100% 100%",
 }));
 const Title = styled("h1")(() => ({
   color: `#cdfa00`,
@@ -114,7 +114,6 @@ export default function StatisticPage() {
       const highest = await getHighestCentral();
       const lowest = await getLowestCentral();
       const top = await getTopCentral();
-      console.log(data.top.map((o) => o.intensity));
       setData({
         highest: highest[0],
         lowest: lowest[0],
