@@ -67,12 +67,12 @@ function reports({ dataType }) {
       <Header />
       <MainStyle>
         <MainTitle>
-          LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
+           {dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
         </MainTitle>
         {rows ? (
           <Table
             rows={rows}
-            dataName={dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
+            dataName={dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
           />
         ) : (
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
