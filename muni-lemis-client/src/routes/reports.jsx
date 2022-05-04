@@ -67,6 +67,7 @@ function reports({ dataType }) {
       <MainStyle>
         <MainTitle>
           {dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
+
         </MainTitle>
         {rows ? (
           <Table

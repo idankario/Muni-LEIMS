@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { Typography } from '@mui/material';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import React, { useState } from "react";
@@ -83,7 +84,7 @@ function ImageUpload() {
               setArea((prev) => ({ ...area, area: e.target.value }))
             }
           />
-
+  
           <Button
             disabled={!!Object.values(area).some((i) => i === null)}
             variant="contained"
@@ -98,6 +99,7 @@ function ImageUpload() {
               onChange={(e) => handleFileInput(e.target.files[0])}
             />
           </Button>
+          
         </section>
       </Menu>
       <BackButton />
