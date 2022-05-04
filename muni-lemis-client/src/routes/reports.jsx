@@ -3,15 +3,15 @@ import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
-import BackgroundImage from "../components/images/login.svg";
+import BackgroundImage from "../components/images/login.png";
 import BackButton from "../components/backButton";
 import Table from "../components/Table";
 
 const yellow = "#CDFA00";
 const MainStyle = styled("div")(() => ({
   background: ` linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),url(${BackgroundImage}) no-repeat`,
-  backgroundSize: `cover`,
-  height: `calc(100vh - 60px)`,
+  minHeight: "calc(100vh - 95px)",
+  backgroundSize: "100% 100%",
   width: `100vw`,
   display: `flex`,
   alignItems: `center`,
@@ -25,7 +25,6 @@ const MainTitle = styled("h1")(() => ({
 async function loadData(dataType) {
   let data =
     dataType === "cities" ? await loadCities() : await loadMunicipalities();
-  console.log(data);
   await data.forEach((_value, idx) => {
     data[idx].count = String(idx + 1).padStart(2, "0"); // 1 => 01, 2 => 02
     if (!Number.isInteger(data[idx].consumption_average))
@@ -67,12 +66,12 @@ function reports({ dataType }) {
       <Header />
       <MainStyle>
         <MainTitle>
-          LAST {dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
+          {dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
         </MainTitle>
         {rows ? (
           <Table
             rows={rows}
-            dataName={dataType === "cities" ? "CITIES" : "MUNICIPALITY"}
+            dataName={dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
           />
         ) : (
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />

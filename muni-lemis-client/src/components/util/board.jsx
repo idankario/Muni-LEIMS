@@ -1,11 +1,12 @@
 import { styled } from "@mui/material/styles";
-import MenuImage from "../images/word.svg";
-import LoginImage from "../images/login.svg";
+import MenuImage from "../images/word.png";
+import LoginImage from "../images/login.png";
 
 export const Menu = styled("main")({
   paddingTop: "35px",
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${MenuImage}) no-repeat`,
   minHeight: "calc(100vh - 60px)",
+  backgroundSize: "100% 100%",
   "& section": {
     textAlign: "center",
     margin: "auto",
@@ -18,7 +19,9 @@ export const Menu = styled("main")({
 export const Login = styled("form")({
   background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${LoginImage}) no-repeat`,
   paddingTop: "35px",
-  minHeight: "calc(100vh - 60px)",
+  minHeight: "calc(100vh - 95px)",
+  backgroundSize: "100% 100%",
+  width: "100%",
   textAlign: "center",
   "& img": {
     width: "170px",

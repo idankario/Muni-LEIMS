@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import Logo from "./images/logo.svg";
+import Logo from "./images/logoBody.png";
 
 const HeaderTemplate = styled("header")({
   padding: "10px",
@@ -8,7 +8,7 @@ const HeaderTemplate = styled("header")({
     display: "inline-block",
     backgroundImage: `url(${Logo})`,
     backgroundRepeat: "no-repeat",
-    backgroundSize: "50px 40px",
+    backgroundSize: "65px 35px",
   },
   "& span": {
     color: "#CDFA00",

@@ -11,6 +11,7 @@ import { Menu } from "../components/util/board";
 import Header from "../components/header";
 import { Input, H1, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
+import Logomap from "../components/images/logomap.png";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -122,14 +123,10 @@ function Map() {
                   setSelected(null);
                 }}
               >
-                <div>
-                  <h2>
-                    <span role="img" aria-label="bear">
-                      🐻
-                    </span>{" "}
-                    Alert
-                  </h2>
-                  <p>Sttreet </p>
+                <div style={{ textAlign: "center" }}>
+                  <h3 style={{ color: "red" }}>Switchboard 303</h3>
+                  <img alt="switchboard" title="switchboard" src={Logomap} />
+                  <p>Average consumption 354</p>
                 </div>
               </InfoWindow>
             ) : null}

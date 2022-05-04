@@ -22,7 +22,7 @@ function App() {
         <Route
           exact
           path="/municipalities"
-          element={<Reports dataType="municipalities" />}
+          element={<Reports dataType="cities" />}
         />
         <Route exact path="/imgUpload" element={<ImgUpload />} />
         <Route exact path="/statisticPage" element={<StatisticPage />} />
