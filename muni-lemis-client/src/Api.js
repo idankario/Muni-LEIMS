@@ -50,3 +50,14 @@ export async function getTopCentral() {
   console.log(json);
   return json;
 }
+
+
+export async function getlastCentral() {
+  const res = await fetch(`${API_URL}/statistics/lowest_central`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}

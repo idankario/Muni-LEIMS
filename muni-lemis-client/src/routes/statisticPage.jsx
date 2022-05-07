@@ -167,6 +167,32 @@ export default function StatisticPage() {
                   }}
                   config={{ displayModeBar: false }}
                 />
+            
+                <Plot
+                  data={[
+                    {
+                      x: data.top.map((o) => o.area),
+                      y: data.top.map((o) => o.intensity),
+                      type: "bar",
+                      mode: "lines+markers",
+                      marker: { color: "red" },
+                      xaxis: {
+                        tickangle: -45,
+                      },
+                    },
+                  ]}
+                  layout={{
+                    width: 350,
+                    height: 300,
+                    xaxis: {
+                      tickangle: -45,
+                    },
+                    font: { color: "white" },
+                    plot_bgcolor: "black",
+                    paper_bgcolor: "black",
+                  }}
+                  config={{ displayModeBar: false }}
+                />
               </PlotWrapper>
               <Sep />
               <DataWrapper>

@@ -62,7 +62,7 @@ export default function Table({ rows, dataName }) {
         <tr>
           <Th>Rate</Th>
           <Th>{dataName}</Th>
-          <Th>Energy intensity</Th>
+          <Th>Energy intensity (Conumption/StreetLights)</Th>
         </tr>
       </thead>
       <tbody>
@@ -75,6 +75,7 @@ export default function Table({ rows, dataName }) {
             <td>{row.count}</td>
             <Td>{row.city || row.area}</Td>
             <td>{row.consumption_average || row["consumption average"]}</td>
+            {/* <Th>(Conumption/StreetLights)</Th> */}
           </tr>
         ))}
       </tbody>
