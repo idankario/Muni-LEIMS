@@ -161,8 +161,7 @@ function StatisticalReports() {
                 }}
                 config={{ displayModeBar: false }}
               />
-            </PlotWrapper>
-            <PlotWrapper>
+
               <Plot
                 data={[
                   {
