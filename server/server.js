@@ -69,15 +69,14 @@ app.post(
   imageUploadCtl.uploadImage
 ); //get all users in the system : ;
 
-/*** statistics ***/
-app.get("/statistics/high_central", statisticsCtl.highestCentral);
-app.get("/statistics/low_central", statisticsCtl.lowestCentral);
-app.get("/statistics/top_central", statisticsCtl.getTopFiveCentral);
+
+
 
 /*** statistics ***/
 app.get("/statistics/high_central", statisticsCtl.highestCentral);
 app.get("/statistics/low_central", statisticsCtl.lowestCentral);
 app.get("/statistics/top_central", statisticsCtl.getTopFiveCentral);
+app.get("/statistics/lowest_central", statisticsCtl.getLastFiveCentral);
 
 /*** db data routes ***/
 app.get("/data/municipalities", reportsCtl.getMunicipalities);

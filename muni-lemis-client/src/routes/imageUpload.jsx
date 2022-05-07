@@ -10,6 +10,9 @@ import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
 import { H2 } from "../components/h2";
 import InfoButton from "../components/infoButton";
+import Info from '../components/info';
+
+
 
 // import * as Api from "../Api";
 const Menu = styled("main")({
@@ -31,7 +34,7 @@ const Menu = styled("main")({
     padding: "5%",
   },
   "& section >*": {
-    marginBottom: "60px",
+    marginBottom: "40px",
   },
 });
 
@@ -54,6 +57,7 @@ function ImageUpload() {
       <Menu>
         <section>
           <H2>Upload Image</H2>
+          <Info />
           <TextField
             autoComplete="off"
             value={area.municipality}
@@ -84,7 +88,7 @@ function ImageUpload() {
               setArea((prev) => ({ ...area, area: e.target.value }))
             }
           />
-  
+           
           <Button
             disabled={!!Object.values(area).some((i) => i === null)}
             variant="contained"
@@ -99,7 +103,6 @@ function ImageUpload() {
               onChange={(e) => handleFileInput(e.target.files[0])}
             />
           </Button>
-          
         </section>
       </Menu>
       <BackButton />
