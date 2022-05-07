@@ -3,28 +3,22 @@ import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
-import BackgroundImage from "../components/images/login.png";
 import BackButton from "../components/backButton";
 import Table from "../components/Table";
+import { H2 } from "../components/h2";
+import Body from "../components/body";
 
-const yellow = "#CDFA00";
 const MainStyle = styled("div")(() => ({
-  background: ` linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),url(${BackgroundImage}) no-repeat`,
-  minHeight: "calc(100vh - 95px)",
-  backgroundSize: "100% 100%",
-  width: `100vw`,
   display: `flex`,
   alignItems: `center`,
   flexDirection: `column`,
 }));
-const MainTitle = styled("h1")(() => ({
-  color: `${yellow}`,
-  marginTop: `20px`,
-}));
 
 async function loadData(dataType) {
   let data =
-    dataType === "cities" ? await loadCities() : await loadMunicipalities();
+    dataType === "municipalities"
+      ? await loadCities()
+      : await loadMunicipalities();
   await data.forEach((_value, idx) => {
     data[idx].count = String(idx + 1).padStart(2, "0"); // 1 => 01, 2 => 02
     if (!Number.isInteger(data[idx].consumption_average))
@@ -50,7 +44,7 @@ async function loadData(dataType) {
   return data;
 }
 
-function reports({ dataType }) {
+function TopLastReports({ dataType }) {
   const [rows, setRows] = useState(null);
   let data;
   useEffect(() => {
@@ -62,24 +56,28 @@ function reports({ dataType }) {
   }, []);
 
   return (
-    <>
+    <Body>
       <Header />
       <MainStyle>
-        <MainTitle>
-          {dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
-        </MainTitle>
+        <H2>
+          {dataType === "municipalities"
+            ? "Top/Last Municipalities"
+            : "Top/Last Switchboards"}
+        </H2>
         {rows ? (
           <Table
             rows={rows}
-            dataName={dataType === "cities" ? "MUNICIPALITY" : "Switchboards"}
+            dataName={
+              dataType === "municipalities" ? "Municipalities" : "Switchboards"
+            }
           />
         ) : (
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
         )}
         <BackButton />
       </MainStyle>
-    </>
+    </Body>
   );
 }
 
-export default reports;
+export default TopLastReports;

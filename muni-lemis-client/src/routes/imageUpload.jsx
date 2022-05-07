@@ -3,20 +3,15 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
-import BackgroundImage from "../components/images/login.png";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
 import { H2 } from "../components/h2";
 import InfoButton from "../components/infoButton";
+import Body from "../components/body";
 
 // import * as Api from "../Api";
 const Menu = styled("main")({
-  paddingTop: "35px",
-  background: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${BackgroundImage}) no-repeat`,
-  minHeight: "calc(100vh - 95px)",
-  backgroundSize: "100% 100%",
-  width: "100%",
   "& section": {
     textAlign: "center",
     margin: "auto",
@@ -48,7 +43,7 @@ function ImageUpload() {
   }
 
   return (
-    <>
+    <Body>
       <Header />
       <Menu>
         <section>
@@ -102,7 +97,7 @@ function ImageUpload() {
       </Menu>
       <BackButton />
       <InfoButton />
-    </>
+    </Body>
   );
 }
 export default ImageUpload;

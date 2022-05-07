@@ -5,14 +5,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import BackgroundImage from "../components/images/login.png";
 import { getHighestCentral, getLowestCentral, getTopCentral } from "../Api";
+import Body from "../components/body";
 
-const PageMain = styled("main")(() => ({
-  background: `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${BackgroundImage}) no-repeat`,
-  minHeight: "calc(100vh - 95px)",
-  backgroundSize: "100% 100%",
-}));
 const Title = styled("h1")(() => ({
   color: `#cdfa00`,
   textAlign: `center`,
@@ -22,7 +17,7 @@ const Title = styled("h1")(() => ({
 const CenterContainer = styled("div")(() => ({
   display: `flex`,
   width: `80vw`,
-  height: `calc(100vh - 150px)`,
+  minHeight: `calc(80vh - 150px)`,
   justifyContent: `space-around`,
   marginLeft: `auto`,
   marginRight: `auto`,
@@ -101,7 +96,7 @@ function ConsumptionData({ title, kwh, color }) {
   );
 }
 
-export default function StatisticPage() {
+function StatisticalReports() {
   const [data, setData] = useState({
     loading: true,
     highest: {},
@@ -125,67 +120,67 @@ export default function StatisticPage() {
   }, []);
 
   return (
-    <>
+    <Body>
       <Header />
-      <PageMain>
-        <Title>STATISTICAL REPORT:</Title>
-        <CenterContainer>
-          {data.loading ? (
-            <CircularProgress
-              style={{
-                color: "yellow",
-                position: "absolute",
-                left: "50%",
-                top: "35%",
-              }}
-            />
-          ) : (
-            <>
-              <PlotWrapper>
-                <Plot
-                  data={[
-                    {
-                      x: data.top.map((o) => o.area),
-                      y: data.top.map((o) => o.intensity),
-                      type: "bar",
-                      mode: "lines+markers",
-                      marker: { color: "green" },
-                      xaxis: {
-                        tickangle: -45,
-                      },
-                    },
-                  ]}
-                  layout={{
-                    width: 350,
-                    height: 300,
+      <Title>STATISTICAL REPORT:</Title>
+      <CenterContainer>
+        {data.loading ? (
+          <CircularProgress
+            style={{
+              color: "yellow",
+              position: "absolute",
+              left: "50%",
+              top: "35%",
+            }}
+          />
+        ) : (
+          <>
+            <PlotWrapper>
+              <Plot
+                data={[
+                  {
+                    x: data.top.map((o) => o.area),
+                    y: data.top.map((o) => o.intensity),
+                    type: "bar",
+                    mode: "lines+markers",
+                    marker: { color: "green" },
                     xaxis: {
                       tickangle: -45,
                     },
-                    font: { color: "white" },
-                    plot_bgcolor: "black",
-                    paper_bgcolor: "black",
-                  }}
-                  config={{ displayModeBar: false }}
-                />
-              </PlotWrapper>
-              <Sep />
-              <DataWrapper>
-                <ConsumptionData
-                  title="The lowest central power consumption per resident"
-                  kwh={data.lowest.intensity}
-                  color="green"
-                />
-                <ConsumptionData
-                  title="The highest central power consumption per resident"
-                  kwh={data.highest.intensity}
-                  color="red"
-                />
-              </DataWrapper>
-            </>
-          )}
-        </CenterContainer>
-        <BackButton />
-      </PageMain>
-    </>
+                  },
+                ]}
+                layout={{
+                  width: 350,
+                  height: 300,
+                  xaxis: {
+                    tickangle: -45,
+                  },
+                  font: { color: "white" },
+                  plot_bgcolor: "black",
+                  paper_bgcolor: "black",
+                }}
+                config={{ displayModeBar: false }}
+              />
+            </PlotWrapper>
+            <Sep />
+            <DataWrapper>
+              <ConsumptionData
+                title="The lowest central power consumption per resident"
+                kwh={data.lowest.intensity}
+                color="green"
+              />
+              <ConsumptionData
+                title="The highest central power consumption per resident"
+                kwh={data.highest.intensity}
+                color="red"
+              />
+            </DataWrapper>
+          </>
+        )}
+      </CenterContainer>
+      <BackButton />
+    </Body>
   );
 }
+
+export default StatisticalReports;

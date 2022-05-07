@@ -14,19 +14,16 @@ const TableStyle = styled("table")({
   "&::-webkit-scrollbar": {
     width: `18px`,
   },
-
   /* Track */
   "&::--webkit-scrollbar-track ": {
     background: `rgba(255, 255, 255, 0.5)`,
     borderRadius: `10px`,
   },
-
   /* Handle */
   "&::-webkit-scrollbar-thumb  ": {
     background: `white`,
     borderRadius: `10px`,
   },
-
   /* Handle on hover */
   "&::-webkit-scrollbar-thumb:hover": {
     background: `white`,
@@ -62,7 +59,7 @@ export default function Table({ rows, dataName }) {
         <tr>
           <Th>Rate</Th>
           <Th>{dataName}</Th>
-          <Th>Energy intensity</Th>
+          <Th>Energy Intensity</Th>
         </tr>
       </thead>
       <tbody>

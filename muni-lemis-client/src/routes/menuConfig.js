@@ -8,8 +8,8 @@ const MenuConfig = [
     path: "/switchboards",
   },
   {
-    title: "STATISTIC",
-    path: "/statisticPage",
+    title: "STATISTICAL REPORTS",
+    path: "/statisticalReports",
   },
   {
     title: "UPLOAD IMAGE",

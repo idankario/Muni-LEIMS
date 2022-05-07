@@ -7,10 +7,11 @@ import Logo from "../components/images/logoBody.png";
 import { Login } from "../components/util/board";
 import Header from "../components/header";
 import { H_2 } from "../components/h2";
+import Body from "../components/body";
 
 function LoginPage() {
   return (
-    <>
+    <Body>
       <Header />
       <Login>
         <img src={Logo} alt="logo" title="logo" />
@@ -22,7 +23,7 @@ function LoginPage() {
           <Button>LOGIN</Button>
         </section>
       </Login>
-    </>
+    </Body>
   );
 }
 export default LoginPage;

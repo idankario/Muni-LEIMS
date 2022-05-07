@@ -23,35 +23,15 @@ function InfoButton() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Button onClick={() => navigate("/homePage")}>
-        <QuestionMarkIcon
-          style={{
-            color: "white",
-            fontSize: "2em",
-            padding: "1px",
-          }}
-        />
-      </Button>
-      {/* <Popover
-        anchorEl={anchorEl}
-        open={open}
-        id={open ? "simple-popover" : undefined}
-        onClose={() => {
-          setAnchorEl(null);
+    <Button onClick={() => navigate("/homePage")}>
+      <QuestionMarkIcon
+        style={{
+          color: "white",
+          fontSize: "2em",
+          padding: "1px",
         }}
-        transformOrigin={{
-          horizontal: "center",
-          vertical: "top",
-        }}
-        anchorOrigin={{
-          horizontal: "center",
-          vertical: "bottom",
-        }}
-      >
-        How are you?
-      </Popover> */}
-    </>
+      />
+    </Button>
   );
 }
 export default InfoButton;

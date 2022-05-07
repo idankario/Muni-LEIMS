@@ -6,7 +6,7 @@ async function UploadImage(filename) {
   const res = await axios
     .get("https://api.muni-leims.ml/presignedurl")
     .then(async (response) => {
-      await fetch(response.data, {
+      await axios(response.data, {
         method: "PUT",
         body: filename,
       });

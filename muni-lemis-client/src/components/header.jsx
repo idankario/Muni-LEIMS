@@ -15,7 +15,7 @@ const HeaderTemplate = styled("header")({
     fontSize: "31px",
     paddingLeft: "70px",
   },
-  height: "40px",
+  height: "5vh",
   backgroundColor: "#2E2E2E ",
 });
 export default function Header() {

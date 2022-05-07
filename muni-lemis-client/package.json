@@ -35,6 +35,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "configurations": [
+    {
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "type": "dart"
+    }
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
