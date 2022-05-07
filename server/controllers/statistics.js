@@ -32,3 +32,16 @@ export async function getTopFiveCentral(req, res) {
     res.send(JSON.stringify(result));
   });
 }
+
+  export async function getLastFiveCentral(req, res) {
+    let query = `
+      SELECT DISTINCT energy_inetensity intensity, area
+      FROM MuniLEIMS.statisticalreport
+      WHERE area IS NOT NULL AND energy_inetensity IS NOT NULL
+      ORDER BY energy_inetensity 
+      LIMIT 5
+      `;
+    db.query(query, (err, result) => {
+      res.send(JSON.stringify(result));
+    });
+}
