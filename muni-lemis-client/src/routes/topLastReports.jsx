@@ -25,7 +25,7 @@ async function loadData(dataType) {
       // Remove long float points
       data[idx].consumption_average = parseFloat(
         data[idx].consumption_average
-      ).toFixed(3);
+      ).toFixed(0);
   });
   // data.push({count: '04', city: 'haifa', consumption_average: 322})
   data =

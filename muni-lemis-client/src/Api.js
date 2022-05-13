@@ -1,4 +1,4 @@
-const API_URL = `https://muni-leims.herokuapp.com`;
+const API_URL = `http://localhost:3000`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
