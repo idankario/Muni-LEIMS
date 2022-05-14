@@ -27,6 +27,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+
 /*** User routes ***/
 app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system
 app.post("/users/createNewUser", usersCtl.createNewUser); //creat new user in the system without office
@@ -73,10 +75,20 @@ app.post(
 
 
 /*** statistics ***/
-app.get("/statistics/high_central", statisticsCtl.highestCentral);
-app.get("/statistics/low_central", statisticsCtl.lowestCentral);
-app.get("/statistics/top_central", statisticsCtl.getTopFiveCentral);
-app.get("/statistics/lowest_central", statisticsCtl.getLastFiveCentral);
+app.get("/statistics/high_Switchboard", statisticsCtl.highestSwitchboard);
+app.get("/statistics/lowest_switchboard", statisticsCtl.lowestSwitchboard);
+app.get("/statistics/top_five_switchboards", statisticsCtl.getTopFiveSwitchboards);
+app.get("/statistics/top_last_switchboards", statisticsCtl.getLastFiveSwitchboards);
+app.get("/statistics/high_Muncipalty", statisticsCtl.highestMuncipalty);
+app.get("/statistics/lowest_Muncipalty", statisticsCtl.lowestMuncipalty);
+app.get("/statistics/top_five_Muncipalty", statisticsCtl.getTopFiveMuncipalty);
+app.get("/statistics/last_five_Muncipalty", statisticsCtl.getLastFiveMuncipalty);
+
+
+
+
+
+
 
 /*** db data routes ***/
 app.get("/data/municipalities", reportsCtl.getMunicipalities);
