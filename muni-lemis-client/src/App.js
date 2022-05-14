@@ -7,6 +7,7 @@ import MapPage from "./routes/mapPage";
 import ImgUpload from "./routes/imageUpload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
+import StatisticalReportsminstry from "./routes/statisticalReportsminstry";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/imgUpload" element={<ImgUpload />} />
 
         <Route exact path="/mappage" element={<MapPage />} />
+        <Route exact path="/statisticalReportsminstry" element={<StatisticalReportsminstry />} />
         {/* 404 rounte */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

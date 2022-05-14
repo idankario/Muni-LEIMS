@@ -1,4 +1,4 @@
-const API_URL = `https://muni-leims.herokuapp.com`;
+const API_URL = `http://localhost:3000`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
@@ -25,24 +25,73 @@ export async function loadCities() {
   return json;
 }
 
-export async function getLowestCentral() {
-  const res = await fetch(`${API_URL}/statistics/low_central`, {
+export async function getLowestSwitchboard() { 
+  const res = await fetch(`${API_URL}/statistics/lowest_switchboard`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 
-export async function getHighestCentral() {
-  const res = await fetch(`${API_URL}/statistics/high_central`, {
+export async function getHighestSwitchboard() {
+  const res = await fetch(`${API_URL}/statistics/high_Switchboard`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 
-export async function getTopCentral() {
-  const res = await fetch(`${API_URL}/statistics/top_central`, {
+export async function getTopFiveSwitchboards() {
+  const res = await fetch(`${API_URL}/statistics/top_five_switchboards`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}
+
+
+export async function getLastFiveSwitchboards() {
+  const res = await fetch(`${API_URL}/statistics/top_last_switchboards`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}
+
+export async function getLowestMuncipalty() {
+  const res = await fetch(`${API_URL}/statistics/lowest_Muncipalty`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}
+
+export async function getHighestMuncipalty() {
+  const res = await fetch(`${API_URL}/statistics/high_Muncipalty`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function getTopFiveMuncipalty() {
+  const res = await fetch(`${API_URL}/statistics/top_five_Muncipalty`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  // eslint-disable-next-line no-console
+  console.log(json);
+  return json;
+}
+
+export async function getLastFiveMuncipalty() {
+  const res = await fetch(`${API_URL}/statistics/last_five_Muncipalty`, {
     method: "GET",
   });
   const json = await res.json();
@@ -52,12 +101,3 @@ export async function getTopCentral() {
 }
 
 
-export async function getlastCentral() {
-  const res = await fetch(`${API_URL}/statistics/lowest_central`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  // eslint-disable-next-line no-console
-  console.log(json);
-  return json;
-}
