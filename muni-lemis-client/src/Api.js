@@ -1,4 +1,4 @@
-const API_URL = `http://localhost:3001`;
+const API_URL = `http://localhost:3000`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
@@ -25,7 +25,7 @@ export async function loadCities() {
   return json;
 }
 
-export async function getLowestSwitchboard() { 
+export async function getLowestSwitchboard() {
   const res = await fetch(`${API_URL}/statistics/lowest_switchboard`, {
     method: "GET",
   });
@@ -50,7 +50,6 @@ export async function getTopFiveSwitchboards() {
   console.log(json);
   return json;
 }
-
 
 export async function getLastFiveSwitchboards() {
   const res = await fetch(`${API_URL}/statistics/top_last_switchboards`, {
@@ -99,5 +98,3 @@ export async function getLastFiveMuncipalty() {
   console.log(json);
   return json;
 }
-
-

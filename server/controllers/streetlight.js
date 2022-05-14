@@ -2,7 +2,6 @@ import db from "../db_connection";
 
 export async function addStreetLightType(req, res) {
   console.log("addStreetLightType()");
-
   const nameClass = req.body.name_class;
   const consumption = req.body.consumption;
   const density = req.body.density;

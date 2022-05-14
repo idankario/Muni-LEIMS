@@ -15,7 +15,7 @@ import * as boxesCtl from "./controllers/boundingbox";
 import * as statisticsCtl from "./controllers/statistics";
 
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,11 +27,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
 /*** User routes ***/
 app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system from office users
-
 
 /*** Swithchboard routes ***/
 app.post(
@@ -73,18 +70,21 @@ app.post(
 /*** statistics ***/
 app.get("/statistics/high_Switchboard", statisticsCtl.highestSwitchboard);
 app.get("/statistics/lowest_switchboard", statisticsCtl.lowestSwitchboard);
-app.get("/statistics/top_five_switchboards", statisticsCtl.getTopFiveSwitchboards);
-app.get("/statistics/top_last_switchboards", statisticsCtl.getLastFiveSwitchboards);
+app.get(
+  "/statistics/top_five_switchboards",
+  statisticsCtl.getTopFiveSwitchboards
+);
+app.get(
+  "/statistics/top_last_switchboards",
+  statisticsCtl.getLastFiveSwitchboards
+);
 app.get("/statistics/high_Muncipalty", statisticsCtl.highestMuncipalty);
 app.get("/statistics/lowest_Muncipalty", statisticsCtl.lowestMuncipalty);
 app.get("/statistics/top_five_Muncipalty", statisticsCtl.getTopFiveMuncipalty);
-app.get("/statistics/last_five_Muncipalty", statisticsCtl.getLastFiveMuncipalty);
-
-
-
-
-
-
+app.get(
+  "/statistics/last_five_Muncipalty",
+  statisticsCtl.getLastFiveMuncipalty
+);
 
 /*** db data routes ***/
 app.get("/data/municipalities", reportsCtl.getMunicipalities);

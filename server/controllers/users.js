@@ -13,6 +13,3 @@ export async function getAllUsers(req, res) {
     console.error(error);
   }
 }
-
-
-

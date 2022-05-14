@@ -17,18 +17,7 @@ module.exports = {
   plugins: ["react", "prettier", "@typescript-eslint"],
   rules: {
     "react/prop-types": 0,
-    "no-restricted-imports": [
-      "error",
-      {
-        patterns: ["@mui/*/*/*", "!@mui/material/test-utils/*"],
-      },
-    ],
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
+    "prettier/prettier": 0,
     semi: 0,
     "comma-dangle": 0,
     "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
