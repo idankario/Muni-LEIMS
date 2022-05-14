@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
+import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
@@ -43,16 +44,13 @@ async function loadData(dataType) {
 }
 
 function TopLastReports({ dataType }) {
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState(null);
+  let data;
   useEffect(() => {
     async function getDataDB() {
-      const data =
-        dataType === "municipalities"
-          ? await loadCities()
-          : await loadMunicipalities();
+      data = await loadData(dataType);
       setRows(data);
     }
-
     getDataDB();
   }, []);
 
@@ -65,12 +63,16 @@ function TopLastReports({ dataType }) {
             ? "Top/Last Municipalities"
             : "Top/Last Switchboards"}
         </H2>
-        <Table
-          rows={rows}
-          dataName={
-            dataType === "municipalities" ? "Municipalities" : "Switchboards"
-          }
-        />
+        {rows ? (
+          <Table
+            rows={rows}
+            dataName={
+              dataType === "municipalities" ? "Municipalities" : "Switchboards"
+            }
+          />
+        ) : (
+          <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
+        )}
         <BackButton />
       </MainStyle>
     </Container>

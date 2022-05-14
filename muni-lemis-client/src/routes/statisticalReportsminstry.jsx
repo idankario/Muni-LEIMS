@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import { getHighestMuncipalty, getLowestMuncipalty, getTopFiveMuncipalty,getLastFiveMuncipalty } from "../Api";
-import Body from "../components/body";
+import Container from "../components/container";
 
 const Title = styled("h1")(() => ({
   color: `#cdfa00`,
@@ -123,7 +123,7 @@ function StatisticalReports() {
   }, []);
 
   return (
-    <Body>
+    <Container>
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
@@ -208,7 +208,7 @@ function StatisticalReports() {
         )}
       </CenterContainer>
       <BackButton />
-    </Body>
+    </Container>
   );
 }
 
