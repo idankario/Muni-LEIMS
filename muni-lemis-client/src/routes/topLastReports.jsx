@@ -27,7 +27,6 @@ async function loadData(dataType) {
         data[idx].consumption_average
       ).toFixed(0);
   });
-  // data.push({count: '04', city: 'haifa', consumption_average: 322})
   data =
     data.length < 6 // Fill table with empty rows if less than 6 rows, for better UI
       ? Array.from(

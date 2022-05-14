@@ -19,5 +19,9 @@ const MenuConfig = [
     title: "MAP VISUALIZED",
     path: "/mappage",
   },
+  {
+    title: "STATISTICAL REPORTS minstry",
+    path: "/statisticalReportsminstry",
+  },
 ];
 export default MenuConfig;

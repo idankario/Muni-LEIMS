@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import { getHighestSwitchboard, getLowestSwitchboard, getTopFiveSwitchboards,getLastFiveSwitchboards } from "../Api";
+import { getHighestMuncipalty, getLowestMuncipalty, getTopFiveMuncipalty,getLastFiveMuncipalty } from "../Api";
 import Body from "../components/body";
 
 const Title = styled("h1")(() => ({
@@ -99,21 +99,21 @@ function ConsumptionData({ title, kwh, color }) {
 function StatisticalReports() {
   const [data, setData] = useState({
     loading: true,
-    highestSwitchboard: {},
-    lowestSwitchboard: {},
+    highestMuncipalty: {},
+    lowestMuncipalty: {},
     topFive: [],
     lastFive:[],
   });
 
   useEffect(() => {
     async function getDataDB() {
-      const highestSwitchboard = await getHighestSwitchboard();
-      const lowestSwitchboard = await getLowestSwitchboard();
-      const topFive = await getTopFiveSwitchboards();
-      const lastFive= await getLastFiveSwitchboards();
+      const highestMuncipalty = await getHighestMuncipalty();
+      const lowestMuncipalty = await getLowestMuncipalty();
+      const topFive = await getTopFiveMuncipalty();
+      const lastFive= await getLastFiveMuncipalty();
       setData({
-        highestSwitchboard: highestSwitchboard[0],
-        lowestSwitchboard: lowestSwitchboard[0],
+        highestMuncipalty: highestMuncipalty[0],
+        lowestMuncipalty: lowestMuncipalty[0],
         topFive,
         lastFive,
         loading: false,
@@ -142,8 +142,8 @@ function StatisticalReports() {
               <Plot
                 data={[
                   {
-                    x: data.topFive.map((o) => o.area),
-                    y: data.topFive.map((o) => o.intensity),
+                    x: data.topFive.map((o) => o.office_name),
+                    y: data.topFive.map((o) => o.energy_inetensity_average),
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "green" },
@@ -168,8 +168,8 @@ function StatisticalReports() {
               <Plot
                 data={[
                   {
-                    x: data.lastFive.map((o) => o.area),
-                    y: data.lastFive.map((o) => o.intensity),
+                    x: data.lastFive.map((o) => o.office_name),
+                    y: data.lastFive.map((o) => o.energy_inetensity_average),
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "red" },
@@ -194,13 +194,13 @@ function StatisticalReports() {
             <Sep />
             <DataWrapper>
               <ConsumptionData
-                title="The lowest central power consumption per resident"
-                kwh={data.lowestSwitchboard.intensity}
+                title="The lowest Muncipalty power consumption per resident"
+                kwh={data.lowestMuncipalty.energy_inetensity_average}
                 color="green"
               />
               <ConsumptionData
-                title="The highest central power consumption per resident"
-                kwh={data.highestSwitchboard.intensity}
+                title="The highest Muncipalty power consumption per resident"
+                kwh={data.highestMuncipalty.energy_inetensity_average}
                 color="red"
               />
             </DataWrapper>
