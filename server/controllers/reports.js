@@ -13,7 +13,7 @@ INNER JOIN MuniLEIMS.office_users o
 INNER JOIN MuniLEIMS.area a
     ON a.area_id = sw.area_id
 WHERE
-    o.user_id=${userId} AND ss.is_active="active"
+    o.user_id=4 AND ss.is_active="active"
 ORDER BY s.energy_inetensity`;
   db.query(query, (err, result) => {
     res.send(JSON.stringify(result));
