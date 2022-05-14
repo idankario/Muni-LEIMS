@@ -52,7 +52,7 @@ const Td = styled("td")({
   borderLeft: `2px solid white`,
   borderRight: `2px solid white`,
 });
-export default function Table({ rows, dataName }) {
+export default function Table2({ rows, dataName }) {
   return (
     <TableStyle>
       <thead>
@@ -66,12 +66,13 @@ export default function Table({ rows, dataName }) {
         {rows.map((row, index) => (
           <tr
             // eslint-disable-next-line react/no-array-index-key
-            key={row.city || row.area}
+            key={index}
             style={{ color: row.consumption_average > 321 ? "red" : "green" }}
           >
-            <td>{index + 1}</td>
+            <td>{row.count}</td>
             <Td>{row.city || row.area}</Td>
-            <td>{row.consumption_average || row["consumption average"]} KWH</td>
+            <td>{row.consumption_average || row["consumption average"]}</td>
+            {/* <Th>(Conumption/StreetLights)</Th> */}
           </tr>
         ))}
       </tbody>

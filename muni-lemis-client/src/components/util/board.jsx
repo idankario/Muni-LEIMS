@@ -1,6 +1,4 @@
 import { styled } from "@mui/material/styles";
-// import MenuImage from "../images/word.png";
-// import LoginImage from "../images/login.png";
 
 export const Menu = styled("main")({
   "& section": {
@@ -15,38 +13,39 @@ export const Menu = styled("main")({
 export const Login = styled("form")({
   textAlign: "center",
   "& img": {
-    width: "170px",
-    height: "110px",
+    width: "12em",
+    height: "7em",
     verticalAlign: "middle",
   },
   "& section": {
     margin: "auto",
-    width: "400px",
+    width: "20em",
   },
-  "& section >*": {
+  "& section >*:not(svg)": {
     marginBottom: "20px",
+
+    minHeight: "52px",
+    opacity: "0.9",
   },
   "& .MuiOutlinedInput-root": {
-    background: "#fff",
+    background: "#E8F0FE",
+  },
+  "& .MuiOutlinedInput-root,.MuiButton-root": {
     borderRadius: "30px 30px",
-    opacity: "0.9",
-    width: "326px",
-    height: "52px",
+    fontSize: "1.2em",
   },
   "& .MuiButton-root": {
-    width: "350px",
-    height: "44px",
-    borderRadius: "30px 30px",
-    opacity: "0.9",
     backgroundColor: "#CDFA00",
+    width: "16em",
     color: "#000",
     ":hover": {
       backgroundColor: "#ECB22F",
     },
   },
-  "& section svg": {
-    backgroundColor: "white",
+  "& section > svg": {
+    backgroundColor: "#fff",
     borderRadius: "50%",
+    margin: "25px",
     fontSize: "8em",
   },
 });
