@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 import BlueWordImage from "./images/login.png";
 import YellowWordImage from "./images/word.png";
 
-const Body = styled("body")((bgImage) => ({
+const Container = styled("div")((bgImage) => ({
   maxWidth: "100vw",
   background: bgImage.bgImage
     ? `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${YellowWordImage}) no-repeat`
@@ -13,4 +13,4 @@ const Body = styled("body")((bgImage) => ({
     paddingTop: "50px",
   },
 }));
-export default Body;
+export default Container;

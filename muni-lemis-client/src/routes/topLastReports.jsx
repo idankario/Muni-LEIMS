@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Table from "../components/Table";
 import { H2 } from "../components/h2";
-import Body from "../components/body";
+import Container from "../components/container";
 
 const MainStyle = styled("div")(() => ({
   display: `flex`,
@@ -44,18 +43,21 @@ async function loadData(dataType) {
 }
 
 function TopLastReports({ dataType }) {
-  const [rows, setRows] = useState(null);
-  let data;
+  const [rows, setRows] = useState([]);
   useEffect(() => {
     async function getDataDB() {
-      data = await loadData(dataType);
+      const data =
+        dataType === "municipalities"
+          ? await loadCities()
+          : await loadMunicipalities();
       setRows(data);
     }
+
     getDataDB();
   }, []);
 
   return (
-    <Body>
+    <Container>
       <Header />
       <MainStyle>
         <H2>
@@ -63,19 +65,15 @@ function TopLastReports({ dataType }) {
             ? "Top/Last Municipalities"
             : "Top/Last Switchboards"}
         </H2>
-        {rows ? (
-          <Table
-            rows={rows}
-            dataName={
-              dataType === "municipalities" ? "Municipalities" : "Switchboards"
-            }
-          />
-        ) : (
-          <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
-        )}
+        <Table
+          rows={rows}
+          dataName={
+            dataType === "municipalities" ? "Municipalities" : "Switchboards"
+          }
+        />
         <BackButton />
       </MainStyle>
-    </Body>
+    </Container>
   );
 }
 

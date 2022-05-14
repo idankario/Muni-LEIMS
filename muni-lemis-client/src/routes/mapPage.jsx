@@ -12,7 +12,7 @@ import Header from "../components/header";
 import { Input, H1, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Logomap from "../components/images/logomap.png";
-import Body from "../components/body";
+import Container from "../components/container";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -90,7 +90,7 @@ function Map() {
   }, []);
 
   return (
-    <Body bgImage={1}>
+    <Container bgImage={1}>
       <Header />
       <Menu>
         <H1>{dataLocation.city}</H1>
@@ -138,7 +138,7 @@ function Map() {
         </LoadScript>
         <BackButton />
       </Menu>
-    </Body>
+    </Container>
   );
 }
 

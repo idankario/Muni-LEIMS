@@ -5,12 +5,12 @@ import Header from "../components/header";
 import Button from "../components/button";
 import MenuConfig from "./menuConfig";
 import { H2 } from "../components/h2";
-import Body from "../components/body";
+import Container from "../components/container";
 
 function HomePage() {
   const navigate = useNavigate();
   return (
-    <Body bgImage={1}>
+    <Container bgImage={1}>
       <Header />
       <Menu>
         <section>
@@ -24,7 +24,7 @@ function HomePage() {
           ))}
         </section>
       </Menu>
-    </Body>
+    </Container>
   );
 }
 export default HomePage;

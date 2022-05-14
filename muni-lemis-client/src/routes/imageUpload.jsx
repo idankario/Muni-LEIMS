@@ -1,40 +1,90 @@
 /* eslint-disable no-unused-vars */
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Slider from "@mui/material/Slider";
 import React, { useState } from "react";
+import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemText from "@mui/material/ListItemText";
+import Select from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
-import { H2 } from "../components/h2";
-import InfoButton from "../components/infoButton";
-import Body from "../components/body";
+import { H3 } from "../components/h2";
+import Container from "../components/container";
 import Info from "../components/info";
 
 const Menu = styled("main")({
   "& section": {
-    textAlign: "center",
     margin: "auto",
-    height: "450px",
-    opacity: "90%",
+    opacity: "0.9",
     borderRadius: "50px",
     background: "#fff",
-    width: "400px",
-    display: "flex",
-    flexDirection: "column",
-    padding: "5%",
+    maxWidth: "30em",
+    padding: "2px 0px 5px 40px",
   },
+  "& .MuiFormControl-root": {
+    width: "14em",
+    textAlign: "center",
+  },
+  "& p:not(h3+p)": {
+    textAlign: "left",
+  },
+
+  "& .MuiInputBase-root": {
+    width: "75%",
+  },
+
   "& section >*": {
-    marginBottom: "40px",
+    textAlign: "center",
+    maxWidth: "80%",
+    margin: "0.8em 0px",
+  },
+  "& .MuiButton-root": {
+    width: "16em",
+    height: "4em",
+    margin: "30px 100px",
+    color: "#000",
+    textAlign: "center",
+    verticalAlign: "center",
+    ":hover": {
+      backgroundColor: "#ECB22F",
+    },
   },
 });
 
 function ImageUpload() {
-  const [area, setArea] = useState({
+  const [data, setData] = useState({
     municipality: "",
-    area: "",
+    lat: "",
+    lng: "",
+    scale: 1100,
     consumption: "",
+    switchboards: [],
   });
+  const names = [
+    "Oliver Hansen",
+    "Van Henry",
+    "April Tucker",
+    "Ralph Hubbard",
+    "Omar Alexander",
+    "Carlos Abbott",
+    "Miriam Wagner",
+    "Bradley Wilkerson",
+    "Virginia Andrews",
+    "Kelly Snyder",
+  ];
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  };
 
   const [loading, setLoading] = useState(false);
 
@@ -43,50 +93,80 @@ function ImageUpload() {
   }
 
   return (
-    <Body>
+    <Container>
       <Header />
       <Menu>
         <section>
-          <H2>Upload Image</H2>
+          <H3>Upload Image</H3>
           <Info />
+          <Typography>Put the cordinate of the image</Typography>
           <TextField
+            type="number"
             autoComplete="off"
-            value={area.municipality}
+            value={data.lat}
             id="standard-basic"
-            label="Municipality"
+            label="lat"
             variant="standard"
-            onChange={(e) =>
-              setArea(() => ({ ...area, municipality: e.target.value }))
-            }
+            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
           />
           <TextField
+            type="number"
             autoComplete="off"
-            value={area.consumption}
+            value={data.lng}
             id="standard-basic"
+            label="lng"
+            variant="standard"
+            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
+          />
+          <Typography>Put the total consamption of switchboards</Typography>
+          <TextField
+            type="number"
+            autoComplete="off"
+            value={data.consumption}
             label="Consumption"
             variant="standard"
             onChange={(e) =>
-              setArea(() => ({ ...area, consumption: e.target.value }))
-            }
-          />
-          <TextField
-            autoComplete="off"
-            value={area.area}
-            id="standard-basic"
-            label="Put cordinate of area"
-            variant="standard"
-            onChange={(e) =>
-              setArea((prev) => ({ ...area, area: e.target.value }))
+              setData(() => ({ ...data, consumption: e.target.value }))
             }
           />
 
+          <Typography>Put the scale of the image</Typography>
+          <Slider
+            value={data.scale}
+            onChange={(e) =>
+              setData(() => ({ ...data, scale: e.target.value }))
+            }
+            min={100}
+            max={1000}
+            step={25}
+            valueLabelDisplay="on"
+          />
+          <Typography>Select switchboards</Typography>
+          <Select
+            multiple
+            value={data.switchboards}
+            onChange={(e) =>
+              setData(() => ({ ...data, switchboards: e.target.value }))
+            }
+            input={<OutlinedInput label="Tag" />}
+            renderValue={(selected) => selected.join(", ")}
+            MenuProps={MenuProps}
+          >
+            {names.map((name) => (
+              <MenuItem key={name} value={name}>
+                <Checkbox checked={data.switchboards.indexOf(name) > -1} />
+                <ListItemText primary={name} />
+              </MenuItem>
+            ))}
+          </Select>
           <Button
-            disabled={!!Object.values(area).some((i) => i === null)}
+            disabled={!!Object.values(data).some((i) => i === null)}
             variant="contained"
             component="label"
             style={{ textAlign: "center" }}
           >
             Upload Image
+            {/* Upload image file from file system */}
             <input
               type="file"
               accept="image/*"
@@ -97,8 +177,7 @@ function ImageUpload() {
         </section>
       </Menu>
       <BackButton />
-      <InfoButton />
-    </Body>
+    </Container>
   );
 }
 export default ImageUpload;

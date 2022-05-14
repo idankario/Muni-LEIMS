@@ -6,7 +6,7 @@ import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import { getHighestSwitchboard, getLowestSwitchboard, getTopFiveSwitchboards,getLastFiveSwitchboards } from "../Api";
-import Body from "../components/body";
+import Container from "../components/container";
 
 const Title = styled("h1")(() => ({
   color: `#cdfa00`,
@@ -90,7 +90,7 @@ function ConsumptionData({ title, kwh, color }) {
       <DataInnerSep background={color} />
       <DataInnerData>
         <span>{kwh}</span>
-        <p>KWH per resident</p>
+        <p>KWH per seitchboard</p>
       </DataInnerData>
     </DataInner>
   );
@@ -123,7 +123,7 @@ function StatisticalReports() {
   }, []);
 
   return (
-    <Body>
+    <Container>
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
@@ -194,12 +194,12 @@ function StatisticalReports() {
             <Sep />
             <DataWrapper>
               <ConsumptionData
-                title="The lowest central power consumption per resident"
+                title="The lowest energy intensity per switchboard"
                 kwh={data.lowestSwitchboard.intensity}
                 color="green"
               />
               <ConsumptionData
-                title="The highest central power consumption per resident"
+                title="The highest central energy intensity per switchboard"
                 kwh={data.highestSwitchboard.intensity}
                 color="red"
               />
@@ -208,7 +208,7 @@ function StatisticalReports() {
         )}
       </CenterContainer>
       <BackButton />
-    </Body>
+    </Container>
   );
 }
 
