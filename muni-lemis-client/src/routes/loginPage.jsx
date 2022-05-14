@@ -2,7 +2,6 @@ import React from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
 import Logo from "../components/images/logoBody.png";
 import { Login } from "../components/util/board";
 import Header from "../components/header";

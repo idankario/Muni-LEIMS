@@ -30,9 +30,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 /*** User routes ***/
-app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system
-app.post("/users/createNewUser", usersCtl.createNewUser); //creat new user in the system without office
-app.post("/users/checkUser", usersCtl.checkUser); //check user for login (email&pass)
+app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system from office users
+
 
 /*** Swithchboard routes ***/
 app.post(
