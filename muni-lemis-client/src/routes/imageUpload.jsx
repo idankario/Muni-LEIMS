@@ -93,7 +93,7 @@ function ImageUpload() {
   }
 
   return (
-    <Container>
+    <Container bgImage={0}>
       <Header />
       <Menu>
         <section>

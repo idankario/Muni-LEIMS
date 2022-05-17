@@ -59,7 +59,7 @@ export default function Table({ rows, dataName }) {
         <tr>
           <Th>Rate</Th>
           <Th>{dataName}</Th>
-          <Th>Energy Intensity (Conumption/StreetLights)</Th>
+          <Th>Energy Intensity <p style={{fontSize: '23px'}}>Average Consumption Per Streetlight</p></Th>
         </tr>
       </thead>
       <tbody>

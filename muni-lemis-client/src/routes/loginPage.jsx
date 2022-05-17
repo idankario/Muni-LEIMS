@@ -55,7 +55,7 @@ function LoginPage() {
     });
   };
   return (
-    <Container>
+    <Container bgImage={0}>
       <img
         style={{ position: "absolute", bottom: "30px" }}
         src={Shenkar}

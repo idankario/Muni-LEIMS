@@ -1,4 +1,4 @@
-const API_URL = `https://muni-leims.herokuapp.com`;
+const API_URL = `http://localhost:3000`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
@@ -12,6 +12,22 @@ export async function uploadImage(file, city, area, consumption) {
   });
   return res;
 }
+// export async function  {
+//   const res = await fetch(`${API_URL}/offices/type/${id}`, { method: "GET" });
+//   const json = await res.json();
+//   console.log(json)
+//   console.log("json")
+//   return json;
+// }
+export async function typeOffice(id) {
+  const res = await fetch(`${API_URL}/offices/type/${id}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+
+  return json;
+}
+
 
 export async function loadMunicipalities() {
   const res = await fetch(`${API_URL}/data/municipalities`, { method: "GET" });
@@ -106,8 +122,3 @@ export async function getLastFiveMuncipalty() {
   return json;
 }
 
-export async function isoffice() {
-  const res = await fetch(`${API_URL}/office/type`, { method: "GET" });
-  const json = await res.json();
-  return json;
-}

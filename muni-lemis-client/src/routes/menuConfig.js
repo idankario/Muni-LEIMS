@@ -5,12 +5,16 @@ const MenuMinistryConfig = [
   },
 
   {
-    title: "STATISTICAL REPORTS minstry",
-    path: "/statisticalReportsminstry",
+    title: "STATISTICAL REPORTS MUNICIPALITIES",
+    path: "/StatisticalReportsMunicipalties",
   },
   {
     title: "MAP VISUALIZED",
     path: "/mappage",
+  },
+  {
+    title: "MANAGE USERS",
+    path: "/mangeuser",
   },
 ];
 const MenuMunicipalityConfig = [
@@ -29,6 +33,10 @@ const MenuMunicipalityConfig = [
   {
     title: "MAP VISUALIZED",
     path: "/mappage",
+  },
+  {
+    title: "MANAGE USERS",
+    path: "/mangeuser",
   },
 ];
 export { MenuMinistryConfig, MenuMunicipalityConfig };

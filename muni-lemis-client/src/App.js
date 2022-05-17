@@ -7,7 +7,7 @@ import MapPage from "./routes/mapPage";
 import ImgUpload from "./routes/imageUpload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
-import StatisticalReportsminstry from "./routes/statisticalReportsminstry";
+import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
 import PrivateRoute from "./routes/privateRouter/privateRouter";
 
 function App() {
@@ -73,10 +73,10 @@ function App() {
           exact
           element={
             <PrivateRoute>
-              <StatisticalReportsminstry />
+              <StatisticalReportsMunicipalties />
             </PrivateRoute>
           }
-          path="/statisticalReportsminstry"
+          path="/StatisticalReportsMunicipalties"
         />
         {/* 404 rounte */}
         <Route path="*" element={<NotFoundPage />} />

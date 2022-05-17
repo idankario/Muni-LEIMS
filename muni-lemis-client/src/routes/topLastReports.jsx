@@ -29,7 +29,7 @@ function TopLastReports({ dataType }) {
   }, []);
 
   return (
-    <Container>
+    <Container >
       <Header />
       <MainStyle>
         <H2>

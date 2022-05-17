@@ -51,7 +51,7 @@ app.post(
 /*** Office routes ***/
 app.post("/offices/creatOffice", officesCtl.creatOffice); //creat office
 app.post("/offices/createNewUser", officesCtl.createNewUser); //creat new user in the office
-app.get("/offices/isOffice", officesCtl.isOffice); //is office
+app.get("/offices/type/:id", officesCtl.isOffice); //is office
 /*** Area routes ***/
 app.post("/areas/creatArea", areaCtl.creatArea); //creat new area
 

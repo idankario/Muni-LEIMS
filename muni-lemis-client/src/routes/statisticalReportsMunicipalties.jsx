@@ -123,7 +123,7 @@ function StatisticalReportsminstry() {
   }, []);
 
   return (
-    <Container>
+    <Container bgImage={0}>
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
