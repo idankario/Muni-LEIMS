@@ -8,32 +8,76 @@ import ImgUpload from "./routes/imageUpload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsminstry from "./routes/statisticalReportsminstry";
+import PrivateRoute from "./routes/privateRouter/privateRouter";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route exact path="/" element={<LoginPage />} />
         <Route
           exact
           path="/statisticalReports"
-          element={<StatisticalReports />}
+          element={
+            <PrivateRoute>
+              <StatisticalReports />
+            </PrivateRoute>
+          }
         />
-        <Route exact path="/" element={<LoginPage />} />
-        <Route exact path="/homepage" element={<HomePage />} />
+        <Route
+          exact
+          path="/homepage"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
         <Route
           exact
           path="/switchboards"
-          element={<TopLastReports dataType="switchboards" />}
+          element={
+            <PrivateRoute>
+              <TopLastReports dataType="switchboards" />
+            </PrivateRoute>
+          }
         />
         <Route
           exact
           path="/municipalities"
-          element={<TopLastReports dataType="municipalities" />}
+          element={
+            <PrivateRoute>
+              <TopLastReports dataType="municipalities" />
+            </PrivateRoute>
+          }
         />
-        <Route exact path="/imgUpload" element={<ImgUpload />} />
-
-        <Route exact path="/mappage" element={<MapPage />} />
-        <Route exact path="/statisticalReportsminstry" element={<StatisticalReportsminstry />} />
+        <Route
+          exact
+          path="/imgUpload"
+          element={
+            <PrivateRoute>
+              <ImgUpload />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/mappage"
+          element={
+            <PrivateRoute>
+              <MapPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          element={
+            <PrivateRoute>
+              <StatisticalReportsminstry />
+            </PrivateRoute>
+          }
+          path="/statisticalReportsminstry"
+        />
         {/* 404 rounte */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

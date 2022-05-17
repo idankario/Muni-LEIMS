@@ -13,6 +13,7 @@ import { Input, H1, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Logomap from "../components/images/logomap.png";
 import Container from "../components/container";
+// import { getSwitchboards } from "../Api";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -20,8 +21,8 @@ const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map() {
   const [place, setPlace] = useState("");
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
+  const [markers, setMarkers] = useState([]);
+  const [selected, setSelected] = useState(null);
   const [dataLocation, setLocation] = useState({
     city: "Ashdod",
     mapPosition: {
@@ -61,6 +62,8 @@ function Map() {
       },
       (error) => error
     );
+    // const lowestSwitchboard = await getSwitchboards(4);
+    // console.log(lowestSwitchboard);
   }, []);
   const onLoad = (autocomplete) => {
     setPlace(autocomplete);

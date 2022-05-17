@@ -41,3 +41,24 @@ export async function createNewUser(req, res) {
     console.error(error);
   }
 }
+
+export async function isOffice(req, res) {
+  console.log("isOffice()");
+
+  const userId = req.params.id;
+
+  try {
+    const userQuery = `select o.office_name 
+    from MuniLEIMS.office o
+    inner join MuniLEIMS.office_users ou on ou.office_id=o.office_id
+    where o.office_name="Ministry of Energy"
+    and ou.user_id=${userId};`;
+
+    db.query(userQuery, function (err, result) {
+      if (err) res.status(404).send(`Query error: ${err.stack}`);
+      res.json(result);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}

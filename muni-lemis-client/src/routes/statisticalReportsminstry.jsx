@@ -96,7 +96,7 @@ function ConsumptionData({ title, kwh, color }) {
   );
 }
 
-function StatisticalReports() {
+function StatisticalReportsminstry() {
   const [data, setData] = useState({
     loading: true,
     highestMuncipalty: {},
@@ -212,4 +212,4 @@ function StatisticalReports() {
   );
 }
 
-export default StatisticalReports;
+export default StatisticalReportsminstry;

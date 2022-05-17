@@ -1,8 +1,19 @@
-const MenuConfig = [
+const MenuMinistryConfig = [
   {
     title: "TOP/LAST MUNICIPALITIES",
     path: "/municipalities",
   },
+
+  {
+    title: "STATISTICAL REPORTS minstry",
+    path: "/statisticalReportsminstry",
+  },
+  {
+    title: "MAP VISUALIZED",
+    path: "/mappage",
+  },
+];
+const MenuMunicipalityConfig = [
   {
     title: "TOP/LAST SWITCHBOARDS",
     path: "/switchboards",
@@ -19,9 +30,5 @@ const MenuConfig = [
     title: "MAP VISUALIZED",
     path: "/mappage",
   },
-  {
-    title: "STATISTICAL REPORTS minstry",
-    path: "/statisticalReportsminstry",
-  },
 ];
-export default MenuConfig;
+export { MenuMinistryConfig, MenuMunicipalityConfig };

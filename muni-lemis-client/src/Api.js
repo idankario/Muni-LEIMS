@@ -1,4 +1,4 @@
-const API_URL = `http://localhost:3000`;
+const API_URL = `https://muni-leims.herokuapp.com`;
 
 export async function uploadImage(file, city, area, consumption) {
   const data = new FormData();
@@ -27,6 +27,13 @@ export async function loadCities() {
 
 export async function getLowestSwitchboard() {
   const res = await fetch(`${API_URL}/statistics/lowest_switchboard`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getSwitchboards(id) {
+  const res = await fetch(`${API_URL}/swithchboards/${id}`, {
     method: "GET",
   });
   const json = await res.json();
@@ -96,5 +103,11 @@ export async function getLastFiveMuncipalty() {
   const json = await res.json();
   // eslint-disable-next-line no-console
   console.log(json);
+  return json;
+}
+
+export async function isoffice() {
+  const res = await fetch(`${API_URL}/office/type`, { method: "GET" });
+  const json = await res.json();
   return json;
 }

@@ -31,6 +31,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system from office users
 
 /*** Swithchboard routes ***/
+app.get("/swithchboards/:id", switchboardsCtl.getSwitchboards);
+
+/*** Swithchboard routes ***/
 app.post(
   "/swithchboards/creatNewSwitchboard",
   switchboardsCtl.creatNewSwitchboard
@@ -48,7 +51,7 @@ app.post(
 /*** Office routes ***/
 app.post("/offices/creatOffice", officesCtl.creatOffice); //creat office
 app.post("/offices/createNewUser", officesCtl.createNewUser); //creat new user in the office
-
+app.get("/offices/isOffice", officesCtl.isOffice); //is office
 /*** Area routes ***/
 app.post("/areas/creatArea", areaCtl.creatArea); //creat new area
 

@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import { loadCities, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
-import Table from "../components/Table";
+import Table from "../components/table";
 import { H2 } from "../components/h2";
 import Container from "../components/container";
 
