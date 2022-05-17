@@ -5,8 +5,8 @@ import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 export const Button = styled("button")({
   position: "absolute",
-  left: "25px",
-  bottom: "25px",
+  left: "0px",
+  bottom: "0px",
   fontSize: " 1.5em",
   backgroundColor: "#7bd529",
   transition: "transform 0.2s ease",
