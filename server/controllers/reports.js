@@ -1,8 +1,8 @@
 import db from "../db_connection";
 
-export async function getMunicipalities(req, res) {
+export async function getswitchboards(req, res) {
   const userId = req.body.userid;
-  let query = `SELECT s.energy_inetensity as consumption_average ,a.area_name as city
+  let query = `SELECT s.energy_inetensity as consumption_average ,a.area_name as municipality
   FROM MuniLEIMS.statisticalreport s
 INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -13,16 +13,16 @@ INNER JOIN MuniLEIMS.office_users o
 INNER JOIN MuniLEIMS.area a
     ON a.area_id = sw.area_id
 WHERE
-    o.user_id=8 AND ss.is_active="active"
+    o.user_id=4 AND ss.is_active="active"
 ORDER BY s.energy_inetensity`;
   db.query(query, (err, result) => {
     res.send(JSON.stringify(result));
   });
 }
 
-export async function getCities(req, res) {
+export async function getmunicipalities(req, res) {
   let query = `
-  SELECT o.office_name as city, AVG( s.energy_inetensity) AS consumption_average
+  SELECT o.office_name as municipality, AVG( s.energy_inetensity) AS consumption_average
   FROM MuniLEIMS.statisticalreport s
 INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 

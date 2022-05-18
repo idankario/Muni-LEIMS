@@ -24,14 +24,14 @@ function Map() {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [dataLocation, setLocation] = useState({
-    city: "Ashdod",
+    municipality: "Ashdod",
     mapPosition: {
       lat: 31.804381,
       lng: 34.655314,
     },
   });
-  const getCity = (addressArray) => {
-    let city = "";
+  const getmunicipality = (addressArray) => {
+    let municipality = "";
     for (let i = 0; i < addressArray.length; i += 1) {
       if (addressArray[i].types[0]) {
         for (let j = 0; j < addressArray[i].types.length; j += 1) {
@@ -39,21 +39,21 @@ function Map() {
             addressArray[i].types[j] === "sublocality_level_1" ||
             addressArray[i].types[j] === "locality"
           ) {
-            city = addressArray[i].long_name;
-            return city;
+            municipality = addressArray[i].long_name;
+            return municipality;
           }
         }
       }
     }
-    return city;
+    return municipality;
   };
   useEffect(() => {
     Geocode.fromLatLng(31.804381, 34.655314).then(
       (response) => {
         const addressArray = response.results[0].address_components;
-        const city = getCity(addressArray);
+        const municipality = getmunicipality(addressArray);
         setLocation({
-          city: city || "",
+          municipality: municipality || "",
           mapPosition: {
             lat: 31.804381,
             lng: 34.655314,
@@ -70,11 +70,11 @@ function Map() {
   };
   const onPlaceSelected = () => {
     const addressArray = place.getPlace().address_components;
-    const city = getCity(addressArray);
+    const municipality = getmunicipality(addressArray);
     const latValue = place.getPlace().geometry.location.lat();
     const lngValue = place.getPlace().geometry.location.lng();
     setLocation({
-      city: city || "",
+      municipality: municipality || "",
       mapPosition: {
         lat: latValue,
         lng: lngValue,
@@ -96,7 +96,7 @@ function Map() {
     <Container bgImage={1}>
       <Header />
       <Menu>
-        <H1>{dataLocation.city}</H1>
+        <H1>{dataLocation.municipality}</H1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
             mapContainerStyle={ContainerStyle}

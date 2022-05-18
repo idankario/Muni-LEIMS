@@ -59,19 +59,19 @@ export default function Table({ rows, dataName }) {
         <tr>
           <Th>Rate</Th>
           <Th>{dataName}</Th>
-          <Th>Energy Intensity <p style={{fontSize: '23px'}}>Average Consumption Per Streetlight</p></Th>
+          <Th>Energy Intensity <p style={{fontSize: '23px'}}>Average Consumption per Streetlight</p></Th>
         </tr>
       </thead>
       <tbody>
         {rows.map((row, index) => (
           <tr
             // eslint-disable-next-line react/no-array-index-key
-            key={row.city || row.area}
+            key={row.municipality || row.area}
             style={{ color: row.consumption_average > 321 ? "red" : "green" }}
           >
             <td>{index + 1}</td>
-            <Td>{row.city || row.area}</Td>
-            <td>{row.consumption_average || row["consumption average"]} KWH</td>
+            <Td>{row.municipality || row.area}</Td>
+            <td>{row.consumption_average || row["consumption average"]} KMV</td>
           </tr>
         ))}
       </tbody>

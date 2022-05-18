@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
-import { loadCities, loadMunicipalities } from "../Api";
+import { loadswitchboards, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Table from "../components/table";
@@ -21,8 +21,8 @@ function TopLastReports({ dataType }) {
     async function getDataDB() {
       const data =
         dataType === "municipalities"
-          ? await loadCities()
-          : await loadMunicipalities();
+          ? await loadMunicipalities()
+          : await loadswitchboards();
       setRows(data);
     }
     getDataDB();

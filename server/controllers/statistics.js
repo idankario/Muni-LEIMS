@@ -1,6 +1,6 @@
 import db from "../db_connection";
 
-export async function lowestSwitchboard(req, res) {
+export async function highestSwitchboard(req, res) {
   let query = `
   SELECT s.energy_inetensity as intensity,a.area_name
   FROM MuniLEIMS.statisticalreport s
@@ -23,7 +23,7 @@ export async function lowestSwitchboard(req, res) {
   });
 }
 
-export async function highestSwitchboard(req, res) {
+export async function lowestSwitchboard(req, res) {
   let query = `
   SELECT s.energy_inetensity as intensity,a.area_name
   FROM MuniLEIMS.statisticalreport s
@@ -99,7 +99,7 @@ export async function getTopFiveSwitchboards(req, res) {
 
 
 }
-export async function lowestMuncipalty(req, res) {
+export async function highestmunicipality(req, res) {
   let query = `
   SELECT o.office_name, AVG( s.energy_inetensity) AS energy_inetensity_average
 FROM MuniLEIMS.statisticalreport s
@@ -126,7 +126,7 @@ LIMIT 1;
 }
 
 
-export async function highestMuncipalty(req, res) {
+export async function lowestmunicipality(req, res) {
   let query = `
   SELECT o.office_name, AVG( s.energy_inetensity) AS energy_inetensity_average
 FROM MuniLEIMS.statisticalreport s
@@ -153,7 +153,7 @@ LIMIT 1;
 }
 
 
-export async function getTopFiveMuncipalty(req, res) {
+export async function getTopFivemunicipality(req, res) {
   let query = `
   SELECT o.office_name, AVG( s.energy_inetensity) AS energy_inetensity_average
 FROM MuniLEIMS.statisticalreport s
@@ -181,7 +181,7 @@ LIMIT 5;
 
 
 
-export async function getLastFiveMuncipalty(req, res) {
+export async function getLastFivemunicipality(req, res) {
   let query = `
   SELECT o.office_name, AVG( s.energy_inetensity) AS energy_inetensity_average
 FROM MuniLEIMS.statisticalreport s

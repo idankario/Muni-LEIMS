@@ -1,10 +1,10 @@
 const API_URL = `http://localhost:3000`;
 
-export async function uploadImage(file, city, area, consumption) {
+export async function uploadImage(file, municipality, area, consumption) {
   const data = new FormData();
   data.append("file", file);
   data.append("area", area);
-  data.append("city", city);
+  data.append("municipality", municipality);
   data.append("consumption", consumption);
   const res = await fetch(`${API_URL}/imgupload/upload`, {
     method: "POST",
@@ -35,8 +35,8 @@ export async function loadMunicipalities() {
   return json;
 }
 
-export async function loadCities() {
-  const res = await fetch(`${API_URL}/data/cities`, { method: "GET" });
+export async function loadswitchboards() {
+  const res = await fetch(`${API_URL}/data/switchboards`, { method: "GET" });
   const json = await res.json();
   return json;
 }
@@ -84,8 +84,8 @@ export async function getLastFiveSwitchboards() {
   return json;
 }
 
-export async function getLowestMuncipalty() {
-  const res = await fetch(`${API_URL}/statistics/lowest_Muncipalty`, {
+export async function getLowestmunicipality() {
+  const res = await fetch(`${API_URL}/statistics/lowest_municipality`, {
     method: "GET",
   });
   const json = await res.json();
@@ -94,16 +94,16 @@ export async function getLowestMuncipalty() {
   return json;
 }
 
-export async function getHighestMuncipalty() {
-  const res = await fetch(`${API_URL}/statistics/high_Muncipalty`, {
+export async function getHighestmunicipality() {
+  const res = await fetch(`${API_URL}/statistics/high_municipality`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 
-export async function getTopFiveMuncipalty() {
-  const res = await fetch(`${API_URL}/statistics/top_five_Muncipalty`, {
+export async function getTopFivemunicipality() {
+  const res = await fetch(`${API_URL}/statistics/top_five_municipality`, {
     method: "GET",
   });
   const json = await res.json();
@@ -112,8 +112,8 @@ export async function getTopFiveMuncipalty() {
   return json;
 }
 
-export async function getLastFiveMuncipalty() {
-  const res = await fetch(`${API_URL}/statistics/last_five_Muncipalty`, {
+export async function getLastFivemunicipality() {
+  const res = await fetch(`${API_URL}/statistics/last_five_municipality`, {
     method: "GET",
   });
   const json = await res.json();

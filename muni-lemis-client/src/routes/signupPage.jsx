@@ -23,7 +23,7 @@ function SignupPage() {
     });
   };
   return (
-    <Container bgImage={0}>
+    <Container >
       <img
         style={{ position: "absolute", bottom: "30px" }}
         src={Shenkar}

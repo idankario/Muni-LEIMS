@@ -10,10 +10,10 @@ import { fileURLToPath } from "url";
 
 const _dirname = dirname(fileURLToPath(import.meta.url));
 
-async function updateDb(city, area, consumption, classType, count) {
+async function updateDb(municipality, area, consumption, classType, count) {
   const query = `INSERT INTO MuniLEIMS.statisticalreport
-    (city, area, consumption, class, amount_streetlight)
-    VALUES ('${city}', '${area}', ${consumption}, '${classType}', '${count}')`;
+    (municipality, area, consumption, class, amount_streetlight)
+    VALUES ('${municipality}', '${area}', ${consumption}, '${classType}', '${count}')`;
 
   db.query(query, function (err, result) {
     if (err) console.log(err);
@@ -76,7 +76,7 @@ async function sliceImage(scriptPath, file, outFolder) {
   await checkProc(proc, procName);
 }
 
-async function scanImages(files, outFolder, city, area, consumption) {
+async function scanImages(files, outFolder, municipality, area, consumption) {
   var bar = new ProgressBar(
     "  Scanning images [:bar] :percent :current/:total",
     {
@@ -91,9 +91,9 @@ async function scanImages(files, outFolder, city, area, consumption) {
     // Get the full paths
     const fromPath = path.join(outFolder, file);
     let [count, classType] = await scanFile(fromPath);
-    console.log(city, area, consumption, classType, count);
+    console.log(municipality, area, consumption, classType, count);
     if (count && classType)
-      await updateDb(city, area, consumption, classType, count);
+      await updateDb(municipality, area, consumption, classType, count);
     bar.tick();
   }
 }
@@ -101,7 +101,7 @@ async function scanImages(files, outFolder, city, area, consumption) {
 export async function uploadImage(req, res) {
   let filename = req.file.originalname;
   let area = req.body.area;
-  let city = req.body.city;
+  let municipality = req.body.municipality;
   let consumption = req.body.consumption;
 
   let file = path.resolve(_dirname, `./py-slice/${filename}`);
@@ -112,7 +112,7 @@ export async function uploadImage(req, res) {
     await sliceImage(scriptPath, file, outFolder);
     res.status(200).send("Image received and will scanned...");
     const files = await fs.promises.readdir(outFolder);
-    await scanImages(files, outFolder, city, area, consumption);
+    await scanImages(files, outFolder, municipality, area, consumption);
     console.log("done slicing");
   } catch (err) {
     res.status(500).send(err);

@@ -81,17 +81,17 @@ app.get(
   "/statistics/top_last_switchboards",
   statisticsCtl.getLastFiveSwitchboards
 );
-app.get("/statistics/high_Muncipalty", statisticsCtl.highestMuncipalty);
-app.get("/statistics/lowest_Muncipalty", statisticsCtl.lowestMuncipalty);
-app.get("/statistics/top_five_Muncipalty", statisticsCtl.getTopFiveMuncipalty);
+app.get("/statistics/high_municipality", statisticsCtl.highestmunicipality);
+app.get("/statistics/lowest_municipality", statisticsCtl.lowestmunicipality);
+app.get("/statistics/top_five_municipality", statisticsCtl.getTopFivemunicipality);
 app.get(
-  "/statistics/last_five_Muncipalty",
-  statisticsCtl.getLastFiveMuncipalty
+  "/statistics/last_five_municipality",
+  statisticsCtl.getLastFivemunicipality
 );
 
 /*** db data routes ***/
-app.get("/data/municipalities", reportsCtl.getMunicipalities);
-app.get("/data/cities", reportsCtl.getCities);
+app.get("/data/switchboards", reportsCtl.getswitchboards);
+app.get("/data/municipalities", reportsCtl.getmunicipalities);
 
 app.all("*", (req, res) => {
   res.send("Wrong route, please try again.");

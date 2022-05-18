@@ -83,14 +83,14 @@ const DataInnerData = styled("div")(() => ({
   },
 }));
 
-function ConsumptionData({ title, kwh, color }) {
+function ConsumptionData({ title, KMV, color }) {
   return (
     <DataInner color={color}>
       <p>{title}</p>
       <DataInnerSep background={color} />
       <DataInnerData>
-        <span>{kwh}</span>
-        <p>KWH per seitchboard</p>
+        <span>{KMV}</span>
+        <p>KMV per switchboard</p>
       </DataInnerData>
     </DataInner>
   );
@@ -123,7 +123,7 @@ function StatisticalReports() {
   }, []);
 
   return (
-    <Container bgImage={0}>
+    <Container >
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
@@ -195,12 +195,12 @@ function StatisticalReports() {
             <DataWrapper>
               <ConsumptionData
                 title="The lowest energy intensity per switchboard"
-                kwh={data.lowestSwitchboard.intensity}
+                KMV={data.lowestSwitchboard.intensity}
                 color="green"
               />
               <ConsumptionData
                 title="The highest central energy intensity per switchboard"
-                kwh={data.highestSwitchboard.intensity}
+                KMV={data.highestSwitchboard.intensity}
                 color="red"
               />
             </DataWrapper>

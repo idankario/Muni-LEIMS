@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import { getHighestMuncipalty, getLowestMuncipalty, getTopFiveMuncipalty,getLastFiveMuncipalty } from "../Api";
+import { getHighestmunicipality, getLowestmunicipality, getTopFivemunicipality,getLastFivemunicipality } from "../Api";
 import Container from "../components/container";
 
 const Title = styled("h1")(() => ({
@@ -83,14 +83,14 @@ const DataInnerData = styled("div")(() => ({
   },
 }));
 
-function ConsumptionData({ title, kwh, color }) {
+function ConsumptionData({ title, KMV, color }) {
   return (
     <DataInner color={color}>
       <p>{title}</p>
       <DataInnerSep background={color} />
       <DataInnerData>
-        <span>{kwh}</span>
-        <p>KWH per resident</p>
+        <span>{KMV}</span>
+        <p>KMV per resident</p>
       </DataInnerData>
     </DataInner>
   );
@@ -99,21 +99,21 @@ function ConsumptionData({ title, kwh, color }) {
 function StatisticalReportsminstry() {
   const [data, setData] = useState({
     loading: true,
-    highestMuncipalty: {},
-    lowestMuncipalty: {},
+    highestmunicipality: {},
+    lowestmunicipality: {},
     topFive: [],
     lastFive:[],
   });
 
   useEffect(() => {
     async function getDataDB() {
-      const highestMuncipalty = await getHighestMuncipalty();
-      const lowestMuncipalty = await getLowestMuncipalty();
-      const topFive = await getTopFiveMuncipalty();
-      const lastFive= await getLastFiveMuncipalty();
+      const highestmunicipality = await getHighestmunicipality();
+      const lowestmunicipality = await getLowestmunicipality();
+      const topFive = await getTopFivemunicipality();
+      const lastFive= await getLastFivemunicipality();
       setData({
-        highestMuncipalty: highestMuncipalty[0],
-        lowestMuncipalty: lowestMuncipalty[0],
+        highestmunicipality: highestmunicipality[0],
+        lowestmunicipality: lowestmunicipality[0],
         topFive,
         lastFive,
         loading: false,
@@ -123,7 +123,7 @@ function StatisticalReportsminstry() {
   }, []);
 
   return (
-    <Container bgImage={0}>
+    <Container >
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
@@ -194,13 +194,13 @@ function StatisticalReportsminstry() {
             <Sep />
             <DataWrapper>
               <ConsumptionData
-                title="The lowest Muncipalty power consumption per resident"
-                kwh={data.lowestMuncipalty.energy_inetensity_average}
+                title="The lowest municipality power consumption per resident"
+                KMV={data.lowestmunicipality.energy_inetensity_average}
                 color="green"
               />
               <ConsumptionData
-                title="The highest Muncipalty power consumption per resident"
-                kwh={data.highestMuncipalty.energy_inetensity_average}
+                title="The highest municipality power consumption per resident"
+                KMV={data.highestmunicipality.energy_inetensity_average}
                 color="red"
               />
             </DataWrapper>
