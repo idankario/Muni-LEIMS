@@ -22,10 +22,10 @@ export async function creatOffice(req, res) {
   }
 }
 export async function isOffice(req, res) {
-  console.log("isOffice()");
+
 
   const userId = req.params.id;
-  console.log(req.params.id);
+  
 
   try {
     const userQuery = `select o.office_name 
@@ -63,4 +63,22 @@ export async function createNewUser(req, res) {
     console.error(error);
   }
 }
+
+
+
+export async function officeById(req, res) {
+  const userId = req.params.id;
+  let query = `
+  select MuniLEIMS.office.lat,MuniLEIMS.office.lng,MuniLEIMS.office.office_name
+from MuniLEIMS.office
+INNER JOIN MuniLEIMS.office_users  ON MuniLEIMS.office_users.office_id=MuniLEIMS.office.office_id
+where user_id=${userId}
+limit 1;`;
+  db.query(query, (err, result) => {
+    res.send(JSON.stringify(result));
+  });
+
+
+}
+
 

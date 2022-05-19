@@ -7,11 +7,11 @@ import BackButton from "../components/backButton";
 import Header from "../components/header";
 import { getHighestmunicipality, getLowestmunicipality, getTopFivemunicipality,getLastFivemunicipality } from "../Api";
 import Container from "../components/container";
+import {H2} from "../components/h2"
 
-const Title = styled("h1")(() => ({
-  color: `#cdfa00`,
+const Title = styled(H2)(() => ({
   textAlign: `center`,
-  paddingTop: `17px`,
+  margin:"15px"
 }));
 
 const CenterContainer = styled("div")(() => ({
@@ -142,8 +142,8 @@ function StatisticalReportsminstry() {
               <Plot
                 data={[
                   {
-                    x: data.topFive.map((o) => o.office_name),
-                    y: data.topFive.map((o) => o.energy_inetensity_average),
+                    x: [null,...data.topFive.map((o) =>`${o.office_name}`)],
+                    y: [`0 KMV`,...data.topFive.map((o) => `${o.energy_inetensity_average} KMV`)] ,
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "green" },
@@ -158,6 +158,7 @@ function StatisticalReportsminstry() {
                   xaxis: {
                     tickangle: -45,
                   },
+                  title: 'Top 5 Municipalities ',
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -168,8 +169,8 @@ function StatisticalReportsminstry() {
               <Plot
                 data={[
                   {
-                    x: data.lastFive.map((o) => o.office_name),
-                    y: data.lastFive.map((o) => o.energy_inetensity_average),
+                    x: [null,...data.lastFive.map((o) =>`${o.office_name}`)],
+                    y: [`0 KMV`,...data.lastFive.map((o) => `${o.energy_inetensity_average} KMV`)] ,
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "red" },
@@ -184,6 +185,7 @@ function StatisticalReportsminstry() {
                   xaxis: {
                     tickangle: -45,
                   },
+                  title: 'Last 5 Municipalities ',
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",

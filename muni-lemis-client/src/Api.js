@@ -12,13 +12,7 @@ export async function uploadImage(file, municipality, area, consumption) {
   });
   return res;
 }
-// export async function  {
-//   const res = await fetch(`${API_URL}/offices/type/${id}`, { method: "GET" });
-//   const json = await res.json();
-//   console.log(json)
-//   console.log("json")
-//   return json;
-// }
+
 export async function typeOffice(id) {
   const res = await fetch(`${API_URL}/offices/type/${id}`, {
     method: "GET",
@@ -31,6 +25,12 @@ export async function typeOffice(id) {
 
 export async function loadMunicipalities() {
   const res = await fetch(`${API_URL}/data/municipalities`, { method: "GET" });
+  const json = await res.json();
+  return json;
+}
+
+export async function officebyId(id) {
+  const res = await fetch(`${API_URL}/offices/${id}`, { method: "GET" });
   const json = await res.json();
   return json;
 }

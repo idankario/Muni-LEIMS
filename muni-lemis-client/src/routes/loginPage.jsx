@@ -20,6 +20,7 @@ import Header from "../components/header";
 import { H_2 } from "../components/h2";
 import Container from "../components/container";
 import Shenkar from "../components/images/shenkar.png";
+import {officebyId} from "../Api"
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -40,8 +41,17 @@ function LoginPage() {
     });
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
-        localStorage.setItem("user", data.idToken.payload["custom:user_id"]);
+        const id = data.idToken.payload["custom:user_id"];
+        localStorage.setItem("user", id);
         localStorage.setItem("token", data.getAccessToken().getJwtToken());
+        
+        async function storeOffice(){
+          console.log( ... await officebyId(localStorage.getItem("user")[0]));
+          console.log (Object.keys ( ... await officebyId(localStorage.getItem("user"))));
+          localStorage.setItem("office",  ...await officebyId(id));
+          
+        }
+        storeOffice();
         navigate("/homePage");
       },
 

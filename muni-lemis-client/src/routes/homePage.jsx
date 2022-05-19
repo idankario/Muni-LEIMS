@@ -14,11 +14,19 @@ function HomePage() {
   useEffect(() => {
     async function getDataDB() {
     const office=await typeOffice(localStorage.getItem("user"));
-  // data type Specifies the values to display. The municipality will present the municipalities and the Ministry of Energy the Ministry of Energy 
-    if (office.length===0 )  setisMenuConfig(MenuMunicipalityConfig);  
+    
+    // console.log(localStorage.getItem("office"));
+    // console.log(...await officebyId(localStorage.getItem("user")));
+  // data type Specifies the values to display. The municipality will 
+  // present the municipalities and the Ministry of Energy the Ministry of Energy 
+  if (office.length===0 )  setisMenuConfig(MenuMunicipalityConfig);  
     else setisMenuConfig(MenuMinistryConfig);
+   
+    
     }
+
     getDataDB();
+    
   }, []);
 
 
