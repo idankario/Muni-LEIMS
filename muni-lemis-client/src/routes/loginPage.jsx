@@ -46,7 +46,8 @@ function LoginPage() {
         localStorage.setItem("token", data.getAccessToken().getJwtToken());
         
         async function storeOffice(){
-          console.log( ... await officebyId(localStorage.getItem("user")[0]));
+        const office= await officebyId(localStorage.getItem("user")[0]);
+          console.log( office[0].office_name);
           console.log (Object.keys ( ... await officebyId(localStorage.getItem("user"))));
           localStorage.setItem("office",  ...await officebyId(id));
           
