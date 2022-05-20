@@ -7,7 +7,7 @@ import { TypeOffice } from "../Api";
 import { MenuMunicipalityConfig, MenuMinistryConfig } from "./menuConfig";
 import { H2 } from "../components/h2";
 import Container from "../components/container";
-import Profile from "../components/util/profile";
+// import Profile from "../components/util/profile";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -15,9 +15,8 @@ function HomePage() {
   useEffect(() => {
     async function getDataDB() {
       const typeOffice = await TypeOffice(localStorage.getItem("user"));
-      const office = await JSON.parse(localStorage.getItem("office"));
-
-      console.log(office.office_name);
+      // const office = await JSON.parse(localStorage.getItem("office"));
+      // console.log(office.office_name);
       // console.log(...await officebyId(localStorage.getItem("user")));
       // data type Specifies the values to display. The municipality will
       // present the municipalities and the Ministry of Energy the Ministry of Energy
@@ -31,7 +30,7 @@ function HomePage() {
   return (
     <Container bgimage={1}>
       <Header />
-      <Profile />
+      {/* <Profile /> */}
       <Menu>
         <section>
           {menuConfig.map((navigation) => (

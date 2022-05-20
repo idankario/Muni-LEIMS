@@ -22,12 +22,24 @@ const HeaderTemplate = styled("header")({
 
   backgroundColor: "#2E2E2E ",
 });
+
+const P = styled("p")({
+  position: "absolute",
+  right: "10px",
+  top: "5px",
+  padding: "3px",
+  fontSize: "25px",
+  color: "#b8e100",
+});
+
 export default function Header() {
+  const OfficeName = JSON.parse(localStorage.getItem("office"));
   return (
     <HeaderTemplate>
       <a href="/#">
         <span>Muni-LEIMS</span>
       </a>
+      {OfficeName ? <P>{OfficeName.office_name}</P> : ""}
     </HeaderTemplate>
   );
 }
