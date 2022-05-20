@@ -1,27 +1,20 @@
+import axios from "axios";
+
 const API_URL = `http://localhost:3000`;
 
-export async function uploadImage(file, municipality, area, consumption) {
-  const data = new FormData();
-  data.append("file", file);
-  data.append("area", area);
-  data.append("municipality", municipality);
-  data.append("consumption", consumption);
-  const res = await fetch(`${API_URL}/imgupload/upload`, {
-    method: "POST",
-    body: data,
-  });
-  return res;
+export async function TypeOffice(id) {
+  try {
+    const res = await axios({
+      method: "GET",
+      // headers: { 'x-access-token': localStorage.getItem('token') },
+      url: `${API_URL}/offices/type/${id}`,
+    });
+
+    return res.data[0].res;
+  } catch (error) {
+    return error;
+  }
 }
-
-export async function typeOffice(id) {
-  const res = await fetch(`${API_URL}/offices/type/${id}`, {
-    method: "GET",
-  });
-  const json = await res.json();
-
-  return json;
-}
-
 
 export async function loadMunicipalities() {
   const res = await fetch(`${API_URL}/data/municipalities`, { method: "GET" });
@@ -30,9 +23,19 @@ export async function loadMunicipalities() {
 }
 
 export async function officebyId(id) {
-  const res = await fetch(`${API_URL}/offices/${id}`, { method: "GET" });
-  const json = await res.json();
-  return json;
+  try {
+    const res = await axios({
+      method: "GET",
+      // headers: { 'x-access-token': localStorage.getItem('token') },
+      url: `${API_URL}/offices/${id}`,
+    });
+    console.log(res.data[0]);
+
+    return res.data[0];
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 }
 
 export async function loadswitchboards() {
@@ -122,4 +125,3 @@ export async function getLastFivemunicipality() {
   console.log(json);
   return json;
 }
-

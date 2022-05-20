@@ -12,10 +12,14 @@ const HeaderTemplate = styled("header")({
   },
   "& span": {
     color: "#CDFA00",
+    marginTop: "-6px",
     fontSize: "31px",
     paddingLeft: "70px",
+    height: "4vh",
+    verticalAlign: "center",
+    display: "inline-block",
   },
-  height: "5vh",
+
   backgroundColor: "#2E2E2E ",
 });
 export default function Header() {

@@ -21,28 +21,23 @@ export async function creatOffice(req, res) {
     console.error(error);
   }
 }
-export async function isOffice(req, res) {
-
-
+export async function typeOffice(req, res) {
   const userId = req.params.id;
-  
-
-  try {
-    const userQuery = `select o.office_name 
+  const query = `
+  select count(o.office_name) as res
     from MuniLEIMS.office o
     inner join MuniLEIMS.office_users ou on ou.office_id=o.office_id
     where o.office_name="Ministry of Energy"
-    and ou.user_id=${userId};`;
-
-    db.query(userQuery, function (err, result) {
-      if (err) res.status(404).send(`Query error: ${err.stack}`);
-      res.json(result);
-    });
-  } catch (error) {
-    console.error(error);
-  }
+    and ou.user_id=${userId}
+  limit 1;`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
 }
-
 
 export async function createNewUser(req, res) {
   console.log("creatOffice()");
@@ -64,10 +59,9 @@ export async function createNewUser(req, res) {
   }
 }
 
-
-
 export async function officeById(req, res) {
   const userId = req.params.id;
+  console.log(userId);
   let query = `
   select MuniLEIMS.office.lat,MuniLEIMS.office.lng,MuniLEIMS.office.office_name
 from MuniLEIMS.office
@@ -75,10 +69,10 @@ INNER JOIN MuniLEIMS.office_users  ON MuniLEIMS.office_users.office_id=MuniLEIMS
 where user_id=${userId}
 limit 1;`;
   db.query(query, (err, result) => {
-    res.send(JSON.stringify(result));
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
   });
-
-
 }
-
-
