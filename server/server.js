@@ -95,6 +95,12 @@ app.get(
 app.get("/data/switchboards", reportsCtl.getswitchboards);
 app.get("/data/municipalities", reportsCtl.getmunicipalities);
 
+/*** map routes ***/
+
+
+
+
+
 app.all("*", (req, res) => {
   res.send("Wrong route, please try again.");
 });

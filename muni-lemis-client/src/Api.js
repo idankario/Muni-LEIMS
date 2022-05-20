@@ -41,6 +41,7 @@ export async function loadswitchboards() {
   return json;
 }
 
+
 export async function getLowestSwitchboard() {
   const res = await fetch(`${API_URL}/statistics/lowest_switchboard`, {
     method: "GET",

@@ -13,7 +13,7 @@ import { Input, H1, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Logomap from "../components/images/logomap.png";
 import Container from "../components/container";
-// import { getSwitchboards } from "../Api";
+import { getSwitchboards } from "../Api";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -30,6 +30,8 @@ function Map() {
       lng: 34.655314,
     },
   });
+
+
   const getmunicipality = (addressArray) => {
     let municipality = "";
     for (let i = 0; i < addressArray.length; i += 1) {
@@ -47,6 +49,8 @@ function Map() {
     }
     return municipality;
   };
+
+
   useEffect(() => {
     Geocode.fromLatLng(31.804381, 34.655314).then(
       (response) => {
@@ -91,7 +95,15 @@ function Map() {
       },
     ]);
   }, []);
-
+  useEffect(() => {
+    async function getDataDB() {
+      const markerss = await getSwitchboards(4);
+      setMarkers({
+        markers: markerss,
+      });
+    }
+    getDataDB();
+  }, []);
   return (
     <Container bgImage={1}>
       <Header />
@@ -106,10 +118,11 @@ function Map() {
           >
             {markers.map((marker) => (
               <Marker
-                key={`${marker.lat}-${marker.lng}`}
-                position={{ lat: marker.lat, lng: marker.lng }}
+              
+                position={{ lat: marker[0].lat, lng: marker[0].lng }}
                 onClick={() => {
                   setSelected(marker);
+                  console.log(marker)
                 }}
                 icon={{
                   url: `/bear.svg`,
