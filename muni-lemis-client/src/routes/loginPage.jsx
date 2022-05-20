@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -20,7 +21,7 @@ import Header from "../components/header";
 import { H_2 } from "../components/h2";
 import Container from "../components/container";
 import Shenkar from "../components/images/shenkar.png";
-import {officebyId} from "../Api"
+import { officebyId } from "../Api";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -44,13 +45,10 @@ function LoginPage() {
         const id = data.idToken.payload["custom:user_id"];
         localStorage.setItem("user", id);
         localStorage.setItem("token", data.getAccessToken().getJwtToken());
-        
-        async function storeOffice(){
-        const office= await officebyId(localStorage.getItem("user")[0]);
-          console.log( office[0].office_name);
-          console.log (Object.keys ( ... await officebyId(localStorage.getItem("user"))));
-          localStorage.setItem("office",  ...await officebyId(id));
-          
+
+        async function storeOffice() {
+          const office = JSON.stringify(await officebyId(id));
+          localStorage.setItem("office", office);
         }
         storeOffice();
         navigate("/homePage");
@@ -68,7 +66,7 @@ function LoginPage() {
   return (
     <Container>
       <img
-        style={{ position: "absolute", bottom: "30px" }}
+        style={{ position: "fixed", bottom: "10px" }}
         src={Shenkar}
         alt="Shenkar"
         title="Shenkar"

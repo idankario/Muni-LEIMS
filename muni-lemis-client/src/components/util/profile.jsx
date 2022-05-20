@@ -1,21 +1,17 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from "react";
+import React from "react";
+import { styled } from "@mui/material/styles";
 
+export const P = styled("p")({
+  position: "absolute",
+  right: "10px",
+  top: "5px",
+  padding: "3px",
+  fontSize: "25px",
+  color: "white",
+});
 
-
-function Profile(Name) {
-  const P = styled("p")({
-    position: "absolute",
-    right: "0px",
-    top: "0px",
-    fontSize: "15px",
-  });
-
-  return (
-    <>
-      <P>Name</P>
-    </>
-  );
+function Profile() {
+  const OfficeName = JSON.parse(localStorage.getItem("office"));
+  return <P>{OfficeName.office_name}</P>;
 }
 export default Profile;

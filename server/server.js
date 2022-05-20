@@ -18,14 +18,16 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// in latest body-parser use like below.
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("port", port);
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+/*** Office routes ***/
+app.post("/offices/creatOffice", officesCtl.creatOffice); //creat office
+app.post("/offices/createNewUser", officesCtl.createNewUser); //creat new user in the office
+app.get("/offices/type/:id", officesCtl.typeOffice); //is office
+app.get("/offices/:id", officesCtl.officeById); //office By Id
 
 /*** User routes ***/
 app.get("/users/getAllUsers", usersCtl.getAllUsers); //get all users in the system from office users
@@ -47,12 +49,6 @@ app.post(
   "/swithchboards/addSwitchboardImage",
   switchboardsCtl.addSwitchboardImage
 ); //connect switchboard to the image
-
-/*** Office routes ***/
-app.post("/offices/creatOffice", officesCtl.creatOffice); //creat office
-app.post("/offices/createNewUser", officesCtl.createNewUser); //creat new user in the office
-app.get("/offices/type/:id", officesCtl.isOffice); //is office
-app.get("/offices/:id", officesCtl.officeById); //office By Id
 
 /*** Area routes ***/
 app.post("/areas/creatArea", areaCtl.creatArea); //creat new area
@@ -85,7 +81,10 @@ app.get(
 );
 app.get("/statistics/high_municipality", statisticsCtl.highestmunicipality);
 app.get("/statistics/lowest_municipality", statisticsCtl.lowestmunicipality);
-app.get("/statistics/top_five_municipality", statisticsCtl.getTopFivemunicipality);
+app.get(
+  "/statistics/top_five_municipality",
+  statisticsCtl.getTopFivemunicipality
+);
 app.get(
   "/statistics/last_five_municipality",
   statisticsCtl.getLastFivemunicipality

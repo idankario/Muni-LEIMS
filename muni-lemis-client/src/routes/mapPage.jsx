@@ -93,7 +93,7 @@ function Map() {
   }, []);
 
   return (
-    <Container bgImage={1}>
+    <Container bgimage={1}>
       <Header />
       <Menu>
         <H1>{dataLocation.municipality}</H1>
