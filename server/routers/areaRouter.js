@@ -1,5 +1,5 @@
-const { Router } = require('express');
-const { areaCtl } = require('../controllers/area');
-
-app.get("/areas", areaCtl.getAreas);
-//app.get("/data/switchboards", areaCtl.getAreas);
+import { Router } from 'express';
+import  getAreas  from '../controllers/area';
+const areaRouter = new Router();
+areaRouter.get("/areas", getAreas);
+export default { areaRouter };

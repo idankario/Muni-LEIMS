@@ -1,13 +1,9 @@
-const { Router } = require('express');
-const { municipalitiesCtl } = require('../controllers/municipalities');
-
-app.get("municipalities", municipalitiesCtl.getmunicipalities);
-//app.get("/data/municipalities", municipalitiesCtl.getmunicipalities);
-app.get("/municipalities/high", municipalitiesCtl.highestmunicipality);
-//app.get("/statistics/high_municipality", municipalitiesCtl.highestmunicipality);
-app.get("/municipalities/lowest", municipalitiesCtl.lowestmunicipality);
-//app.get("/statistics/lowest_municipality", municipalitiesCtl.lowestmunicipality);
-app.get("/municipalities/top",municipalitiesCtl.getTopFivemunicipality);
-//app.get("/statistics/top_five_municipality",municipalitiesCtl.getTopFivemunicipality);
-app.get("/municipalities/last",municipalitiesCtl.getLastFivemunicipality);
-//app.get("/statistics/last_five_municipality",municipalitiesCtl.getTopFivemunicipality);
+import { Router } from 'express';
+import { getmunicipalities,highestmunicipality ,lowestmunicipality,getTopFivemunicipality,getLastFivemunicipality} from '../controllers/municipalities';
+const municipalitiesRouter = new Router();
+municipalitiesRouter.get("municipalities",getmunicipalities);
+municipalitiesRouter.get("/municipalities/high", highestmunicipality);
+municipalitiesRouter.get("/municipalities/lowest",lowestmunicipality);
+municipalitiesRouter.get("/municipalities/top",getTopFivemunicipality);
+municipalitiesRouter.get("/municipalities/last",getLastFivemunicipality);
+export default { municipalitiesRouter };

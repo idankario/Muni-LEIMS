@@ -1,5 +1,6 @@
-const { Router } = require('express');
-const {officesCtl } = require('../controllers/offices');
-
-app.get("/offices/type/:id", officesCtl.typeOffice); //is office
-app.get("/offices/:id", officesCtl.officeById); //office By Id
+import { Router } from 'express';
+import { typeOffice,officeById } from '../controllers/offices';
+const officesRouter = new Router();
+officesRouter.get("/offices/type/:id", typeOffice); //is office
+officesRouter.get("/offices/:id", officeById); //office By Id
+export default { officesRouter };
