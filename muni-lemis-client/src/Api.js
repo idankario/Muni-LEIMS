@@ -1,17 +1,17 @@
 import axios from "axios";
 
 const APIURL = `http://localhost:3000`;
-const id = localStorage.getItem("user");
+const id = () => localStorage.getItem("user");
 
 export async function getLowestSwitchboard() {
-  const res = await fetch(`${APIURL}/switchboards/lowest/${id}`, {
+  const res = await fetch(`${APIURL}/switchboards/lowest/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 export async function getHighestSwitchboard() {
-  const res = await fetch(`${APIURL}/switchboards/highest/${id}`, {
+  const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
@@ -19,34 +19,34 @@ export async function getHighestSwitchboard() {
 }
 
 export async function getTopFiveSwitchboards() {
-  const res = await fetch(`${APIURL}/switchboards/top5/${id}`, {
+  const res = await fetch(`${APIURL}/switchboards/top5/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 export async function getLastFiveSwitchboards() {
-  const res = await fetch(`${APIURL}/switchboards/last5/${id}`, {
+  const res = await fetch(`${APIURL}/switchboards/last5/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 export async function getSwitchboards() {
-  const res = await fetch(`${APIURL}/switchboards/${id}`, { method: "GET" });
+  const res = await fetch(`${APIURL}/switchboards/${id()}`, { method: "GET" });
   const json = await res.json();
   return json;
 }
 
 export async function TypeOffice() {
+  console.log(id());
   try {
-    console.log(id);
     const res = await axios({
       method: "GET",
       // headers: { 'x-access-token': localStorage.getItem('token') },
-      url: `${APIURL}/offices/type/${id}`,
+      url: `${APIURL}/offices/type/${id()}`,
     });
-
+    console.log(res.data[0]);
     return res.data[0].res;
   } catch (error) {
     return error;
@@ -60,11 +60,9 @@ export async function officebyId(idUser) {
       // headers: { 'x-access-token': localStorage.getItem('token') },
       url: `${APIURL}/offices/${idUser}`,
     });
-    console.log(res.data[0]);
 
     return res.data[0];
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
@@ -110,7 +108,7 @@ export async function getLastFivemunicipality() {
 }
 
 export async function getSwitchboardsMap() {
-  const res = await fetch(`${APIURL}/switchboards/${id}`, {
+  const res = await fetch(`${APIURL}/switchboards/${id()}`, {
     method: "GET",
   });
   const json = await res.json();

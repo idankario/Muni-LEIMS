@@ -15,8 +15,6 @@ function HomePage() {
   useEffect(() => {
     async function getDataDB() {
       const typeOffice = await TypeOffice();
-      console.log(typeOffice);
-      console.log(typeOffice);
       if (typeOffice) setisMenuConfig(MenuMinistryConfig);
       else setisMenuConfig(MenuMunicipalityConfig);
     }
