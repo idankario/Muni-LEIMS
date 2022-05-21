@@ -23,41 +23,21 @@ export const H1 = styled("h1")({
   width: "700px",
   maxWidth: "95%",
   background: "#fff",
+  color: "#b8e100",
   paddingTop: "10px",
   fontSize: "45px",
 });
 
 export const ContainerStyle = {
-  height: "500px",
-  width: "700px",
+  height: "700px",
+  width: "1100px",
   maxWidth: "95%",
   margin: "auto",
-  "&   button.gm-ui-hover-effect": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
 
-  "& .gm-ui-hover-effect": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
-  ".gm-style-iw": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
-  "& div": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
 
-  "& button": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
-  ".gm-style-iw + div ": {
-    display: `none !important`,
-    visibility: "hidden",
-  },
+
+  
+
 };
 
 export function GoogleMapa(mapPosition) {

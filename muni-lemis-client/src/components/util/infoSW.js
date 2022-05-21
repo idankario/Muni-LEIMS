@@ -4,8 +4,11 @@ import { InfoWindow } from "@react-google-maps/api";
 import Logomap from "../images/logomap.png";
 
 export const Div = styled("div")({
+  
   width: "125px",
   height: "125px",
+
+  
 });
 
 //  {
@@ -24,6 +27,8 @@ export const Section = styled("section")({});
 function InfoSW(props) {
   const { marker } = props;
   return (
+    
+   
     <InfoWindow
       key={`${marker.lat}${marker.lat}`}
       position={{
@@ -35,12 +40,14 @@ function InfoSW(props) {
       //    setSelected(null);
       //  }}
     >
+      
       <Div style={{ textAlign: "center" }}>
         <h3 style={{ color: "red" }}>Switchboard 303</h3>
         <img alt="switchboard" title="switchboard" src={Logomap} />
         <p>Average consumption {marker.name}</p>
       </Div>
-    </InfoWindow>
+      </InfoWindow>
+    
   );
 }
 export default InfoSW;

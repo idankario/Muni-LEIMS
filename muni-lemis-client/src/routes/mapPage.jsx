@@ -90,10 +90,11 @@ function Map() {
             mapContainerStyle={ContainerStyle}
             onClick={onMapClick}
             center={dataLocation.mapPosition}
-            zoom={11}
+            zoom={16}
           >
             {markers.map((marker) => (
-              <InfoSW marker={marker} />
+              
+              <InfoSW style={{backgroundColor:"none"}} marker={marker} />
             ))}
 
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
