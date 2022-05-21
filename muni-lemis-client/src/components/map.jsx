@@ -22,6 +22,7 @@ export const H1 = styled("h1")({
   width: "700px",
   maxWidth: "95%",
   background: "#fff",
+  color: "#b8e100",
   paddingTop: "10px",
   fontSize: "45px",
 });

@@ -80,7 +80,8 @@ function Map() {
             zoom={15}
           >
             {markers.map((marker) => (
-              <InfoSW marker={marker} />
+              
+              <InfoSW style={{backgroundColor:"none"}} marker={marker} />
             ))}
 
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
