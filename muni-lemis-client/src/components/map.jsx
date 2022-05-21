@@ -15,7 +15,7 @@ export const Input = styled("input")({
   left: "50%",
   marginLeft: "-120px",
 });
-export const H1 = styled("H1")({
+export const H1 = styled("h1")({
   margin: "auto",
   textAlign: "center",
   width: "700px",

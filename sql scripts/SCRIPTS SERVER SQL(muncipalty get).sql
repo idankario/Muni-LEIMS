@@ -2,7 +2,7 @@ SELECT * FROM MuniLEIMS.office_users;
 
 
 /* OFFICE BY USER ID  */
-select MuniLEIMS.office.office_id,MuniLEIMS.office.lat,MuniLEIMS.office.lng,MuniLEIMS.office.office_name
+select MuniLEIMS.office.lat,MuniLEIMS.office.lng,MuniLEIMS.office.office_name
 from MuniLEIMS.office
 INNER JOIN MuniLEIMS.office_users  ON MuniLEIMS.office_users.office_id=MuniLEIMS.office.office_id
 where user_id=4;
@@ -20,7 +20,7 @@ inner join MuniLEIMS.office_users on MuniLEIMS.switchboard.office_id=MuniLEIMS.o
 where MuniLEIMS.office_users.user_id=4;
 
 /*  TOP/LAST SWITCHBOARD BY user  */
-SELECT s.energy_inetensity,a.area_name
+SELECT s.energy_inetensity,sw.name
   FROM MuniLEIMS.statisticalreport s
 INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -28,8 +28,6 @@ INNER JOIN MuniLEIMS.switchboard sw
     ON sw.switchboard_id = ss.switchboard_id
 INNER JOIN MuniLEIMS.office_users o
     ON o.office_id = sw.office_id    
-INNER JOIN MuniLEIMS.area a
-    ON a.area_id = sw.area_id
 WHERE
     o.user_id=4 AND ss.is_active="active"
 ORDER BY s.energy_inetensity;
@@ -53,16 +51,14 @@ WHERE
     
     
 /*  TOP 5 SWITCHBOARD BY user  */ 
-SELECT s.energy_inetensity,a.area_name
+SELECT s.energy_inetensity,sw.name
 FROM MuniLEIMS.statisticalreport s
 INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 
 INNER JOIN MuniLEIMS.switchboard sw
     ON sw.switchboard_id = ss.switchboard_id
 INNER JOIN MuniLEIMS.office_users o
-    ON o.office_id = sw.office_id    
-INNER JOIN MuniLEIMS.area a
-    ON a.area_id = sw.area_id
+    ON o.office_id = sw.office_id 
 WHERE
     o.user_id=4 
     and

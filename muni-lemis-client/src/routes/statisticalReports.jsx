@@ -7,11 +7,11 @@ import BackButton from "../components/backButton";
 import Header from "../components/header";
 import { getHighestSwitchboard, getLowestSwitchboard, getTopFiveSwitchboards,getLastFiveSwitchboards } from "../Api";
 import Container from "../components/container";
+import {H2} from "../components/h2"
 
-const Title = styled("h1")(() => ({
-  color: `#cdfa00`,
+const Title = styled(H2)(() => ({
   textAlign: `center`,
-  paddingTop: `17px`,
+  margin:"15px"
 }));
 
 const CenterContainer = styled("div")(() => ({
@@ -83,14 +83,14 @@ const DataInnerData = styled("div")(() => ({
   },
 }));
 
-function ConsumptionData({ title, kwh, color }) {
+function ConsumptionData({ title, KMV, color }) {
   return (
     <DataInner color={color}>
       <p>{title}</p>
       <DataInnerSep background={color} />
       <DataInnerData>
-        <span>{kwh}</span>
-        <p>KWH per seitchboard</p>
+        <span>{KMV}</span>
+        <p>KMV per switchboard</p>
       </DataInnerData>
     </DataInner>
   );
@@ -123,9 +123,9 @@ function StatisticalReports() {
   }, []);
 
   return (
-    <Container>
+    <Container >
       <Header />
-      <Title>STATISTICAL REPORT:</Title>
+      <Title>STATISTICAL REPORT</Title>
       <CenterContainer>
         {data.loading ? (
           <CircularProgress
@@ -140,24 +140,29 @@ function StatisticalReports() {
           <>
             <PlotWrapper>
               <Plot
+           
                 data={[
                   {
-                    x: data.topFive.map((o) => o.area),
-                    y: data.topFive.map((o) => o.intensity),
+                    x: [null,...data.topFive.map((o) =>`num:${o.area}`)],
+                    y: [`0 KMV`,...data.topFive.map((o) => `${o.intensity} KMV`)] ,
+                  
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "green" },
-                    xaxis: {
-                      tickangle: -45,
-                    },
+                    
                   },
                 ]}
+                
                 layout={{
                   width: 350,
                   height: 300,
                   xaxis: {
-                    tickangle: -45,
+                  
+                    tickangle: -50,
+                    
                   },
+              
+                  title: 'Top 5 Switchboards ',
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -168,14 +173,12 @@ function StatisticalReports() {
               <Plot
                 data={[
                   {
-                    x: data.lastFive.map((o) => o.area),
-                    y: data.lastFive.map((o) => o.intensity),
+                    x: [null,...data.lastFive.map((o) =>`num:${o.area}`)],
+                    y: [`0 KMV`,...data.lastFive.slice(0).reverse().map((o) => `${o.intensity} KMV`)] ,
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "red" },
-                    xaxis: {
-                      tickangle: -45,
-                    },
+                   
                   },
                 ]}
                 layout={{
@@ -184,6 +187,8 @@ function StatisticalReports() {
                   xaxis: {
                     tickangle: -45,
                   },
+                  
+                  title: 'Last 5 Switchboards ',
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -195,12 +200,12 @@ function StatisticalReports() {
             <DataWrapper>
               <ConsumptionData
                 title="The lowest energy intensity per switchboard"
-                kwh={data.lowestSwitchboard.intensity}
+                KMV={data.lowestSwitchboard.intensity}
                 color="green"
               />
               <ConsumptionData
                 title="The highest central energy intensity per switchboard"
-                kwh={data.highestSwitchboard.intensity}
+                KMV={data.highestSwitchboard.intensity}
                 color="red"
               />
             </DataWrapper>

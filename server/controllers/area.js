@@ -1,17 +1,19 @@
 import db from "../db_connection";
+export async function getAreas(req, res) {
 
-export async function creatArea(req, res) {
-  console.log("creatArea()");
-  const areaName = req.body.area_name;
-  try {
-    const areaQuery = `INSERT INTO MuniLEIMS.area
-                (area_name)
-                VALUES ('${areaName}')`;
-    db.query(areaQuery, function (err, result) {
-      if (err) res.status(404).send(`Query error: ${err.stack}`);
-      res.json(result);
-    });
-  } catch (error) {
-    console.error(error);
-  }
+ const getAreas = async (req, res)=> {
+  const userId = req.params.id;
+  let query = `SELECT o.office_name,a.area_name, a.lat, a.lng FROM MuniLEIMS.area a
+  INNER JOIN MuniLEIMS.switchboard sw
+      ON a.area_id = sw.area_id
+  INNER JOIN MuniLEIMS.office_users ou
+      ON ou.office_id = sw.office_id    
+  INNER JOIN MuniLEIMS.office o
+      ON o.office_id = ou.office_id    
+  WHERE
+      ou.user_id=${userId}`;
+  db.query(query, (err, result) => {
+    res.send(JSON.stringify(result));
+  });
 }
+};

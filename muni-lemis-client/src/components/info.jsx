@@ -28,12 +28,11 @@ function Info() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const handleClickOpen = () => {
-    const info = `Enter munciplity name </br> 
-    Enter swithbords numbers </br> 
-       Fill in the details according to the picture attached below`;
+    const info = `Enter Switchboard/s Numbers </br> 
+    The Details Appear in The Image as in the Example Picture Below`;
     setOpen(true);
     setDescription(info);
-    setTitle("INFORMATION HOW TO  UPLAOD IMAGE");
+    setTitle("INFORMATION HOW TO UPLAOD IMAGE");
   };
 
   const handleClose = () => {

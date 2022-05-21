@@ -38,7 +38,7 @@ LIMIT 5;
 
 
 /*  last 5 muncipalty BY id muncipalty  */  
-SELECT o.office_name, AVG( s.energy_inetensity) AS energy_inetensity_average
+SELECT o.office_name, signed AVG( s.energy_inetensity)  AS energy_inetensity_average
   FROM MuniLEIMS.statisticalreport s
 INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 

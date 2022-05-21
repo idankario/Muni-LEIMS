@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 export const Button = styled("button")({
-  position: "absolute",
-  left: "0px",
-  bottom: "0px",
+  position: "fixed",
+  left: "15px",
+  bottom: "15px",
   fontSize: " 1.5em",
   backgroundColor: "#7bd529",
   transition: "transform 0.2s ease",

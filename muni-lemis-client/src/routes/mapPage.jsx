@@ -13,6 +13,7 @@ import { Input, H1, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Logomap from "../components/images/logomap.png";
 import Container from "../components/container";
+import { getSwitchboards } from "../Api";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
@@ -20,17 +21,19 @@ const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map() {
   const [place, setPlace] = useState("");
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
+  const [markers, setMarkers] = useState([]);
+  const [selected, setSelected] = useState(null);
   const [dataLocation, setLocation] = useState({
-    city: "Ashdod",
+    municipality: "Ashdod",
     mapPosition: {
       lat: 31.804381,
       lng: 34.655314,
     },
   });
-  const getCity = (addressArray) => {
-    let city = "";
+
+
+  const getmunicipality = (addressArray) => {
+    let municipality = "";
     for (let i = 0; i < addressArray.length; i += 1) {
       if (addressArray[i].types[0]) {
         for (let j = 0; j < addressArray[i].types.length; j += 1) {
@@ -38,21 +41,23 @@ function Map() {
             addressArray[i].types[j] === "sublocality_level_1" ||
             addressArray[i].types[j] === "locality"
           ) {
-            city = addressArray[i].long_name;
-            return city;
+            municipality = addressArray[i].long_name;
+            return municipality;
           }
         }
       }
     }
-    return city;
+    return municipality;
   };
+
+
   useEffect(() => {
     Geocode.fromLatLng(31.804381, 34.655314).then(
       (response) => {
         const addressArray = response.results[0].address_components;
-        const city = getCity(addressArray);
+        const municipality = getmunicipality(addressArray);
         setLocation({
-          city: city || "",
+          municipality: municipality || "",
           mapPosition: {
             lat: 31.804381,
             lng: 34.655314,
@@ -61,17 +66,19 @@ function Map() {
       },
       (error) => error
     );
+    // const lowestSwitchboard = await getSwitchboards(4);
+    // console.log(lowestSwitchboard);
   }, []);
   const onLoad = (autocomplete) => {
     setPlace(autocomplete);
   };
   const onPlaceSelected = () => {
     const addressArray = place.getPlace().address_components;
-    const city = getCity(addressArray);
+    const municipality = getmunicipality(addressArray);
     const latValue = place.getPlace().geometry.location.lat();
     const lngValue = place.getPlace().geometry.location.lng();
     setLocation({
-      city: city || "",
+      municipality: municipality || "",
       mapPosition: {
         lat: latValue,
         lng: lngValue,
@@ -88,12 +95,20 @@ function Map() {
       },
     ]);
   }, []);
-
+  useEffect(() => {
+    async function getDataDB() {
+      const markerss = await getSwitchboards(4);
+      setMarkers({
+        markers: markerss,
+      });
+    }
+    getDataDB();
+  }, []);
   return (
-    <Container bgImage={1}>
+    <Container bgimage={1}>
       <Header />
       <Menu>
-        <H1>{dataLocation.city}</H1>
+        <H1>{dataLocation.municipality}</H1>
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
             mapContainerStyle={ContainerStyle}
@@ -103,10 +118,11 @@ function Map() {
           >
             {markers.map((marker) => (
               <Marker
-                key={`${marker.lat}-${marker.lng}`}
-                position={{ lat: marker.lat, lng: marker.lng }}
+              
+                position={{ lat: marker[0].lat, lng: marker[0].lng }}
                 onClick={() => {
                   setSelected(marker);
+                  console.log(marker)
                 }}
                 icon={{
                   url: `/bear.svg`,

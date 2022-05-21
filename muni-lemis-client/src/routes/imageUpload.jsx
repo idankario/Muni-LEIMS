@@ -99,7 +99,7 @@ function ImageUpload() {
         <section>
           <H3>Upload Image</H3>
           <Info />
-          <Typography>Put the cordinate of the image</Typography>
+          <Typography>Enter the cordinate of the image</Typography>
           <TextField
             type="number"
             autoComplete="off"
@@ -118,7 +118,7 @@ function ImageUpload() {
             variant="standard"
             onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
           />
-          <Typography>Put the total consamption of switchboards</Typography>
+          <Typography>Enter the total consamption switchboards of the image</Typography>
           <TextField
             type="number"
             autoComplete="off"
@@ -130,7 +130,7 @@ function ImageUpload() {
             }
           />
 
-          <Typography>Put the scale of the image</Typography>
+          <Typography>Enter the scale of the image</Typography>
           <Slider
             value={data.scale}
             onChange={(e) =>
@@ -141,7 +141,7 @@ function ImageUpload() {
             step={25}
             valueLabelDisplay="on"
           />
-          <Typography>Select switchboards</Typography>
+          <Typography>Select switchboards of the image</Typography>
           <Select
             multiple
             value={data.switchboards}
@@ -159,6 +159,7 @@ function ImageUpload() {
               </MenuItem>
             ))}
           </Select>
+          <Typography>Arial Images are Available in Govmap etc.</Typography>
           <Button
             disabled={!!Object.values(data).some((i) => i === null)}
             variant="contained"

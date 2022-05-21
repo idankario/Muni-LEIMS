@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -5,7 +6,11 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import {
+  CognitoUser,
+  // CognitoUserAttribute,
+  AuthenticationDetails,
+} from "amazon-cognito-identity-js";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -16,6 +21,7 @@ import Header from "../components/header";
 import { H_2 } from "../components/h2";
 import Container from "../components/container";
 import Shenkar from "../components/images/shenkar.png";
+import { officebyId } from "../Api";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -34,10 +40,17 @@ function LoginPage() {
       Username: email,
       Password: password,
     });
-
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
-        console.log("onSuccess:", data);
+        const id = data.idToken.payload["custom:user_id"];
+        localStorage.setItem("user", id);
+        localStorage.setItem("token", data.getAccessToken().getJwtToken());
+
+        async function storeOffice() {
+          const office = JSON.stringify(await officebyId(id));
+          localStorage.setItem("office", office);
+        }
+        storeOffice();
         navigate("/homePage");
       },
 
@@ -53,7 +66,7 @@ function LoginPage() {
   return (
     <Container>
       <img
-        style={{ position: "absolute", bottom: "30px" }}
+        style={{ position: "fixed", bottom: "10px" }}
         src={Shenkar}
         alt="Shenkar"
         title="Shenkar"
