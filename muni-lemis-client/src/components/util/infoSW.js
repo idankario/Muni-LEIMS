@@ -7,15 +7,10 @@ export const Div = styled("div")({
   
   width: "125px",
   height: "125px",
-<<<<<<< HEAD
-
-  
-=======
   textAlign: "center",
   fontSize: "15px",
   opacity: "0.8",
   background: "#fff",
->>>>>>> 9b34d8830fb07a58d5591cb26448acd1e669a8cf
 });
 
 export const Section = styled("section")({});
