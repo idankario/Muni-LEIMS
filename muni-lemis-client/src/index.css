@@ -10,18 +10,7 @@
 nav li{
   display: inline;
 }
-.gm-ui-hover-effect {
-  display: none !important;
-}
-.gm-style .gm-style-iw  {
-  display: none !important; /* <-- this will generally work on the fly. */
-  visibility: hidden; /* this 2 lines below are just for hard hiding. :) */
-  opacity: 0;
-}
-.gm-style-iw  {display: none !important;}
-button.gm-ui-hover-effect {
-  visibility: hidden;
-}
+
 body{
   font-family: 'Poppins', sans-serif;
 

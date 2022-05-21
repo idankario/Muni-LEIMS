@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Autocomplete } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
-import { Input, H1, ContainerStyle } from "../components/map";
+import { Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 
 import Container from "../components/container";
@@ -68,29 +68,16 @@ function Map() {
       },
     });
   };
-  const onMapClick = React.useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
 
   return (
     <Container bgimage={1}>
       <Header />
       <Menu>
-        <H1>{dataLocation.municipality}</H1>
-
         <LoadScript googleMapsApiKey={api} libraries={["places"]}>
           <GoogleMap
             mapContainerStyle={ContainerStyle}
-            onClick={onMapClick}
             center={dataLocation.mapPosition}
-            zoom={11}
+            zoom={15}
           >
             {markers.map((marker) => (
               <InfoSW marker={marker} />
