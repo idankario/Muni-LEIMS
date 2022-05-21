@@ -13,7 +13,7 @@ const switchboardsCtl = {
     ON o.office_id = sw.office_id    
       WHERE
         o.user_id=${userId} AND ss.is_active="active"
-      ORDER BY s.energy_inetensity;`;
+      ORDER BY s.energy_inetensity ;`;
     db.query(query, (err, result) => {
       res.send(JSON.stringify(result));
     });
@@ -35,9 +35,9 @@ const switchboardsCtl = {
     WHERE
         o.user_id=${userId}
         and 
-        ss.is_active="active"
-    LIMIT 1;
-      `;
+        ss.is_active="active"      
+    Order By s.energy_inetensity desc
+    LIMIT 1;`;
     db.query(query, (err, result) => {
       res.send(JSON.stringify(result));
     });
@@ -79,7 +79,7 @@ const switchboardsCtl = {
         o.user_id=${userId} 
         and
         ss.is_active="active"
-    ORDER BY s.energy_inetensity asc
+    ORDER BY s.energy_inetensity 
     LIMIT 5;`;
     db.query(query, (err, result) => {
       res.send(JSON.stringify(result));

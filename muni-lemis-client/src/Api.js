@@ -14,7 +14,9 @@ export async function getHighestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
     method: "GET",
   });
+
   const json = await res.json();
+  console.log(json);
   return json;
 }
 
