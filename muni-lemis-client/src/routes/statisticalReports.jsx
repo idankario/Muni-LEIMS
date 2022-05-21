@@ -5,13 +5,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import { getHighestSwitchboard, getLowestSwitchboard, getTopFiveSwitchboards,getLastFiveSwitchboards } from "../Api";
+import {
+  getHighestSwitchboard,
+  getLowestSwitchboard,
+  getTopFiveSwitchboards,
+  getLastFiveSwitchboards,
+} from "../Api";
 import Container from "../components/container";
-import {H2} from "../components/h2"
+import { H2 } from "../components/h2";
 
 const Title = styled(H2)(() => ({
   textAlign: `center`,
-  margin:"15px"
+  margin: "15px",
 }));
 
 const CenterContainer = styled("div")(() => ({
@@ -102,7 +107,7 @@ function StatisticalReports() {
     highestSwitchboard: {},
     lowestSwitchboard: {},
     topFive: [],
-    lastFive:[],
+    lastFive: [],
   });
 
   useEffect(() => {
@@ -110,7 +115,7 @@ function StatisticalReports() {
       const highestSwitchboard = await getHighestSwitchboard();
       const lowestSwitchboard = await getLowestSwitchboard();
       const topFive = await getTopFiveSwitchboards();
-      const lastFive= await getLastFiveSwitchboards();
+      const lastFive = await getLastFiveSwitchboards();
       setData({
         highestSwitchboard: highestSwitchboard[0],
         lowestSwitchboard: lowestSwitchboard[0],
@@ -123,7 +128,7 @@ function StatisticalReports() {
   }, []);
 
   return (
-    <Container >
+    <Container>
       <Header />
       <Title>STATISTICAL REPORT</Title>
       <CenterContainer>
@@ -140,29 +145,27 @@ function StatisticalReports() {
           <>
             <PlotWrapper>
               <Plot
-           
                 data={[
                   {
-                    x: [null,...data.topFive.map((o) =>`num:${o.area}`)],
-                    y: [`0 KMV`,...data.topFive.map((o) => `${o.intensity} KMV`)] ,
-                  
+                    x: [null, ...data.topFive.map((o) => `num:${o.area}`)],
+                    y: [
+                      `0 KMV`,
+                      ...data.topFive.map((o) => `${o.intensity} KMV`),
+                    ],
+
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "green" },
-                    
                   },
                 ]}
-                
                 layout={{
                   width: 350,
                   height: 300,
                   xaxis: {
-                  
                     tickangle: -50,
-                    
                   },
-              
-                  title: 'Top 5 Switchboards ',
+
+                  title: "Top 5 Switchboards ",
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -173,12 +176,17 @@ function StatisticalReports() {
               <Plot
                 data={[
                   {
-                    x: [null,...data.lastFive.map((o) =>`num:${o.area}`)],
-                    y: [`0 KMV`,...data.lastFive.slice(0).reverse().map((o) => `${o.intensity} KMV`)] ,
+                    x: [null, ...data.lastFive.map((o) => `num:${o.area}`)],
+                    y: [
+                      `0 KMV`,
+                      ...data.lastFive
+                        .slice(0)
+                        .reverse()
+                        .map((o) => `${o.intensity} KMV`),
+                    ],
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "red" },
-                   
                   },
                 ]}
                 layout={{
@@ -187,8 +195,8 @@ function StatisticalReports() {
                   xaxis: {
                     tickangle: -45,
                   },
-                  
-                  title: 'Last 5 Switchboards ',
+
+                  title: "Last 5 Switchboards ",
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",

@@ -14,12 +14,9 @@ function HomePage() {
   const [menuConfig, setisMenuConfig] = useState([{}]);
   useEffect(() => {
     async function getDataDB() {
-      const typeOffice = await TypeOffice(localStorage.getItem("user"));
-      // const office = await JSON.parse(localStorage.getItem("office"));
-      // console.log(office.office_name);
-      // console.log(...await officebyId(localStorage.getItem("user")));
-      // data type Specifies the values to display. The municipality will
-      // present the municipalities and the Ministry of Energy the Ministry of Energy
+      const typeOffice = await TypeOffice();
+      console.log(typeOffice);
+      console.log(typeOffice);
       if (typeOffice) setisMenuConfig(MenuMinistryConfig);
       else setisMenuConfig(MenuMunicipalityConfig);
     }

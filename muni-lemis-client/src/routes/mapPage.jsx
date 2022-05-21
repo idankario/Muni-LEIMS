@@ -48,16 +48,15 @@ function Map() {
     return municipality;
   };
   useEffect(() => {
-    const Office = JSON.parse(localStorage.getItem("office"));
-    Geocode.fromLatLng(Office.lat, Office.lng).then(
-      () => {
-        // const addressArray = response.results[0].address_components;
-        // const municipality = getmunicipality(addressArray);
+    Geocode.fromLatLng(31.804381, 34.655314).then(
+      (response) => {
+        const addressArray = response.results[0].address_components;
+        const municipality = getmunicipality(addressArray);
         setLocation({
-          municipality: Office.office_name,
+          municipality: municipality || "",
           mapPosition: {
-            lat: Office.lat,
-            lng: Office.lng,
+            lat: 31.804381,
+            lng: 34.655314,
           },
         });
       },

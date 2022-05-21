@@ -28,9 +28,7 @@ function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
+
   const onSubmit = (event) => {
     event.preventDefault();
 
@@ -47,7 +45,6 @@ function LoginPage() {
         const id = data.idToken.payload["custom:user_id"];
         localStorage.setItem("user", id);
         localStorage.setItem("token", data.getAccessToken().getJwtToken());
-
         async function storeOffice() {
           const office = JSON.stringify(await officebyId(id));
           localStorage.setItem("office", office);
