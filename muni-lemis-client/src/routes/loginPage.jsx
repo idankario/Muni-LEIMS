@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -42,11 +42,14 @@ function LoginPage() {
     });
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
-        const id = data.idToken.payload["custom:user_id"];
-        localStorage.setItem("user", id);
-        localStorage.setItem("token", data.getAccessToken().getJwtToken());
-
         async function storeOffice() {
+          const id = data.idToken.payload["custom:user_id"];
+          localStorage.setItem("user", await id);
+          console.log(localStorage.getItem("user"));
+          localStorage.setItem(
+            "token",
+            await data.getAccessToken().getJwtToken()
+          );
           const office = JSON.stringify(await officebyId(id));
           localStorage.setItem("office", office);
         }

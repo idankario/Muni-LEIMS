@@ -1,127 +1,118 @@
 import axios from "axios";
 
-const API_URL = `http://localhost:3000`;
+const APIURL = `http://localhost:3000`;
+const id = () => localStorage.getItem("user");
 
-export async function TypeOffice(id) {
+export async function getLowestSwitchboard() {
+  const res = await fetch(`${APIURL}/switchboards/lowest/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getHighestSwitchboard() {
+  const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
+    method: "GET",
+  });
+
+  const json = await res.json();
+  console.log(json);
+  return json;
+}
+
+export async function getTopFiveSwitchboards() {
+  const res = await fetch(`${APIURL}/switchboards/top5/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getLastFiveSwitchboards() {
+  const res = await fetch(`${APIURL}/switchboards/last5/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getSwitchboards() {
+  const res = await fetch(`${APIURL}/switchboards/${id()}`, { method: "GET" });
+  const json = await res.json();
+  return json;
+}
+
+export async function TypeOffice() {
+  console.log(id());
   try {
     const res = await axios({
       method: "GET",
       // headers: { 'x-access-token': localStorage.getItem('token') },
-      url: `${API_URL}/offices/type/${id}`,
+      url: `${APIURL}/offices/type/${id()}`,
     });
-
+    console.log(res.data[0]);
     return res.data[0].res;
   } catch (error) {
     return error;
   }
 }
 
-export async function loadMunicipalities() {
-  const res = await fetch(`${API_URL}/municipalities`, { method: "GET" });
-  const json = await res.json();
-  return json;
-}
-
-export async function officebyId(id) {
+export async function officebyId(idUser) {
   try {
     const res = await axios({
       method: "GET",
       // headers: { 'x-access-token': localStorage.getItem('token') },
-      url: `${API_URL}/offices/${id}`,
+      url: `${APIURL}/offices/${idUser}`,
     });
-    console.log(res.data[0]);
 
     return res.data[0];
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
 
-export async function loadareas() {
-  const res = await fetch(`${API_URL}/areas`, { method: "GET" });
+export async function loadMunicipalities() {
+  const res = await fetch(`${APIURL}/municipalities`, { method: "GET" });
   const json = await res.json();
-  return json;
-}
-
-
-export async function getLowestSwitchboard() {
-  const res = await fetch(`${API_URL}/swithchboards/lowest`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  return json;
-}
-export async function getSwitchboards(id) {
-  const res = await fetch(`${API_URL}/swithchboards/${id}`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  return json;
-}
-
-export async function getHighestSwitchboard() {
-  const res = await fetch(`${API_URL}/swithchboards/high`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  return json;
-}
-
-export async function getTopFiveSwitchboards() {
-  const res = await fetch(`${API_URL}/swithchboards/top`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  // eslint-disable-next-line no-console
-  console.log(json);
-  return json;
-}
-
-export async function getLastFiveSwitchboards() {
-  const res = await fetch(`${API_URL}/swithchboards/top`, {
-    method: "GET",
-  });
-  const json = await res.json();
-  // eslint-disable-next-line no-console
-  console.log(json);
   return json;
 }
 
 export async function getLowestmunicipality() {
-  const res = await fetch(`${API_URL}/municipalities/lowest`, {
+  const res = await fetch(`${APIURL}/municipalities/lowest`, {
     method: "GET",
   });
   const json = await res.json();
-  // eslint-disable-next-line no-console
-  console.log(json);
   return json;
 }
-
 export async function getHighestmunicipality() {
-  const res = await fetch(`${API_URL}/municipalities/high`, {
+  const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
-
 export async function getTopFivemunicipality() {
-  const res = await fetch(`${API_URL}/municipalities/top`, {
+  const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
   });
   const json = await res.json();
   // eslint-disable-next-line no-console
-  console.log(json);
+
   return json;
 }
 
 export async function getLastFivemunicipality() {
-  const res = await fetch(`${API_URL}/municipalities/last`, {
+  const res = await fetch(`${APIURL}/municipalities/last5`, {
     method: "GET",
   });
   const json = await res.json();
   // eslint-disable-next-line no-console
   console.log(json);
+  return json;
+}
+
+export async function getSwitchboardsMap() {
+  const res = await fetch(`${APIURL}/switchboards/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
   return json;
 }

@@ -65,18 +65,7 @@ function ImageUpload() {
     consumption: "",
     switchboards: [],
   });
-  const names = [
-    "Oliver Hansen",
-    "Van Henry",
-    "April Tucker",
-    "Ralph Hubbard",
-    "Omar Alexander",
-    "Carlos Abbott",
-    "Miriam Wagner",
-    "Bradley Wilkerson",
-    "Virginia Andrews",
-    "Kelly Snyder",
-  ];
+  const names = [];
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -118,7 +107,9 @@ function ImageUpload() {
             variant="standard"
             onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
           />
-          <Typography>Enter the total consamption switchboards of the image</Typography>
+          <Typography>
+            Enter the total consamption switchboards of the image
+          </Typography>
           <TextField
             type="number"
             autoComplete="off"

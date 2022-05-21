@@ -1,9 +1,10 @@
-import { Router } from 'express';
-import { getswitchboards,highestSwitchboard,lowestSwitchboard,getTopFiveSwitchboards,getLastFiveSwitchboards } from '../controllers/switchboards';
+import { Router } from "express";
+import switchboardsCtl from "../controllers/switchboards";
 const switchboardsRouter = new Router();
-switchboardsRouter.get("/swithchboards/:id", getswitchboards);
-switchboardsRouter.get("/swithchboards/high", highestSwitchboard);
-switchboardsRouter.get("/swithchboards/lowest", lowestSwitchboard);
-switchboardsRouter.get("/swithchboards/top",getTopFiveSwitchboards);
-switchboardsRouter.get("/swithchboards/top",getLastFiveSwitchboards);
-export default { switchboardsRouter };
+
+switchboardsRouter.get("/highest/:id", switchboardsCtl.highestSwitchboards);
+switchboardsRouter.get("/lowest/:id", switchboardsCtl.lowestSwitchboards);
+switchboardsRouter.get("/top5/:id", switchboardsCtl.getTopFiveSwitchboards);
+switchboardsRouter.get("/last5/:id", switchboardsCtl.getLastFiveSwitchboards);
+switchboardsRouter.get("/:id", switchboardsCtl.getSwitchboardsById);
+export default switchboardsRouter;
