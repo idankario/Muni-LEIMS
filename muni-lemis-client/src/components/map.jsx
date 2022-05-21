@@ -1,6 +1,4 @@
 import { styled } from "@mui/material/styles";
-import { GoogleMap } from "@react-google-maps/api";
-import React from "react";
 
 export const Input = styled("input")({
   boxSizing: `border-box`,
@@ -17,6 +15,7 @@ export const Input = styled("input")({
   left: "50%",
   marginLeft: "-120px",
 });
+
 export const H1 = styled("h1")({
   margin: "auto",
   textAlign: "center",
@@ -29,23 +28,8 @@ export const H1 = styled("h1")({
 });
 
 export const ContainerStyle = {
-  height: "700px",
-  width: "1100px",
-  maxWidth: "95%",
+  height: "650px",
+  width: "100%",
   margin: "auto",
-
-
-
-  
-
+  marginTop: "-45px",
 };
-
-export function GoogleMapa(mapPosition) {
-  return (
-    <GoogleMap
-      mapContainerStyle={ContainerStyle}
-      center={mapPosition}
-      zoom={10}
-    />
-  );
-}

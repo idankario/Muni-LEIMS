@@ -1,53 +1,42 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
-import { InfoWindow } from "@react-google-maps/api";
+import { OverlayView } from "@react-google-maps/api";
 import Logomap from "../images/logomap.png";
 
 export const Div = styled("div")({
   
   width: "125px",
   height: "125px",
+<<<<<<< HEAD
 
   
+=======
+  textAlign: "center",
+  fontSize: "15px",
+  opacity: "0.8",
+  background: "#fff",
+>>>>>>> 9b34d8830fb07a58d5591cb26448acd1e669a8cf
 });
 
-//  {
-//   display: none !important;
-// }
-// .gm-style .gm-style-iw  {
-//   display: none !important; /* <-- this will generally work on the fly. */
-//   visibility: hidden; /* this 2 lines below are just for hard hiding. :) */
-//   opacity: 0;
-// }
-//   {display: none !important;}
-// button.gm-ui-hover-effect {
-//
-// }
 export const Section = styled("section")({});
 function InfoSW(props) {
   const { marker } = props;
   return (
-    
-   
-    <InfoWindow
+    <OverlayView
       key={`${marker.lat}${marker.lat}`}
+      isHeatmapVisible={false}
       position={{
         lat: parseFloat(marker.lat),
         lng: parseFloat(marker.lng),
       }}
-
-      //  onCloseClick={() => {
-      //    setSelected(null);
-      //  }}
+      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
-      
-      <Div style={{ textAlign: "center" }}>
-        <h3 style={{ color: "red" }}>Switchboard 303</h3>
+      <Div>
+        <h3 style={{ color: "red" }}>Switchboard {marker.name}</h3>
         <img alt="switchboard" title="switchboard" src={Logomap} />
-        <p>Average consumption {marker.name}</p>
+        <p>Average consumption {marker.energy_inetensity}</p>
       </Div>
-      </InfoWindow>
-    
+    </OverlayView>
   );
 }
 export default InfoSW;
