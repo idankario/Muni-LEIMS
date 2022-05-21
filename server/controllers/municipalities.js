@@ -1,6 +1,6 @@
 import db from "../db_connection";
 
-const officesCtl = {
+const municipalitiesCtl = {
   async getmunicipalities(req, res) {
     let query = `
     SELECT o.office_name as municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
@@ -116,4 +116,4 @@ const officesCtl = {
   },
 };
 
-export default officesCtl;
+export default municipalitiesCtl;

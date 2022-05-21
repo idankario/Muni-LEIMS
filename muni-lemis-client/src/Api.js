@@ -41,7 +41,6 @@ export async function getSwitchboards() {
 }
 
 export async function TypeOffice() {
-  console.log(id());
   try {
     const res = await axios({
       method: "GET",
@@ -111,6 +110,13 @@ export async function getLastFivemunicipality() {
 
 export async function getSwitchboardsMap() {
   const res = await fetch(`${APIURL}/switchboards/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getSwitchboardsLocation() {
+  const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
