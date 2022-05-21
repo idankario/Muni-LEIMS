@@ -5,7 +5,7 @@ import { CircularProgress } from "@mui/material";
 import { getSwitchboards, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
-import Table from "../components/table";
+import Table from "../components/Table";
 import { H2 } from "../components/h2";
 import Container from "../components/container";
 
