@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const APIURL = `http://localhost:3000`;
+const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
 
 export async function getLowestSwitchboard() {
@@ -115,8 +115,16 @@ export async function getSwitchboardsMap() {
   const json = await res.json();
   return json;
 }
-export async function getSwitchboardsLocation() {
+export async function getSwLocation() {
   const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function getAllSwLocation() {
+  const res = await fetch(`${APIURL}/switchboards/locations`, {
     method: "GET",
   });
   const json = await res.json();

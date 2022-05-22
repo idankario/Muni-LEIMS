@@ -7,7 +7,7 @@ import { Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 
 import Container from "../components/container";
-import { getSwitchboardsLocation } from "../Api";
+import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
 import InfoSW from "../components/util/infoSW";
 
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
@@ -47,7 +47,9 @@ function Map() {
 
   useEffect(() => {
     async function getDataDB() {
-      setMarkers(await getSwitchboardsLocation());
+      const typeOffice = await TypeOffice();
+      if (typeOffice) setMarkers(await getAllSwLocation());
+      else setMarkers(await getSwLocation());
     }
 
     getDataDB();
@@ -80,8 +82,7 @@ function Map() {
             zoom={15}
           >
             {markers.map((marker) => (
-              
-              <InfoSW style={{backgroundColor:"none"}} marker={marker} />
+              <InfoSW style={{ backgroundColor: "none" }} marker={marker} />
             ))}
 
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>

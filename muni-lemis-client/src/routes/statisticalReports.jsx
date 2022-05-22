@@ -212,7 +212,7 @@ function StatisticalReports() {
                 color="green"
               />
               <ConsumptionData
-                title="The highest central energy intensity per switchboard"
+                title="The highest energy intensity per switchboard"
                 KMV={data.highestSwitchboard.intensity}
                 color="red"
               />

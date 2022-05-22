@@ -1,7 +1,7 @@
 import db from "../db_connection";
 
 const municipalitiesCtl = {
-  async getmunicipalities(req, res) {
+  async getMunicipalities(req, res) {
     let query = `
     SELECT o.office_name as municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
     FROM MuniLEIMS.statisticalreport s
@@ -23,7 +23,7 @@ const municipalitiesCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async highestmunicipality(req, res) {
+  async highestMunicipality(req, res) {
     let query = `
     SELECT o.office_name,round (AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
@@ -46,7 +46,7 @@ const municipalitiesCtl = {
     });
   },
 
-  async lowestmunicipality(req, res) {
+  async lowestMunicipality(req, res) {
     let query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
@@ -69,7 +69,7 @@ const municipalitiesCtl = {
     });
   },
 
-  async getTopFivemunicipality(req, res) {
+  async getTopFiveMunicipalities(req, res) {
     let query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
@@ -92,7 +92,7 @@ const municipalitiesCtl = {
     });
   },
 
-  async getLastFivemunicipality(req, res) {
+  async getLastFiveMunicipalities(req, res) {
     let query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
