@@ -44,7 +44,7 @@ export async function TypeOffice() {
   try {
     const res = await axios({
       method: "GET",
-      // headers: { 'x-access-token': localStorage.getItem('token') },
+      headers: { "x-access-token": localStorage.getItem("token") },
       url: `${APIURL}/offices/type/${id()}`,
     });
     console.log(res.data[0]);
@@ -74,21 +74,21 @@ export async function loadMunicipalities() {
   return json;
 }
 
-export async function getLowestmunicipality() {
+export async function getLowestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/lowest`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
-export async function getHighestmunicipality() {
+export async function getHighestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
-export async function getTopFivemunicipality() {
+export async function getTopFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
   });
@@ -98,7 +98,7 @@ export async function getTopFivemunicipality() {
   return json;
 }
 
-export async function getLastFivemunicipality() {
+export async function getLastFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/last5`, {
     method: "GET",
   });

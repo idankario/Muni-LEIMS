@@ -2,7 +2,7 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -16,6 +16,7 @@ import UploadImage from "../components/util/uploadImage";
 import { H3 } from "../components/h2";
 import Container from "../components/container";
 import Info from "../components/info";
+import { getSwLocation } from "../Api";
 
 const Menu = styled("main")({
   "& section": {
@@ -65,7 +66,7 @@ function ImageUpload() {
     consumption: "",
     switchboards: [],
   });
-  const names = [];
+  const [names, setNames] = useState([]);
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -74,8 +75,13 @@ function ImageUpload() {
       width: 250,
     },
   };
-
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    async function getDataDB() {
+      setNames(await getSwLocation());
+    }
+    getDataDB();
+  }, []);
+  // const [loading, setLoading] = useState(false);
 
   async function handleFileInput(file) {
     const res = await UploadImage(file);
@@ -144,9 +150,9 @@ function ImageUpload() {
             MenuProps={MenuProps}
           >
             {names.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={data.switchboards.indexOf(name) > -1} />
-                <ListItemText primary={name} />
+              <MenuItem key={name.name} value={name.name}>
+                <Checkbox checked={data.switchboards.indexOf(name.name) > -1} />
+                <ListItemText primary={name.name} />
               </MenuItem>
             ))}
           </Select>

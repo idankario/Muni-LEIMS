@@ -6,10 +6,10 @@ import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import {
-  getHighestmunicipality,
-  getLowestmunicipality,
-  getTopFivemunicipality,
-  getLastFivemunicipality,
+  getHighestMunicipality,
+  getLowestMunicipality,
+  getTopFiveMunicipality,
+  getLastFiveMunicipality,
 } from "../Api";
 import Container from "../components/container";
 import { H2 } from "../components/h2";
@@ -95,7 +95,7 @@ function ConsumptionData({ title, KMV, color }) {
       <DataInnerSep background={color} />
       <DataInnerData>
         <span>{KMV}</span>
-        <p>KMV per resident</p>
+        <p>KMV per Municipality</p>
       </DataInnerData>
     </DataInner>
   );
@@ -104,7 +104,7 @@ function ConsumptionData({ title, KMV, color }) {
 function StatisticalReportsminstry() {
   const [data, setData] = useState({
     loading: true,
-    highestmunicipality: {},
+    highestMunicipality: {},
     lowestmunicipality: {},
     topFive: [],
     lastFive: [],
@@ -112,12 +112,12 @@ function StatisticalReportsminstry() {
 
   useEffect(() => {
     async function getDataDB() {
-      const highestmunicipality = await getHighestmunicipality();
-      const lowestmunicipality = await getLowestmunicipality();
-      const topFive = await getTopFivemunicipality();
-      const lastFive = await getLastFivemunicipality();
+      const highestMunicipality = await getHighestMunicipality();
+      const lowestmunicipality = await getLowestMunicipality();
+      const topFive = await getTopFiveMunicipality();
+      const lastFive = await getLastFiveMunicipality();
       setData({
-        highestmunicipality: highestmunicipality[0],
+        highestMunicipality: highestMunicipality[0],
         lowestmunicipality: lowestmunicipality[0],
         topFive,
         lastFive,
@@ -217,7 +217,7 @@ function StatisticalReportsminstry() {
               />
               <ConsumptionData
                 title="The highest energy intensity per municipality"
-                KMV={data.highestmunicipality.energy_inetensity_average}
+                KMV={data.highestMunicipality.energy_inetensity_average}
                 color="red"
               />
             </DataWrapper>

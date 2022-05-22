@@ -95,7 +95,7 @@ function ConsumptionData({ title, KMV, color }) {
       <DataInnerSep background={color} />
       <DataInnerData>
         <span>{KMV}</span>
-        <p>KMV per switchboard</p>
+        <p>KMV per Switchboard</p>
       </DataInnerData>
     </DataInner>
   );
