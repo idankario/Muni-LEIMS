@@ -60,21 +60,16 @@ function SignupPage() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    PoolData.signUp(
-      username,
-      Password,
-      attributeList,
-      null,
-      function (err, result) {
-        if (err) {
-          alert(err.message || JSON.stringify(err));
-          return;
-        }
-        const cognitoUser = result.user;
-        console.log("user name is " + cognitoUser.getUsername());
-        navigate("/");
+    PoolData.signUp(username, Password, attributeList, null, (err, result) => {
+      if (err) {
+        // eslint-disable-next-line no-alert
+        alert(err.message || JSON.stringify(err));
+        return;
       }
-    );
+      const cognitoUser = result.user;
+      console.log(`user name is ${cognitoUser.getUsername()}`);
+      navigate("/");
+    });
   };
 
   return (
@@ -97,6 +92,19 @@ function SignupPage() {
             name="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="start">
+                  <AccountCircleIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            type="name"
+            placeholder="NAME"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="start">
@@ -132,6 +140,7 @@ function SignupPage() {
               ),
             }}
           />
+
           <TextField
             type={showPassword ? "text" : "password"}
             placeholder="PASSWORD"

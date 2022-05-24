@@ -3,7 +3,7 @@ import db from "../db_connection";
 const municipalitiesCtl = {
   async getmunicipalities(req, res) {
     let query = `
-    SELECT o.office_name as municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
+    SELECT o.office_name AS municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 

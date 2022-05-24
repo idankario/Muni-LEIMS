@@ -4,7 +4,6 @@ import { OverlayView } from "@react-google-maps/api";
 import Logomap from "../images/logomap.png";
 
 export const Div = styled("div")({
-  
   width: "125px",
   height: "125px",
   textAlign: "center",
@@ -18,7 +17,6 @@ function InfoSW(props) {
   const { marker } = props;
   return (
     <OverlayView
-      key={`${marker.lat}${marker.lat}`}
       isHeatmapVisible={false}
       position={{
         lat: parseFloat(marker.lat),

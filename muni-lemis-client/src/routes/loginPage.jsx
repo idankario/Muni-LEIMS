@@ -43,15 +43,14 @@ function LoginPage() {
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
         async function storeOffice() {
-          const id = `${data.idToken.payload["cognito:username"]}`;
-          localStorage.setItem("user", `${id}`);
-          // console.log(localStorage.getItem("user"));
-          console.log(typeof id);
-
-          console.log(id);
-          localStorage.setItem("token", data.getAccessToken().getJwtToken());
+          const id = data.idToken.payload["custom:user_id"];
+          localStorage.setItem("user", await id);
+          console.log(localStorage.getItem("user"));
+          localStorage.setItem(
+            "token",
+            await data.getAccessToken().getJwtToken()
+          );
           const office = JSON.stringify(await officebyId(id));
-          console.log(office);
           localStorage.setItem("office", office);
         }
         storeOffice();

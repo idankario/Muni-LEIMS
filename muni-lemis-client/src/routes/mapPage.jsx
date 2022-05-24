@@ -18,7 +18,7 @@ function Map() {
   const office = JSON.parse(localStorage.getItem("office"));
   const [place, setPlace] = useState("");
   const [markers, setMarkers] = useState([]);
-  const [zoom, setZoom] = useState([]);
+  const [zoom, setZoom] = useState(0);
   const [dataLocation, setLocation] = useState({
     mapPosition: {
       lat: parseFloat(office.lat),
@@ -31,7 +31,7 @@ function Map() {
       const typeOffice = await TypeOffice();
       if (typeOffice) {
         setMarkers(await getAllSwLocation());
-        setZoom(10);
+        setZoom(9);
       } else {
         setMarkers(await getSwLocation());
         setZoom(15);
@@ -64,7 +64,11 @@ function Map() {
             zoom={zoom}
           >
             {markers.map((marker) => (
-              <InfoSW style={{ backgroundColor: "none" }} marker={marker} />
+              <InfoSW
+                key={`${marker.lat}${marker.lat}`}
+                style={{ backgroundColor: "none" }}
+                marker={marker}
+              />
             ))}
 
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
