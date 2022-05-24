@@ -110,7 +110,12 @@ const switchboardsCtl = {
     SELECT sw.name,a.lat, a.lng, s.energy_inetensity FROM MuniLEIMS.area a
     INNER JOIN MuniLEIMS.switchboard sw
         ON a.area_id = sw.area_id
-	@@ -119,32 +119,13 @@ const switchboardsCtl = {
+    INNER JOIN MuniLEIMS.office_users ou
+        ON ou.office_id = sw.office_id    
+    INNER JOIN MuniLEIMS.office o
+        ON o.office_id = ou.office_id  
+	  INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
+        ON ss.statisticalreport_id = sw.switchboard_id    
 	  INNER JOIN MuniLEIMS.statisticalreport s
         ON ss.statisticalreport_id = s.statisticalreport_id  
     WHERE

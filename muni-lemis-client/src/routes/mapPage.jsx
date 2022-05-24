@@ -31,7 +31,7 @@ function Map() {
       const typeOffice = await TypeOffice();
       if (typeOffice) {
         setMarkers(await getAllSwLocation());
-        setZoom(9);
+        setZoom(10);
       } else {
         setMarkers(await getSwLocation());
         setZoom(15);
