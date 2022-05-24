@@ -16,7 +16,7 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import PoolData from "./poolData";
 import Logo from "../components/images/logoBody.png";
-import { Login } from "../components/util/board";
+import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
 import { H_2 } from "../components/h2";
 import Container from "../components/container";
@@ -114,6 +114,7 @@ function LoginPage() {
             }}
           />
           <Button type="submit">LOGIN</Button>
+          <StyledLink to="/signup">New user? Register Now</StyledLink>
         </section>
       </Login>
     </Container>

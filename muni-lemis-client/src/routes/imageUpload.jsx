@@ -2,7 +2,7 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -16,6 +16,7 @@ import UploadImage from "../components/util/uploadImage";
 import { H3 } from "../components/h2";
 import Container from "../components/container";
 import Info from "../components/info";
+import { getSwLocation } from "../Api";
 
 const Menu = styled("main")({
   "& section": {
@@ -58,14 +59,14 @@ const Menu = styled("main")({
 
 function ImageUpload() {
   const [data, setData] = useState({
-    municipality: "",
+    userId:localStorage.getItem("user"),
     lat: "",
     lng: "",
-    scale: 1100,
+    scale: 0,
     consumption: "",
     switchboards: [],
   });
-  const names = [];
+  const [names, setNames] = useState([]);
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -74,11 +75,20 @@ function ImageUpload() {
       width: 250,
     },
   };
-
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    async function getDataDB() {
+      setNames(await getSwLocation());
+ 
+    }
+    getDataDB();
+  }, []);
+  // const [loading, setLoading] = useState(false);
 
   async function handleFileInput(file) {
-    const res = await UploadImage(file);
+
+    const res = await UploadImage(file,data);
+
+    
   }
 
   return (
@@ -96,7 +106,10 @@ function ImageUpload() {
             id="standard-basic"
             label="lat"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
+            onChange={(e) =>
+              setData(() => ({ ...data, lat: e.target.value }))
+            }
+       
           />
           <TextField
             type="number"
@@ -105,7 +118,10 @@ function ImageUpload() {
             id="standard-basic"
             label="lng"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
+            onChange={(e) =>
+              setData(() => ({ ...data, lng: e.target.value }))
+            }
+       
           />
           <Typography>
             Enter the total consamption switchboards of the image
@@ -144,9 +160,9 @@ function ImageUpload() {
             MenuProps={MenuProps}
           >
             {names.map((name) => (
-              <MenuItem key={name} value={name}>
-                <Checkbox checked={data.switchboards.indexOf(name) > -1} />
-                <ListItemText primary={name} />
+              <MenuItem key={name.name} value={name.name}>
+                <Checkbox checked={data.switchboards.indexOf(name.name) > -1} />
+                <ListItemText primary={name.name} />
               </MenuItem>
             ))}
           </Select>
@@ -156,6 +172,7 @@ function ImageUpload() {
             variant="contained"
             component="label"
             style={{ textAlign: "center" }}
+            onClick={()=>handleFileInput()}
           >
             Upload Image
             {/* Upload image file from file system */}

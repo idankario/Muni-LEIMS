@@ -5,13 +5,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { styled } from "@mui/material/styles";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import { getHighestmunicipality, getLowestmunicipality, getTopFivemunicipality,getLastFivemunicipality } from "../Api";
+import {
+  getHighestMunicipality,
+  getLowestMunicipality,
+  getTopFiveMunicipality,
+  getLastFiveMunicipality,
+} from "../Api";
 import Container from "../components/container";
-import {H2} from "../components/h2"
+import { H2 } from "../components/h2";
 
 const Title = styled(H2)(() => ({
   textAlign: `center`,
-  margin:"15px"
+  margin: "15px",
 }));
 
 const CenterContainer = styled("div")(() => ({
@@ -90,7 +95,7 @@ function ConsumptionData({ title, KMV, color }) {
       <DataInnerSep background={color} />
       <DataInnerData>
         <span>{KMV}</span>
-        <p>KMV per resident</p>
+        <p>KMV per Municipality</p>
       </DataInnerData>
     </DataInner>
   );
@@ -99,20 +104,20 @@ function ConsumptionData({ title, KMV, color }) {
 function StatisticalReportsminstry() {
   const [data, setData] = useState({
     loading: true,
-    highestmunicipality: {},
+    highestMunicipality: {},
     lowestmunicipality: {},
     topFive: [],
-    lastFive:[],
+    lastFive: [],
   });
 
   useEffect(() => {
     async function getDataDB() {
-      const highestmunicipality = await getHighestmunicipality();
-      const lowestmunicipality = await getLowestmunicipality();
-      const topFive = await getTopFivemunicipality();
-      const lastFive= await getLastFivemunicipality();
+      const highestMunicipality = await getHighestMunicipality();
+      const lowestmunicipality = await getLowestMunicipality();
+      const topFive = await getTopFiveMunicipality();
+      const lastFive = await getLastFiveMunicipality();
       setData({
-        highestmunicipality: highestmunicipality[0],
+        highestMunicipality: highestMunicipality[0],
         lowestmunicipality: lowestmunicipality[0],
         topFive,
         lastFive,
@@ -123,7 +128,7 @@ function StatisticalReportsminstry() {
   }, []);
 
   return (
-    <Container >
+    <Container>
       <Header />
       <Title>STATISTICAL REPORT:</Title>
       <CenterContainer>
@@ -142,8 +147,13 @@ function StatisticalReportsminstry() {
               <Plot
                 data={[
                   {
-                    x: [null,...data.topFive.map((o) =>`${o.office_name}`)],
-                    y: [`0 KMV`,...data.topFive.map((o) => `${o.energy_inetensity_average} KMV`)] ,
+                    x: [null, ...data.topFive.map((o) => `${o.office_name}`)],
+                    y: [
+                      `0 KMV`,
+                      ...data.topFive.map(
+                        (o) => `${o.energy_inetensity_average} KMV`
+                      ),
+                    ],
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "green" },
@@ -158,7 +168,7 @@ function StatisticalReportsminstry() {
                   xaxis: {
                     tickangle: -45,
                   },
-                  title: 'Top 5 Municipalities ',
+                  title: "Top 5 Municipalities ",
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -169,8 +179,13 @@ function StatisticalReportsminstry() {
               <Plot
                 data={[
                   {
-                    x: [null,...data.lastFive.map((o) =>`${o.office_name}`)],
-                    y: [`0 KMV`,...data.lastFive.map((o) => `${o.energy_inetensity_average} KMV`)] ,
+                    x: [null, ...data.lastFive.map((o) => `${o.office_name}`)],
+                    y: [
+                      `0 KMV`,
+                      ...data.lastFive.map(
+                        (o) => `${o.energy_inetensity_average} KMV`
+                      ),
+                    ],
                     type: "bar",
                     mode: "lines+markers",
                     marker: { color: "red" },
@@ -185,7 +200,7 @@ function StatisticalReportsminstry() {
                   xaxis: {
                     tickangle: -45,
                   },
-                  title: 'Last 5 Municipalities ',
+                  title: "Last 5 Municipalities ",
                   font: { color: "white" },
                   plot_bgcolor: "black",
                   paper_bgcolor: "black",
@@ -196,13 +211,13 @@ function StatisticalReportsminstry() {
             <Sep />
             <DataWrapper>
               <ConsumptionData
-                title="The lowest municipality power consumption per resident"
+                title="The lowest energy intensity per municipality power"
                 KMV={data.lowestmunicipality.energy_inetensity_average}
                 color="green"
               />
               <ConsumptionData
-                title="The highest municipality power consumption per resident"
-                KMV={data.highestmunicipality.energy_inetensity_average}
+                title="The highest energy intensity per municipality"
+                KMV={data.highestMunicipality.energy_inetensity_average}
                 color="red"
               />
             </DataWrapper>

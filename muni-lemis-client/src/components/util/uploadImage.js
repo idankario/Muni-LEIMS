@@ -1,7 +1,9 @@
 /* eslint-disable no-console */
 import axios from "axios";
+import {postUploadImage} from "../../Api"
 
-async function UploadImage(filename) {
+async function UploadImage(filename,data) {
+  postUploadImage(data)
   // get secure url from our server
   const res = await axios
     .get("https://api.muni-leims.ml/presignedurl")

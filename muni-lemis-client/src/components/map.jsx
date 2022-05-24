@@ -15,19 +15,22 @@ export const Input = styled("input")({
   left: "50%",
   marginLeft: "-120px",
 });
+
 export const H1 = styled("h1")({
   margin: "auto",
   textAlign: "center",
   width: "700px",
+
   maxWidth: "95%",
   background: "#fff",
+  color: "#b8e100",
   paddingTop: "10px",
   fontSize: "45px",
 });
 
 export const ContainerStyle = {
-  height: "500px",
-  width: "700px",
-  maxWidth: "95%",
+  height: "92vh",
+  width: "100%",
   margin: "auto",
+  marginTop: "-50px",
 };

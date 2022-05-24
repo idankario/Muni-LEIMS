@@ -1,4 +1,5 @@
 import { styled } from "@mui/material/styles";
+import { Link } from 'react-router-dom';
 
 export const Menu = styled("main")({
   "& section": {
@@ -8,6 +9,15 @@ export const Menu = styled("main")({
   },
   "& button": {
     margin: "20px",
+  },
+});
+export const StyledLink = styled(Link)({
+  textDecoration: 'none',
+  color: '#CDFA00',
+  fontSize:'18px',
+  '&:focus, &:hover': {
+    textDecoration: 'none',
+    color: 'orange',
   },
 });
 export const Login = styled("form")({

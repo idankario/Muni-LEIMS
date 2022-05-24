@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const APIURL = `http://localhost:3000`;
+const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
 
 export async function getLowestSwitchboard() {
@@ -16,7 +16,7 @@ export async function getHighestSwitchboard() {
   });
 
   const json = await res.json();
-  console.log(json);
+
   return json;
 }
 
@@ -41,14 +41,13 @@ export async function getSwitchboards() {
 }
 
 export async function TypeOffice() {
-  console.log(id());
   try {
     const res = await axios({
       method: "GET",
-      // headers: { 'x-access-token': localStorage.getItem('token') },
+      headers: { "x-access-token": localStorage.getItem("token") },
       url: `${APIURL}/offices/type/${id()}`,
     });
-    console.log(res.data[0]);
+
     return res.data[0].res;
   } catch (error) {
     return error;
@@ -75,21 +74,21 @@ export async function loadMunicipalities() {
   return json;
 }
 
-export async function getLowestmunicipality() {
+export async function getLowestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/lowest`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
-export async function getHighestmunicipality() {
+export async function getHighestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
-export async function getTopFivemunicipality() {
+export async function getTopFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
   });
@@ -99,7 +98,7 @@ export async function getTopFivemunicipality() {
   return json;
 }
 
-export async function getLastFivemunicipality() {
+export async function getLastFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/last5`, {
     method: "GET",
   });
@@ -115,4 +114,37 @@ export async function getSwitchboardsMap() {
   });
   const json = await res.json();
   return json;
+}
+export async function getSwLocation() {
+  const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function getAllSwLocation() {
+  const res = await fetch(`${APIURL}/switchboards/locations`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function postUploadImage(data) {
+  try {
+    const res = await axios({
+      method: "post",
+      url: `${APIURL}/images`,
+      data: { ...data },
+      headers: { "x-access-token": localStorage.getItem("token") },
+    });
+    if (res.data) {
+      // console.log(res.data);
+      return;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
 }
