@@ -5,7 +5,7 @@ import cors from "cors";
 import switchboardsRouter from "./routers/switchboardsRouter";
 import officesRouter from "./routers/officesRouter";
 import municipalitiesRouter from "./routers/municipalitiesRouter";
-
+import imagesRouter from "./routers/imagesRouter";
 const app = express();
 const port = process.env.PORT || 3000;
 const router = express.Router();
@@ -16,7 +16,7 @@ app.set("port", port);
 app.use("/switchboards", switchboardsRouter);
 app.use("/offices", officesRouter);
 app.use("/municipalities", municipalitiesRouter);
-
+app.use("/images", imagesRouter);
 app.all("*", (req, res) => {
   res.send("Wrong route, please try again.");
 });

@@ -2,7 +2,6 @@ import db from "../db_connection";
 
 export async function addboundingBox(req, res) {
   console.log("addboundingBox()");
-
   const pointTopLeft = req.body.point_top_left;
   const pointTopRight = req.body.point_top_right;
   const pointBotoomLeft = req.body.point_botoom_left;

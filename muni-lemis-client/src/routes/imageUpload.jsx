@@ -59,10 +59,10 @@ const Menu = styled("main")({
 
 function ImageUpload() {
   const [data, setData] = useState({
-    municipality: "",
+    userId:localStorage.getItem("user"),
     lat: "",
     lng: "",
-    scale: 1100,
+    scale: 0,
     consumption: "",
     switchboards: [],
   });
@@ -78,13 +78,17 @@ function ImageUpload() {
   useEffect(() => {
     async function getDataDB() {
       setNames(await getSwLocation());
+ 
     }
     getDataDB();
   }, []);
   // const [loading, setLoading] = useState(false);
 
   async function handleFileInput(file) {
-    const res = await UploadImage(file);
+
+    const res = await UploadImage(file,data);
+
+    
   }
 
   return (
@@ -102,7 +106,10 @@ function ImageUpload() {
             id="standard-basic"
             label="lat"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
+            onChange={(e) =>
+              setData(() => ({ ...data, lat: e.target.value }))
+            }
+       
           />
           <TextField
             type="number"
@@ -111,7 +118,10 @@ function ImageUpload() {
             id="standard-basic"
             label="lng"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, data: e.target.value }))}
+            onChange={(e) =>
+              setData(() => ({ ...data, lng: e.target.value }))
+            }
+       
           />
           <Typography>
             Enter the total consamption switchboards of the image
@@ -162,6 +172,7 @@ function ImageUpload() {
             variant="contained"
             component="label"
             style={{ textAlign: "center" }}
+            onClick={()=>handleFileInput()}
           >
             Upload Image
             {/* Upload image file from file system */}

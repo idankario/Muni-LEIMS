@@ -34,9 +34,9 @@ const MenuMunicipalityConfig = [
     title: "MAP VISUALIZED",
     path: "/mappage",
   },
-  {
-    title: "MANAGE USERS",
-    path: "/mangeuser",
-  },
+  // {
+  //   title: "MANAGE USERS",
+  //   path: "/mangeuser",
+  // },
 ];
 export { MenuMinistryConfig, MenuMunicipalityConfig };

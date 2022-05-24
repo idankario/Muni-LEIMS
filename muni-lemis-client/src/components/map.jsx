@@ -20,6 +20,7 @@ export const H1 = styled("h1")({
   margin: "auto",
   textAlign: "center",
   width: "700px",
+  
   maxWidth: "95%",
   background: "#fff",
   color: "#b8e100",
@@ -31,5 +32,5 @@ export const ContainerStyle = {
   height: "100vh",
   width: "100%",
   margin: "auto",
-  marginTop: "-50px",
+  marginTop: "-45px",
 };

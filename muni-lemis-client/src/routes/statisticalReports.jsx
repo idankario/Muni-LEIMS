@@ -95,7 +95,7 @@ function ConsumptionData({ title, KMV, color }) {
       <DataInnerSep background={color} />
       <DataInnerData>
         <span>{KMV}</span>
-        <p>KMV per Switchboard</p>
+        <p>KMV per switchboard</p>
       </DataInnerData>
     </DataInner>
   );
@@ -212,7 +212,7 @@ function StatisticalReports() {
                 color="green"
               />
               <ConsumptionData
-                title="The highest energy intensity per switchboard"
+                title="The highest central energy intensity per switchboard"
                 KMV={data.highestSwitchboard.intensity}
                 color="red"
               />

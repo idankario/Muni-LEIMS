@@ -16,7 +16,7 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import PoolData from "./poolData";
 import Logo from "../components/images/logoBody.png";
-import { Login } from "../components/util/board";
+import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
 import { H_2 } from "../components/h2";
 import Container from "../components/container";
@@ -43,14 +43,15 @@ function LoginPage() {
     user.authenticateUser(authDetails, {
       onSuccess: (data) => {
         async function storeOffice() {
-          const id = data.idToken.payload["custom:user_id"];
-          localStorage.setItem("user", await id);
-          console.log(localStorage.getItem("user"));
-          localStorage.setItem(
-            "token",
-            await data.getAccessToken().getJwtToken()
-          );
+          const id = `${data.idToken.payload["cognito:username"]}`;
+          localStorage.setItem("user", `${id}`);
+          // console.log(localStorage.getItem("user"));
+          console.log(typeof id);
+
+          console.log(id);
+          localStorage.setItem("token", data.getAccessToken().getJwtToken());
           const office = JSON.stringify(await officebyId(id));
+          console.log(office);
           localStorage.setItem("office", office);
         }
         storeOffice();
@@ -114,6 +115,7 @@ function LoginPage() {
             }}
           />
           <Button type="submit">LOGIN</Button>
+          <StyledLink to="/signup">New user? Register Now</StyledLink>
         </section>
       </Login>
     </Container>

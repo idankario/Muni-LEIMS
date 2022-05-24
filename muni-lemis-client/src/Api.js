@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const APIURL = `https://muni-leims.herokuapp.com`;
+const APIURL = `http://localhost:3000`;
 const id = () => localStorage.getItem("user");
 
 export async function getLowestSwitchboard() {
@@ -16,7 +16,7 @@ export async function getHighestSwitchboard() {
   });
 
   const json = await res.json();
-  console.log(json);
+
   return json;
 }
 
@@ -47,7 +47,7 @@ export async function TypeOffice() {
       headers: { "x-access-token": localStorage.getItem("token") },
       url: `${APIURL}/offices/type/${id()}`,
     });
-    console.log(res.data[0]);
+
     return res.data[0].res;
   } catch (error) {
     return error;
@@ -129,4 +129,21 @@ export async function getAllSwLocation() {
   });
   const json = await res.json();
   return json;
+}
+
+export async function postUploadImage(data) {
+  try {
+    const res = await axios({
+      method: "post",
+      url: `${APIURL}/images`,
+      data: { ...data },
+      headers: { "x-access-token": localStorage.getItem("token") },
+    });
+    if (res.data) {
+      // console.log(res.data);
+      return;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }

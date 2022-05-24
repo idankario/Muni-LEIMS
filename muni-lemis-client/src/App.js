@@ -9,12 +9,14 @@ import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
 import PrivateRoute from "./routes/privateRouter/privateRouter";
+import SignupPage from "./routes/signupPage";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
+        <Route exact path="/signup" element={<SignupPage />} />
         <Route
           exact
           path="/statisticalReports"
