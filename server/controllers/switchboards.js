@@ -1,7 +1,7 @@
 import db from "../db_connection";
 
-const switchboardsCtl = {
-  async getSwitchboardsById(req, res) {
+const SwitchboardsCtl = {
+  async switchboardsById(req, res) {
     const userId = req.params.id;
     const query = `SELECT s.energy_inetensity as consumption_average,sw.name as municipality
     FROM MuniLEIMS.statisticalreport s
@@ -19,7 +19,7 @@ const switchboardsCtl = {
     });
   },
 
-  async highestSwitchboards(req, res) {
+  async highestSwitchboard(req, res) {
     const userId = req.params.id;
     const query = `
     SELECT s.energy_inetensity as intensity,a.area_name
@@ -42,7 +42,7 @@ const switchboardsCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async lowestSwitchboards(req, res) {
+  async lowestSwitchboard(req, res) {
     const userId = req.params.id;
     const query = `
     SELECT s.energy_inetensity as intensity,a.area_name
@@ -64,7 +64,7 @@ const switchboardsCtl = {
     });
   },
 
-  async getTopFiveSwitchboards(req, res) {
+  async top5Switchboards(req, res) {
     const userId = req.params.id;
     const query = `
     SELECT s.energy_inetensity as intensity,sw.name as area
@@ -85,7 +85,7 @@ const switchboardsCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async getLastFiveSwitchboards(req, res) {
+  async last5Switchboards(req, res) {
     const userId = req.params.id;
     const query = `
     SELECT s.energy_inetensity as intensity,sw.name as area
@@ -104,7 +104,7 @@ const switchboardsCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async getSwLocation(req, res) {
+  async switchboardsLocation(req, res) {
     const userId = req.params.id;
     const query = `
     SELECT sw.name,a.lat, a.lng, s.energy_inetensity FROM MuniLEIMS.area a
@@ -124,7 +124,7 @@ const switchboardsCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async getAllSwLocation(req, res) {
+  async allSwitchboardsLocation(req, res) {
     const query = `
     SELECT o.office_name as name,o.lng,o.lat, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity
     FROM MuniLEIMS.statisticalreport s
@@ -147,4 +147,4 @@ const switchboardsCtl = {
   },
 };
 
-export default switchboardsCtl;
+export default SwitchboardsCtl;

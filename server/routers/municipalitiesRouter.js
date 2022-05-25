@@ -1,10 +1,11 @@
 import { Router } from "express";
-const municipalitiesRouter = new Router();
-import municipalitiesCtl from "../controllers/municipalities";
+const MunicipalitiesRouter = new Router();
+import MunicipalitiesCtl from "../controllers/municipalities";
 
-municipalitiesRouter.get("/highest", municipalitiesCtl.highestmunicipality);
-municipalitiesRouter.get("/lowest", municipalitiesCtl.lowestmunicipality);
-municipalitiesRouter.get("/top5", municipalitiesCtl.getTopFivemunicipality);
-municipalitiesRouter.get("/last5", municipalitiesCtl.getLastFivemunicipality);
-municipalitiesRouter.get("/", municipalitiesCtl.getmunicipalities);
-export default municipalitiesRouter;
+MunicipalitiesRouter.get("/highest", MunicipalitiesCtl.highestMunicipality);
+MunicipalitiesRouter.get("/lowest", MunicipalitiesCtl.lowestMunicipality);
+MunicipalitiesRouter.get("/top5", MunicipalitiesCtl.top5Municipalities);
+MunicipalitiesRouter.get("/last5", MunicipalitiesCtl.last5Municipalities);
+MunicipalitiesRouter.get("/", MunicipalitiesCtl.municipalities);
+
+export default MunicipalitiesRouter;

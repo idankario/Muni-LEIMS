@@ -1,8 +1,8 @@
 import db from "../db_connection";
 
-const municipalitiesCtl = {
-  async getmunicipalities(req, res) {
-    let query = `
+const MunicipalitiesCtl = {
+  async municipalities(req, res) {
+    const query = `
     SELECT o.office_name AS municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
@@ -23,8 +23,8 @@ const municipalitiesCtl = {
       res.send(JSON.stringify(result));
     });
   },
-  async highestmunicipality(req, res) {
-    let query = `
+  async highestMunicipality(req, res) {
+    const query = `
     SELECT o.office_name,round (AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
@@ -46,8 +46,8 @@ const municipalitiesCtl = {
     });
   },
 
-  async lowestmunicipality(req, res) {
-    let query = `
+  async lowestMunicipality(req, res) {
+    const query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
@@ -69,8 +69,8 @@ const municipalitiesCtl = {
     });
   },
 
-  async getTopFivemunicipality(req, res) {
-    let query = `
+  async top5Municipalities(req, res) {
+    const query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
@@ -92,8 +92,8 @@ const municipalitiesCtl = {
     });
   },
 
-  async getLastFivemunicipality(req, res) {
-    let query = `
+  async last5Municipalities(req, res) {
+    const query = `
     SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
@@ -116,4 +116,4 @@ const municipalitiesCtl = {
   },
 };
 
-export default municipalitiesCtl;
+export default MunicipalitiesCtl;

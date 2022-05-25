@@ -1,7 +1,7 @@
 import { Router } from "express";
-const imagesRouter = new Router();
-import imagesCtl from "../controllers/images";
+const ImagesRouter = new Router();
+import ImagesCtl from "../controllers/images";
 
-imagesRouter.post("/", imagesCtl.uplaodImage);
+ImagesRouter.post("/", ImagesCtl.uplaodImage);
 
-export default imagesRouter;
+export default ImagesRouter;
