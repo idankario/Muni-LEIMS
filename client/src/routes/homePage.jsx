@@ -11,21 +11,19 @@ import Container from "../components/container";
 
 function HomePage() {
   const navigate = useNavigate();
-  const [menuConfig, setisMenuConfig] = useState([{}]);
+  const [menuConfig, setMenuConfig] = useState([{}]);
   useEffect(() => {
     async function getDataDB() {
       const typeOffice = await TypeOffice();
-      if (typeOffice) setisMenuConfig(MenuMinistryConfig);
-      else setisMenuConfig(MenuMunicipalityConfig);
+      if (typeOffice) setMenuConfig(MenuMinistryConfig);
+      else setMenuConfig(MenuMunicipalityConfig);
     }
-
     getDataDB();
   }, []);
 
   return (
     <Container bgimage={1}>
       <Header />
-      {/* <Profile /> */}
       <Menu>
         <section>
           {menuConfig.map((navigation) => (

@@ -20,7 +20,6 @@ export const H1 = styled("h1")({
   margin: "auto",
   textAlign: "center",
   width: "700px",
-
   maxWidth: "95%",
   background: "#fff",
   color: "#b8e100",
