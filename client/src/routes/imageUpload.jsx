@@ -37,8 +37,6 @@ function ImageUpload() {
     }
     getDataDB();
   }, []);
-  // const [loading, setLoading] = useState(false);
-
   async function handleFileInput(file) {
     const res = await UploadImage(file, data);
   }
@@ -112,7 +110,7 @@ function ImageUpload() {
               </MenuItem>
             ))}
           </Select>
-          <Typography>Arial Images are Available in Govmap etc.</Typography>
+          <Typography>Arial images are available in Govmap etc.</Typography>
           <Button
             disabled={!isFull}
             variant="contained"

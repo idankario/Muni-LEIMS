@@ -53,13 +53,19 @@ const Td = styled("td")({
   borderRight: `2px solid white`,
 });
 export default function Table({ rows, dataName }) {
+  const avg = 321;
   return (
     <TableStyle>
       <thead>
         <tr>
           <Th>Rate</Th>
           <Th>{dataName}</Th>
-          <Th>Energy Intensity <p style={{fontSize: '23px'}}>Average Consumption per Streetlight</p></Th>
+          <Th>
+            Energy Intensity{" "}
+            <p style={{ fontSize: "23px" }}>
+              Average Consumption per Streetlight
+            </p>
+          </Th>
         </tr>
       </thead>
       <tbody>
@@ -67,7 +73,7 @@ export default function Table({ rows, dataName }) {
           <tr
             // eslint-disable-next-line react/no-array-index-key
             key={row.municipality || row.area}
-            style={{ color: row.consumption_average > 321 ? "red" : "green" }}
+            style={{ color: row.consumption_average > avg ? "red" : "green" }}
           >
             <td>{index + 1}</td>
             <Td>{row.municipality || row.area}</Td>
