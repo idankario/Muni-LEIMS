@@ -4,12 +4,12 @@ import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
@@ -18,83 +18,35 @@ import Container from "../components/container";
 import Info from "../components/info";
 import { getSwLocation } from "../Api";
 
-const Menu = styled("main")({
-  "& section": {
-    margin: "auto",
-    opacity: "0.9",
-    borderRadius: "50px",
-    background: "#fff",
-    maxWidth: "30em",
-    padding: "2px 0px 5px 40px",
-  },
-  "& .MuiFormControl-root": {
-    width: "14em",
-    textAlign: "center",
-  },
-  "& p:not(h3+p)": {
-    textAlign: "left",
-  },
-
-  "& .MuiInputBase-root": {
-    width: "75%",
-  },
-
-  "& section >*": {
-    textAlign: "center",
-    maxWidth: "80%",
-    margin: "0.8em 0px",
-  },
-  "& .MuiButton-root": {
-    width: "16em",
-    height: "4em",
-    margin: "30px 100px",
-    color: "#000",
-    textAlign: "center",
-    verticalAlign: "center",
-    ":hover": {
-      backgroundColor: "#ECB22F",
-    },
-  },
-});
-
 function ImageUpload() {
+  const OfficeName = JSON.parse(localStorage.getItem("office"));
   const [data, setData] = useState({
-    userId:localStorage.getItem("user"),
-    lat: "",
-    lng: "",
-    scale: 0,
-    consumption: "",
+    userId: localStorage.getItem("user"),
+    lat: OfficeName.lat,
+    lng: OfficeName.lng,
+    scale: 100,
+    consumption: "1000",
     switchboards: [],
   });
   const [names, setNames] = useState([]);
-  const ITEM_HEIGHT = 48;
-  const ITEM_PADDING_TOP = 8;
-  const MenuProps = {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  };
+  const isFull =
+    data.lat && data.lng && data.consumption && data.switchboards.length;
   useEffect(() => {
     async function getDataDB() {
       setNames(await getSwLocation());
- 
     }
     getDataDB();
   }, []);
-  // const [loading, setLoading] = useState(false);
-
   async function handleFileInput(file) {
-
-    const res = await UploadImage(file,data);
-
-    
+    if (file) {
+      const res = await UploadImage(file, file.name, data);
+    }
   }
 
   return (
     <Container>
       <Header />
-      <Menu>
+      <Main>
         <section>
           <H3>Upload Image</H3>
           <Info />
@@ -106,10 +58,7 @@ function ImageUpload() {
             id="standard-basic"
             label="lat"
             variant="standard"
-            onChange={(e) =>
-              setData(() => ({ ...data, lat: e.target.value }))
-            }
-       
+            onChange={(e) => setData(() => ({ ...data, lat: e.target.value }))}
           />
           <TextField
             type="number"
@@ -118,10 +67,7 @@ function ImageUpload() {
             id="standard-basic"
             label="lng"
             variant="standard"
-            onChange={(e) =>
-              setData(() => ({ ...data, lng: e.target.value }))
-            }
-       
+            onChange={(e) => setData(() => ({ ...data, lng: e.target.value }))}
           />
           <Typography>
             Enter the total consamption switchboards of the image
@@ -166,13 +112,13 @@ function ImageUpload() {
               </MenuItem>
             ))}
           </Select>
-          <Typography>Arial Images are Available in Govmap etc.</Typography>
+          <Typography>Arial images are available in Govmap etc.</Typography>
           <Button
-            disabled={!!Object.values(data).some((i) => i === null)}
+            disabled={!isFull}
             variant="contained"
             component="label"
             style={{ textAlign: "center" }}
-            onClick={()=>handleFileInput()}
+            onClick={() => handleFileInput()}
           >
             Upload Image
             {/* Upload image file from file system */}
@@ -184,7 +130,7 @@ function ImageUpload() {
             />
           </Button>
         </section>
-      </Menu>
+      </Main>
       <BackButton />
     </Container>
   );

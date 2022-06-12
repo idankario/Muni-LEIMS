@@ -4,12 +4,21 @@ import { OverlayView } from "@react-google-maps/api";
 import Logomap from "../images/logomap.png";
 
 export const Div = styled("div")({
-  width: "125px",
-  height: "125px",
+  width: "55px",
+  // height: "125px",
   textAlign: "center",
-  fontSize: "15px",
+  fontSize: "0.55rem;",
   opacity: "0.8",
   background: "#fff",
+  borderRadius: "20%",
+  fontWeight: "bold",
+  // verticalAlign: "center",
+  // margin: "auto",
+  padding: "9px",
+  // "& >*": {
+  //   textAlign: "center",
+  //   verticalAlign: "middle",
+  // },
 });
 
 export const Section = styled("section")({});

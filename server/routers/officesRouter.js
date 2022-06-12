@@ -1,8 +1,8 @@
 import { Router } from "express";
-const officesRouter = new Router();
-import officesCtl from "../controllers/offices";
+const OfficesRouter = new Router();
+import OfficesCtl from "../controllers/offices";
 //Type of office
-officesRouter.get("/type/:id", officesCtl.typeOffice);
+OfficesRouter.get("/type/:id", OfficesCtl.typeOffice);
 //Get office by id
-officesRouter.get("/:id", officesCtl.officeById);
-export default officesRouter;
+OfficesRouter.get("/:id", OfficesCtl.officeById);
+export default OfficesRouter;

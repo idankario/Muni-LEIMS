@@ -5,7 +5,6 @@ import { Menu } from "../components/util/board";
 import Header from "../components/header";
 import { Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
-
 import Container from "../components/container";
 import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
 import InfoSW from "../components/util/infoSW";
@@ -34,7 +33,7 @@ function Map() {
         setZoom(10);
       } else {
         setMarkers(await getSwLocation());
-        setZoom(15);
+        setZoom(14);
       }
     }
     getDataDB();

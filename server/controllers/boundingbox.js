@@ -23,17 +23,14 @@ export async function addboundingBox(req, res) {
 
 export async function addboundingBoximage(req, res) {
   console.log("addboundingBoximage()");
-
   const imageId = req.body.image_id;
   const BoundingBoxId = req.body.BoundingBox_id;
   const streetlightId = req.body.streetlight_id;
   const BoundingStatus = req.body.Bounding_status;
-
   try {
     const boundingBoxQuery = `INSERT INTO MuniLEIMS.BoundingBox_image
                 (image_id,BoundingBox_id,streetlight_id,Bounding_status)
                 VALUES ('${imageId}','${BoundingBoxId}','${streetlightId}','${BoundingStatus}')`;
-
     db.query(boundingBoxQuery, function (err, result) {
       if (err) res.status(404).send(`Query error: ${err.stack}`);
       res.json(result);

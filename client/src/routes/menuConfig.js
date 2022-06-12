@@ -9,7 +9,7 @@ const MenuMinistryConfig = [
     path: "/StatisticalReportsMunicipalties",
   },
   {
-    title: "MAP VISUALIZED",
+    title: "VISUALIZED MAP",
     path: "/mappage",
   },
   {
@@ -31,7 +31,7 @@ const MenuMunicipalityConfig = [
     path: "/imgUpload",
   },
   {
-    title: "MAP VISUALIZED",
+    title: "VISUALIZED MAP",
     path: "/mappage",
   },
   // {

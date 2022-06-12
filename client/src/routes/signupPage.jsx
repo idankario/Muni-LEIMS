@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
@@ -44,6 +43,7 @@ function SignupPage() {
     Name: "phone_number",
     Value: phone_number,
   };
+
   const dataName = {
     Name: "name",
     Value: name,

@@ -28,8 +28,8 @@ function Info() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const handleClickOpen = () => {
-    const info = `Enter Switchboard/s Numbers </br> 
-    The Details Appear in The Image as in the Example Picture Below`;
+    const info = `Enter switchboard/s number/s </br> 
+    The details appear in the image as in the example picture below`;
     setOpen(true);
     setDescription(info);
     setTitle("INFORMATION HOW TO UPLAOD IMAGE");
