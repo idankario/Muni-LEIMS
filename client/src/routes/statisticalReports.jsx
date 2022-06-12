@@ -1,3 +1,4 @@
+
 // import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
@@ -73,6 +74,7 @@ const DataInnerSep = styled("h2")((background) => ({
   width: `5px`,
   background: `${background.background}`,
 }));
+
 const DataInnerData = styled("div")(() => ({
   display: `flex`,
   flexDirection: `column`,
@@ -80,7 +82,7 @@ const DataInnerData = styled("div")(() => ({
   justifyContent: `center`,
   alignItems: `center`,
   "& > span": {
-    fontSize: `4em`,
+    fontSize: `5em`,
   },
   "& > p": {
     fontSize: `0.9em`,

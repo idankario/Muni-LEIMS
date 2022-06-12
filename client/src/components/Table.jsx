@@ -5,15 +5,17 @@ const TableStyle = styled("table")({
   display: `block`,
   fontWeight: `bold`,
   textAlign: `center`,
-  width: `75vw`,
-  fontSize: `2.3em`,
+  width: `100%`,
+  fontSize: `2.5em`,
   marginTop: `20px`,
   borderCollapse: `collapse`,
   maxHeight: `70vh`,
   overflow: `auto`,
+
   "&::-webkit-scrollbar": {
-    width: `18px`,
+    width: `15px`,
   },
+  
   /* Track */
   "&::--webkit-scrollbar-track ": {
     background: `rgba(255, 255, 255, 0.5)`,
@@ -21,7 +23,7 @@ const TableStyle = styled("table")({
   },
   /* Handle */
   "&::-webkit-scrollbar-thumb  ": {
-    background: `white`,
+    background: `#7bd529`,
     borderRadius: `10px`,
   },
   /* Handle on hover */
@@ -44,13 +46,16 @@ const TableStyle = styled("table")({
 });
 
 const Th = styled("th")({
-  width: "33%",
+  width: "10%",
   color: `white`,
-  borderBottom: `3px solid white`,
+  textShadow: `3px 3px black`,
+  borderBottom: `10px solid white`,
 });
+
 const Td = styled("td")({
-  borderLeft: `2px solid white`,
-  borderRight: `2px solid white`,
+  borderLeft: `8px solid white`,
+  borderRight: `8px solid white`,
+
 });
 export default function Table({ rows, dataName }) {
   const avg = 321;
@@ -73,7 +78,7 @@ export default function Table({ rows, dataName }) {
           <tr
             // eslint-disable-next-line react/no-array-index-key
             key={row.municipality || row.area}
-            style={{ color: row.consumption_average > avg ? "red" : "green" }}
+            style={{textShadow: "3px 3px black",color: row.consumption_average > avg ? "red" : "green" }}
           >
             <td>{index + 1}</td>
             <Td>{row.municipality || row.area}</Td>

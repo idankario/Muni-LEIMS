@@ -25,7 +25,7 @@ function HomePage() {
     <Container bgimage={1}>
       <Header />
       <Menu>
-        <section>
+        <section >
           {menuConfig.map((navigation) => (
             <Button
               onClick={() => navigate(navigation.path)}

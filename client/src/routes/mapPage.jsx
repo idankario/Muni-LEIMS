@@ -75,8 +75,9 @@ function Map() {
           </GoogleMap>
         </LoadScript>
 
-        <BackButton />
+        
       </Menu>
+      <BackButton />
     </Container>
   );
 }

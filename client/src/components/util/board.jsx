@@ -9,6 +9,7 @@ export const Menu = styled("main")({
   },
   "& button": {
     margin: "20px",
+    marginBottom:"10%",
   },
 });
 export const StyledLink = styled(Link)({
