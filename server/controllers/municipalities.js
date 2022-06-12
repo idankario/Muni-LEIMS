@@ -62,7 +62,7 @@ const MunicipalitiesCtl = {
         ON o.office_id = ou.office_id
     WHERE ss.is_active="active"
     Group By o.office_id
-    Order By energy_inetensity_average asc
+    Order By energy_inetensity_average 
     LIMIT 1;`;
     db.query(query, (err, result) => {
       res.send(JSON.stringify(result));
@@ -71,7 +71,7 @@ const MunicipalitiesCtl = {
 
   async top5Municipalities(req, res) {
     const query = `
-    SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
+    SELECT  ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average, o.office_name
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -85,7 +85,7 @@ const MunicipalitiesCtl = {
         ON o.office_id = ou.office_id
     WHERE ss.is_active="active"
     Group By o.office_id
-    Order By energy_inetensity_average asc
+    Order By energy_inetensity_average
     LIMIT 5;`;
     db.query(query, (err, result) => {
       res.send(JSON.stringify(result));
@@ -94,7 +94,7 @@ const MunicipalitiesCtl = {
 
   async last5Municipalities(req, res) {
     const query = `
-    SELECT o.office_name, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average
+    SELECT ROUND(AVG( s.energy_inetensity)) AS energy_inetensity_average, o.office_name
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 

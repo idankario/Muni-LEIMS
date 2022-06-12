@@ -28,7 +28,7 @@ function Info() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const handleClickOpen = () => {
-    const info = `Enter Switchboard/s Numbers </br> 
+    const info = `Enter switchboard/s number/s </br> 
     The details appear in the image as in the example picture below`;
     setOpen(true);
     setDescription(info);

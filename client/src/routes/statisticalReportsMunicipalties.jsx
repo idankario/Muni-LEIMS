@@ -88,14 +88,14 @@ const DataInnerData = styled("div")(() => ({
   },
 }));
 
-function ConsumptionData({ title, KMV, color }) {
+function ConsumptionData({ title, kWh, color }) {
   return (
     <DataInner color={color}>
       <p>{title}</p>
       <DataInnerSep background={color} />
       <DataInnerData>
-        <span>{KMV}</span>
-        <p>KMV per Municipality</p>
+        <span>{kWh}</span>
+        <p>kWh per Municipality</p>
       </DataInnerData>
     </DataInner>
   );
@@ -149,9 +149,9 @@ function StatisticalReportsminstry() {
                   {
                     x: [null, ...data.topFive.map((o) => `${o.office_name}`)],
                     y: [
-                      `0 KMV`,
+                      `0 kWh `,
                       ...data.topFive.map(
-                        (o) => `${o.energy_inetensity_average} KMV`
+                        (o) => `${o.energy_inetensity_average} kWh `
                       ),
                     ],
                     type: "bar",
@@ -181,10 +181,11 @@ function StatisticalReportsminstry() {
                   {
                     x: [null, ...data.lastFive.map((o) => `${o.office_name}`)],
                     y: [
-                      `0 KMV`,
-                      ...data.lastFive.map(
-                        (o) => `${o.energy_inetensity_average} KMV`
-                      ),
+                      `0 kWh `,
+                      ...data.lastFive
+                        .slice(0)
+                        .reverse()
+                        .map((o) => `${o.energy_inetensity_average} kWh `),
                     ],
                     type: "bar",
                     mode: "lines+markers",
@@ -211,13 +212,13 @@ function StatisticalReportsminstry() {
             <Sep />
             <DataWrapper>
               <ConsumptionData
-                title="The lowest energy intensity per municipality power"
-                KMV={data.lowestmunicipality.energy_inetensity_average}
+                title="The lowest energy intensity per municipality"
+                kWh={data.lowestmunicipality.energy_inetensity_average}
                 color="green"
               />
               <ConsumptionData
                 title="The highest energy intensity per municipality"
-                KMV={data.highestMunicipality.energy_inetensity_average}
+                kWh={data.highestMunicipality.energy_inetensity_average}
                 color="red"
               />
             </DataWrapper>

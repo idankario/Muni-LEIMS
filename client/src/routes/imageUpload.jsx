@@ -38,7 +38,9 @@ function ImageUpload() {
     getDataDB();
   }, []);
   async function handleFileInput(file) {
-    const res = await UploadImage(file, data);
+    if (file) {
+      const res = await UploadImage(file, file.name, data);
+    }
   }
 
   return (

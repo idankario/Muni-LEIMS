@@ -8,7 +8,6 @@ import shutil
 
 
 # Usage python main.py <infile> <outfolder>
-
 def tile(filename, out_folder, d):
     name, ext = filename.stem, filename.suffix
     img = Image.open(filename)

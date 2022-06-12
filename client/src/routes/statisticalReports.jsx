@@ -88,14 +88,14 @@ const DataInnerData = styled("div")(() => ({
   },
 }));
 
-function ConsumptionData({ title, KMV, color }) {
+function ConsumptionData({ title, kWh, color }) {
   return (
     <DataInner color={color}>
       <p>{title}</p>
       <DataInnerSep background={color} />
       <DataInnerData>
-        <span>{KMV}</span>
-        <p>KMV per switchboard</p>
+        <span>{kWh}</span>
+        <p>kWh per switchboard</p>
       </DataInnerData>
     </DataInner>
   );
@@ -149,8 +149,8 @@ function StatisticalReports() {
                   {
                     x: [null, ...data.topFive.map((o) => `num:${o.area}`)],
                     y: [
-                      `0 KMV`,
-                      ...data.topFive.map((o) => `${o.intensity} KMV`),
+                      `0 kWh `,
+                      ...data.topFive.map((o) => `${o.intensity} kWh `),
                     ],
 
                     type: "bar",
@@ -178,11 +178,11 @@ function StatisticalReports() {
                   {
                     x: [null, ...data.lastFive.map((o) => `num:${o.area}`)],
                     y: [
-                      `0 KMV`,
+                      `0 kWh `,
                       ...data.lastFive
                         .slice(0)
                         .reverse()
-                        .map((o) => `${o.intensity} KMV`),
+                        .map((o) => `${o.intensity} kWh `),
                     ],
                     type: "bar",
                     mode: "lines+markers",
@@ -208,12 +208,12 @@ function StatisticalReports() {
             <DataWrapper>
               <ConsumptionData
                 title="The lowest energy intensity per switchboard"
-                KMV={data.lowestSwitchboard.intensity}
+                kWh={data.lowestSwitchboard.intensity}
                 color="green"
               />
               <ConsumptionData
-                title="The highest central energy intensity per switchboard"
-                KMV={data.highestSwitchboard.intensity}
+                title="The highest energy intensity per switchboard"
+                kWh={data.highestSwitchboard.intensity}
                 color="red"
               />
             </DataWrapper>

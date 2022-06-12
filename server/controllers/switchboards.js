@@ -3,7 +3,7 @@ import db from "../db_connection";
 const SwitchboardsCtl = {
   async switchboardsById(req, res) {
     const userId = req.params.id;
-    const query = `SELECT s.energy_inetensity as consumption_average,sw.name as municipality
+    const query = `SELECT s.energy_inetensity AS consumption_average,sw.name AS municipality
     FROM MuniLEIMS.statisticalreport s
       INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -22,7 +22,7 @@ const SwitchboardsCtl = {
   async highestSwitchboard(req, res) {
     const userId = req.params.id;
     const query = `
-    SELECT s.energy_inetensity as intensity,a.area_name
+    SELECT s.energy_inetensity AS intensity,a.area_name
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -45,7 +45,7 @@ const SwitchboardsCtl = {
   async lowestSwitchboard(req, res) {
     const userId = req.params.id;
     const query = `
-    SELECT s.energy_inetensity as intensity,a.area_name
+    SELECT s.energy_inetensity AS intensity,a.area_name
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
       ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -67,7 +67,7 @@ const SwitchboardsCtl = {
   async top5Switchboards(req, res) {
     const userId = req.params.id;
     const query = `
-    SELECT s.energy_inetensity as intensity,sw.name as area
+    SELECT s.energy_inetensity AS intensity,sw.name AS area
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -88,7 +88,7 @@ const SwitchboardsCtl = {
   async last5Switchboards(req, res) {
     const userId = req.params.id;
     const query = `
-    SELECT s.energy_inetensity as intensity,sw.name as area
+    SELECT s.energy_inetensity AS intensity,sw.name AS area
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
       ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -126,7 +126,7 @@ const SwitchboardsCtl = {
   },
   async allSwitchboardsLocation(req, res) {
     const query = `
-    SELECT o.office_name as name,o.lng,o.lat, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity
+    SELECT o.office_name AS name,o.lng,o.lat, ROUND(AVG( s.energy_inetensity)) AS energy_inetensity
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 

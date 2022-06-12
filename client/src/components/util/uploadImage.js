@@ -1,22 +1,29 @@
 /* eslint-disable no-console */
 import axios from "axios";
-import {postUploadImage} from "../../Api"
+// import {postUploadImage} from "../../Api"
 
-async function UploadImage(filename,data) {
-  postUploadImage(data)
-  // get secure url from our server
-  const res = await axios
-    .get("https://api.muni-leims.ml/presignedurl")
-    .then(async (response) => {
-      await axios(response.data, {
+// eslint-disable-next-line no-unused-vars
+async function UploadImage(file, filename, data) {
+  // postUploadImage(data)
+  try {
+    const res = await axios({
+      method: "post",
+      url: "https://api.muni-leims.ml/presignedurl",
+      data: filename,
+      // headers: { "x-access-token": localStorage.getItem("token") },
+    });
+    if (res.data) {
+      console.log(res.data);
+      await fetch(res.data.presigned_url, {
         method: "PUT",
-        body: filename,
+        body: file,
       });
       return 1;
-    })
-    .catch(() => 0);
-  // eslint-disable-next-line no-console
-  console.log(res);
-  return res;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+    return 0;
+  }
 }
 export default UploadImage;

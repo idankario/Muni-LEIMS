@@ -77,7 +77,9 @@ export default function Table({ rows, dataName }) {
           >
             <td>{index + 1}</td>
             <Td>{row.municipality || row.area}</Td>
-            <td>{row.consumption_average || row["consumption average"]} KMV</td>
+            <td>
+              {row.consumption_average || row["consumption average"]} kWh{" "}
+            </td>
           </tr>
         ))}
       </tbody>
