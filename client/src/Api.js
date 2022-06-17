@@ -10,13 +10,12 @@ export async function getLowestSwitchboard() {
   const json = await res.json();
   return json;
 }
+
 export async function getHighestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
     method: "GET",
   });
-
   const json = await res.json();
-
   return json;
 }
 
@@ -27,6 +26,7 @@ export async function getTopFiveSwitchboards() {
   const json = await res.json();
   return json;
 }
+
 export async function getLastFiveSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/last5/${id()}`, {
     method: "GET",
@@ -34,6 +34,7 @@ export async function getLastFiveSwitchboards() {
   const json = await res.json();
   return json;
 }
+
 export async function getSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/${id()}`, { method: "GET" });
   const json = await res.json();
@@ -81,6 +82,7 @@ export async function getLowestMunicipality() {
   const json = await res.json();
   return json;
 }
+
 export async function getHighestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
@@ -88,6 +90,7 @@ export async function getHighestMunicipality() {
   const json = await res.json();
   return json;
 }
+
 export async function getTopFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
@@ -115,6 +118,7 @@ export async function getSwitchboardsMap() {
   const json = await res.json();
   return json;
 }
+
 export async function getSwLocation() {
   const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
     method: "GET",

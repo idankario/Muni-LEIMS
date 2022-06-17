@@ -28,7 +28,7 @@ export const H1 = styled("h1")({
 });
 
 export const ContainerStyle = {
-  height: "92vh",
+  height: "93vh",
   width: "100%",
   margin: "auto",
   marginTop: "-50px",

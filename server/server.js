@@ -8,7 +8,6 @@ import MunicipalitiesRouter from "./routers/municipalitiesRouter";
 import ImagesRouter from "./routers/imagesRouter";
 const app = express();
 const port = process.env.PORT || 3000;
-const router = express.Router();
 
 app.use(cors());
 app.use(express.json());

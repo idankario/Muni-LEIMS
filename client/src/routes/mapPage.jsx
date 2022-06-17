@@ -1,40 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { GoogleMap, LoadScript, Autocomplete, DirectionsRenderer, Marker } from "@react-google-maps/api";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useRef } from "react";
+import {
+  GoogleMap,
+  LoadScript,
+  Autocomplete,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
 import Geocode from "react-geocode";
+import { Typography } from "@mui/material";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
 import { Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
 import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
-import InfoSW from "../components/util/infoSW";
-import { useRef } from "react";
-import { Typography } from '@mui/material';
-import { Button } from '@mui/material';
+import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 
-Geocode.setApiKey("AIzaSyCf0iztfol9X-90VBF5j-OXdOaywUqj1PQ");
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
-const api =  "AIzaSyCf0iztfol9X-90VBF5j-OXdOaywUqj1PQ";
+const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function Map() {
   const office = JSON.parse(localStorage.getItem("office"));
   const [place, setPlace] = useState("");
   const [markers, setMarkers] = useState([]);
   const [zoom, setZoom] = useState(0);
-  const [directionsResponse,setdirectionsResponse]=useState(null);
-  const [distance,setdistance]=useState('');
-  const [map,setMap]=useState(null);
+  const [stList, setStList] = useState([
+    {
+      lat: "32.507550439791146",
+      lng: "35.049342265487546",
+    },
+    { lat: "32.50733159468576", lng: "35.049313431741155" },
+  ]);
+  const [directionsResponse, setdirectionsResponse] = useState(null);
+  const [distance, setdistance] = useState("");
+  let count = 0;
 
-  /** @type react.MutableRefObject<HTMLInputElement>*/
-  const originRef=useRef()
-  /** @type react.MutableRefObject<HTMLInputElement>*/
-  const destiantionRef=useRef()
   const [dataLocation, setLocation] = useState({
     mapPosition: {
       lat: parseFloat(office.lat),
       lng: parseFloat(office.lng),
     },
   });
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const originRef = useRef();
+  /** @type React.MutableRefObject<HTMLInputElement> */
+  const destiantionRef = useRef();
 
   useEffect(() => {
     async function getDataDB() {
@@ -61,33 +72,22 @@ function Map() {
         lng: lngValue,
       },
     });
-
   };
 
-  async function calll(){
-    if(originRef.current.value === '' || destiantionRef.current.value === ''){
-      return
+  function haversineDistance(mk1, mk2) {
+    // eslint-disable-next-line no-undef
+    // const directionsService = new google.maps.DirectionsService(mk1, mk2);
+  }
+
+  function calculateRoute() {
+    if (count) {
+      haversineDistance();
+      count = 0;
+    } else {
+      count += 1;
     }
-    const directionService=new google.maps.DirectionsService()
-    const results= await directionService.route({
-      origin:originRef.current.value,
-      destination:destiantionRef.current.value,
-      travelMode:google.maps.TravelMode.DRIVING
-    })
-    setdirectionsResponse(results)
-    setdistance(results.routes[0].legs[0].distance.text)
-
-  }
-  async function clearr(){
-   setdirectionsResponse(null)
-   setdistance('')
-
-   originRef.current.value=''
-   destiantionRef.current.value=''
-   
   }
 
-  
   return (
     <Container bgimage={1}>
       <Header />
@@ -97,42 +97,36 @@ function Map() {
             mapContainerStyle={ContainerStyle}
             center={dataLocation.mapPosition}
             zoom={zoom}
-         onLoad={(map)=>setMap(map)}
-         onClick={ev => {
-          console.log("latitide = ", ev.latLng.lat());
-          console.log("longitude = ", ev.latLng.lng());
-        }}
           >
-           
             {markers.map((marker) => (
-              <InfoSW
-                key={`${marker.lat}${marker.lat}`}
-                style={{ backgroundColor: "none" }}
+              <InfoSW key={`${marker.lng}${marker.lat}`} marker={marker} />
+            ))}
+            {markers.map((marker) => (
+              <InfoStreetlight
+                key={`${marker.lng}${marker.lat}`}
                 marker={marker}
               />
             ))}
-            {directionsResponse && <DirectionsRenderer directions={directionsResponse}/>}
+
+            {directionsResponse && (
+              <DirectionsRenderer directions={directionsResponse} />
+            )}
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
-              
               <Input type="text" placeholder="Search location" />
             </Autocomplete>
-            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
-              <Input style={{ marginLeft: "20vh", color: "red" }}type="text" placeholder="Origin" ref={originRef}/>
-            </Autocomplete>
-            <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
-              <Input style={{ marginLeft: "50vh", color: "red" }} type="text" placeholder="Destination" ref={destiantionRef} />
-            </Autocomplete>
-            <Typography style={{color:"white",background:"black",position:"absolute",top:"170px"}}>Distance:{distance}</Typography>
-            <Button style={{background:"black",position:"absolute",top:"250px"}} type="submit"  onClick={calll}>
-              cal
-            </Button>
-            <Button style={{background:"black",position:"absolute",top:"250px",left:"100px"}} type="submit" onClick={clearr}>
-              clear
-            </Button>
+            <Typography
+              style={{
+                fontSize: "18px",
+                background: "white",
+                position: "absolute",
+                left: "12%",
+                top: "2%",
+              }}
+            >
+              Distance:{distance}
+            </Typography>
           </GoogleMap>
         </LoadScript>
-
-        
       </Menu>
       <BackButton />
     </Container>

@@ -7,7 +7,6 @@ import { TypeOffice } from "../Api";
 import { MenuMunicipalityConfig, MenuMinistryConfig } from "./menuConfig";
 import { H2 } from "../components/h2";
 import Container from "../components/container";
-// import Profile from "../components/util/profile";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ function HomePage() {
     <Container bgimage={1}>
       <Header />
       <Menu>
-        <section >
+        <section>
           {menuConfig.map((navigation) => (
             <Button
               onClick={() => navigate(navigation.path)}
