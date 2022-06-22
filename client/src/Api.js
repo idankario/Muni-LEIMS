@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// const APIURL = `http://localhost:3000`;
 const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
 
@@ -135,12 +135,12 @@ export async function getAllSwLocation() {
   return json;
 }
 
-export async function postUploadImage(data) {
+export async function postUploadImage(data, fileName) {
   try {
     const res = await axios({
       method: "post",
       url: `${APIURL}/images`,
-      data: { ...data },
+      data: { ...data, fileName },
       headers: { "x-access-token": localStorage.getItem("token") },
     });
     if (res.data) {

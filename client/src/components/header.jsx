@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -22,7 +22,6 @@ const HeaderTemplate = styled("header")({
     verticalAlign: "center",
     display: "inline-block",
   },
-
   backgroundColor: "#2E2E2E ",
 });
 
@@ -31,7 +30,6 @@ const P = styled("p")({
   right: "10px",
   top: "5px",
   padding: "3px",
-
   fontSize: "25px",
   color: "#b8e100",
   "& button": {
@@ -42,23 +40,28 @@ const P = styled("p")({
 
 export default function Header() {
   const navigate = useNavigate();
-  const OfficeName = JSON.parse(localStorage.getItem("office"));
+  const [officeName, setOfficeName] = useState("");
+  useEffect(() => {
+    const name = JSON.parse(localStorage.getItem("office"));
+    setOfficeName(name);
+  }, []);
+
   const signOut = () => {
     localStorage.clear();
     navigate("/#");
   };
-  const homepage = OfficeName ? "/homepage" : "#";
+
   return (
     <HeaderTemplate>
-      <a href={homepage}>
+      <a href={officeName ? "/homepage" : "#"}>
         <span>Muni-LEIMS</span>
       </a>
-      {OfficeName ? (
+      {officeName ? (
         <P>
           <IconButton onClick={() => signOut()} aria-label="exitToAppIcon">
             <ExitToAppIcon />
           </IconButton>
-          {OfficeName.office_name}
+          {officeName.office_name}
         </P>
       ) : (
         ""

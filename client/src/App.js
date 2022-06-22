@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./routes/loginPage";
+import SiginPage from "./routes/siginPage";
 import HomePage from "./routes/homePage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
@@ -15,14 +15,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<LoginPage />} />
-        <Route
-          exact
-          path="/signup"
-          element={
-              <SignupPage />
-          }
-        />
+        <Route exact path="/" element={<SiginPage />} />
+        <Route exact path="/signup" element={<SignupPage />} />
         <Route
           exact
           path="/statisticalReports"

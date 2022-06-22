@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
@@ -19,6 +20,7 @@ import Info from "../components/info";
 import { getSwLocation } from "../Api";
 
 function ImageUpload() {
+  const navigate = useNavigate();
   const OfficeName = JSON.parse(localStorage.getItem("office"));
   const [data, setData] = useState({
     userId: localStorage.getItem("user"),
@@ -40,6 +42,7 @@ function ImageUpload() {
   async function handleFileInput(file) {
     if (file) {
       const res = await UploadImage(file, file.name, data);
+      navigate("/homePage");
     }
   }
 
@@ -90,7 +93,7 @@ function ImageUpload() {
               setData(() => ({ ...data, scale: e.target.value }))
             }
             min={100}
-            max={1000}
+            max={250}
             step={25}
             valueLabelDisplay="on"
           />

@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -19,33 +18,26 @@ import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-
 function Map() {
   const office = JSON.parse(localStorage.getItem("office"));
   const [place, setPlace] = useState("");
   const [markers, setMarkers] = useState([]);
   const [zoom, setZoom] = useState(0);
-  const [stList, setStList] = useState([
-    {
-      lat: "32.507550439791146",
-      lng: "35.049342265487546",
-    },
-    { lat: "32.50733159468576", lng: "35.049313431741155" },
-  ]);
   const [directionsResponse, setdirectionsResponse] = useState(null);
-  const [distance, setdistance] = useState("");
-  let count = 0;
-
+  const [avgDistance, setAvgDistance] = useState("");
+  const [destination, setDestination] = useState({
+    lat: 41.756795,
+    lng: -78.954298,
+  });
+  const [isDestenation, setIsDestenation] = useState(false);
+  const [origin, setOrigin] = useState({ lat: 40.756795, lng: -73.954298 });
   const [dataLocation, setLocation] = useState({
     mapPosition: {
       lat: parseFloat(office.lat),
       lng: parseFloat(office.lng),
     },
   });
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const originRef = useRef();
-  /** @type React.MutableRefObject<HTMLInputElement> */
-  const destiantionRef = useRef();
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     async function getDataDB() {
@@ -74,18 +66,25 @@ function Map() {
     });
   };
 
-  function haversineDistance(mk1, mk2) {
+  async function calculateRoute() {
     // eslint-disable-next-line no-undef
-    // const directionsService = new google.maps.DirectionsService(mk1, mk2);
-  }
-
-  function calculateRoute() {
-    if (count) {
-      haversineDistance();
-      count = 0;
-    } else {
-      count += 1;
+    const directionService = new google.maps.DirectionsService();
+    const directionsResult = await directionService.route({
+      // eslint-disable-next-line object-shorthand
+      origin: origin,
+      // eslint-disable-next-line object-shorthand
+      destination: destination,
+      // eslint-disable-next-line no-undef
+      travelMode: google.maps.TravelMode.WALKING,
+    });
+    setdirectionsResponse(directionsResult);
+    let totalDistance = 0;
+    const { legs } = directionsResult.routes[0];
+    for (let i = 0; i < legs.length; i += 1) {
+      totalDistance += legs[i].distance.value;
     }
+    setAvgDistance((totalDistance / (count + 1)).toFixed(2));
+    setCount(count + 1);
   }
 
   return (
@@ -97,9 +96,23 @@ function Map() {
             mapContainerStyle={ContainerStyle}
             center={dataLocation.mapPosition}
             zoom={zoom}
+            onClick={(ev) => {
+              if (isDestenation) {
+                setIsDestenation(false);
+                setDestination({ lat: ev.latLng.lat(), lng: ev.latLng.lng() });
+                calculateRoute();
+              } else {
+                setOrigin({ lat: ev.latLng.lat(), lng: ev.latLng.lng() });
+                setIsDestenation(true);
+              }
+            }}
           >
             {markers.map((marker) => (
-              <InfoSW key={`${marker.lng}${marker.lat}`} marker={marker} />
+              <InfoSW
+                key={`${marker.lat}${marker.lat}`}
+                style={{ backgroundColor: "none" }}
+                marker={marker}
+              />
             ))}
             {markers.map((marker) => (
               <InfoStreetlight
@@ -107,7 +120,6 @@ function Map() {
                 marker={marker}
               />
             ))}
-
             {directionsResponse && (
               <DirectionsRenderer directions={directionsResponse} />
             )}
@@ -119,11 +131,12 @@ function Map() {
                 fontSize: "18px",
                 background: "white",
                 position: "absolute",
-                left: "12%",
-                top: "2%",
+                left: "11.8%",
+                top: "1.5%",
+                padding: "5px",
               }}
             >
-              Distance:{distance}
+              Avg Distance:{avgDistance}
             </Typography>
           </GoogleMap>
         </LoadScript>

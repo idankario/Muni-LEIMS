@@ -2,11 +2,12 @@ import db from "../db_connection";
 // import sw from "./switchboards"
 const ImagesCtl = {
   async uplaodImage(req, res) {
-    const { userId, scale, lat, lng, consumption, switchboards } = req.body;
+    const { userId, scale, lat, lng, consumption, switchboards, fileName } =
+      req.body;
     try {
       const query = `INSERT INTO MuniLEIMS.image
-      (user_id, scale, lat, lng,consumption)
-      VALUES ('${userId}', '${scale}', '${lat}', '${lng}','${consumption}');`;
+      (user_id, scale, lat, lng,consumption,image_name)
+      VALUES ('${userId}', '${scale}', '${lat}', '${lng}','${consumption}','${fileName}');`;
       db.query(query, function (err, result) {
         if (err) throw err;
         const newImageId = result.insertId;

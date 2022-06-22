@@ -1,10 +1,9 @@
 /* eslint-disable no-console */
 import axios from "axios";
-// import {postUploadImage} from "../../Api"
+import { postUploadImage } from "../../Api";
 
 // eslint-disable-next-line no-unused-vars
 async function UploadImage(file, filename, data) {
-  // postUploadImage(data)
   try {
     const res = await axios({
       method: "post",
@@ -18,6 +17,7 @@ async function UploadImage(file, filename, data) {
         method: "PUT",
         body: file,
       });
+      postUploadImage(data, res.data.filename);
       return 1;
     }
   } catch (error) {
