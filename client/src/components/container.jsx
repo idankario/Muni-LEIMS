@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
-import BlueWordImage from "./images/login.png";
-import YellowWordImage from "./images/word.png";
+import BlueWordImage from "./images/login.jpg";
+import YellowWordImage from "./images/word.jpg";
 
 const Container = styled("div")((bgimage) => ({
   maxWidth: "100vw",
@@ -9,8 +9,9 @@ const Container = styled("div")((bgimage) => ({
     : `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(${BlueWordImage}) no-repeat`,
   backgroundSize: "100% 100%",
   minHeight: "100vh",
-  "& main, & form": {
-    paddingTop: "50px",
+  "& h1, & h2, & h3 ": {
+    color: "#b8e100",
+    textAlign: "center",
   },
 }));
 export default Container;

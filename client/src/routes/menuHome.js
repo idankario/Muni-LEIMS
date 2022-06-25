@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
 import { TypeOffice } from "../Api";
 
-import { H2 } from "../components/h2";
-
 const MenuMinistryConfig = [
   {
     title: "TOP/LAST MUNICIPALITIES",
@@ -50,8 +48,8 @@ function MenuHome() {
   const navigate = useNavigate();
   const [menuConfig, setMenuConfig] = useState([{}]);
   useEffect(() => {
-    function getDataDB() {
-      const typeOffice = TypeOffice();
+    async function getDataDB() {
+      const typeOffice = await TypeOffice();
       if (typeOffice) setMenuConfig(MenuMinistryConfig);
       else setMenuConfig(MenuMunicipalityConfig);
     }
@@ -65,7 +63,7 @@ function MenuHome() {
           onClick={() => navigate(navigation.path)}
           key={`${navigation.path}`}
         >
-          <H2>{navigation.title} </H2>
+          <h2>{navigation.title} </h2>
         </Button>
       ))}
     </section>

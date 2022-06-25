@@ -14,7 +14,7 @@ import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
-import { H3 } from "../components/h2";
+import { H3 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
 import { getSwLocation } from "../Api";

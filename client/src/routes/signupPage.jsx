@@ -16,7 +16,7 @@ import PoolData from "./poolData";
 import Logo from "../components/images/logoBody.png";
 import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
-import { H_2 } from "../components/h2";
+import { H_1 } from "../components/h1";
 import Container from "../components/container";
 import Shenkar from "../components/images/shenkar.png";
 
@@ -34,6 +34,7 @@ function SignupPage() {
     Name: "custom:user_role",
     Value: "manager",
   };
+
   const dataEmail = {
     Name: "email",
     Value: email,
@@ -85,7 +86,7 @@ function SignupPage() {
         <img src={Logo} alt="logo" title="logo" />
 
         <section>
-          <H_2>SIGN UP</H_2>
+          <H_1>SIGN UP</H_1>
           <TextField
             type="USERNAME"
             placeholder="USERNAME"

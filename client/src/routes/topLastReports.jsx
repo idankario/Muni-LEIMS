@@ -6,12 +6,11 @@ import { getSwitchboards, loadMunicipalities } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Table from "../components/table";
-import { H2 } from "../components/h2";
+import { H1 } from "../components/h1";
 import Container from "../components/container";
 
 const MainStyle = styled("div")(() => ({
   display: `flex`,
-  alignItems: `center`,
   flexDirection: `column`,
 }));
 
@@ -32,11 +31,11 @@ function TopLastReports({ dataType }) {
     <Container>
       <Header />
       <MainStyle>
-        <H2>
+        <H1>
           {dataType === "municipalities"
             ? "Top/Last Municipalities"
             : "Top/Last Switchboards"}
-        </H2>
+        </H1>
         {rows ? (
           <Table
             rows={rows}

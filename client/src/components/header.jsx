@@ -18,7 +18,8 @@ const HeaderTemplate = styled("header")({
     marginTop: "-6px",
     fontSize: "31px",
     paddingLeft: "70px",
-    height: "4vh",
+    height: "5vh",
+    paddingTop: "0.6vh",
     verticalAlign: "center",
     display: "inline-block",
   },
@@ -28,7 +29,7 @@ const HeaderTemplate = styled("header")({
 const P = styled("p")({
   position: "absolute",
   right: "10px",
-  top: "5px",
+  top: "6px",
   padding: "3px",
   fontSize: "25px",
   color: "#b8e100",

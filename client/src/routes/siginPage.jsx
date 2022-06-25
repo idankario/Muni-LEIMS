@@ -14,7 +14,7 @@ import PoolData from "./poolData";
 import Logo from "../components/images/logoBody.png";
 import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
-import { H_2 } from "../components/h2";
+import { H_1 } from "../components/h1";
 import Container from "../components/container";
 import Shenkar from "../components/images/shenkar.png";
 import { officebyId } from "../Api";
@@ -48,14 +48,11 @@ function SiginPage() {
           );
           navigate("/homePage");
         }
-
         storeOffice();
       },
-
       onFailure: (err) => {
         console.error("onFailure:", err);
       },
-
       newPasswordRequired: (data) => {
         console.log("newPasswordRequired:", data);
       },
@@ -72,7 +69,7 @@ function SiginPage() {
       <Header />
       <Login onSubmit={onSubmit}>
         <img src={Logo} alt="logo" title="logo" />
-        <H_2>Muni-LEIMS</H_2>
+        <H_1>Muni-LEIMS</H_1>
         <section>
           <AccountCircleIcon />
           <TextField
