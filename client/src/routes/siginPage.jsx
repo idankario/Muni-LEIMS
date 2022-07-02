@@ -42,10 +42,7 @@ function SiginPage() {
           const office = JSON.stringify(await officebyId(id));
           localStorage.setItem("office", await office);
           localStorage.setItem("user", await id);
-          localStorage.setItem(
-            "token",
-            await data.getAccessToken().getJwtToken()
-          );
+          localStorage.setItem("token", await data.idToken.jwtToken);
           navigate("/homePage");
         }
         storeOffice();
@@ -69,10 +66,11 @@ function SiginPage() {
       <Header />
       <Login onSubmit={onSubmit}>
         <img src={Logo} alt="logo" title="logo" />
-        <H_1>Muni-LEIMS</H_1>
+        <H_1>Muni-LEIMS </H_1>
         <section>
           <AccountCircleIcon />
           <TextField
+            autoComplete="on"
             type="USERNAME"
             placeholder="USERNAME"
             value={email}
@@ -87,6 +85,7 @@ function SiginPage() {
           />
 
           <TextField
+            autoComplete="on"
             type={showPassword ? "text" : "password"}
             placeholder="PASSWORD"
             value={password}

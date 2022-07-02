@@ -88,6 +88,7 @@ function SignupPage() {
         <section>
           <H_1>SIGN UP</H_1>
           <TextField
+            autoComplete="on"
             type="USERNAME"
             placeholder="USERNAME"
             name="username"
@@ -102,6 +103,7 @@ function SignupPage() {
             }}
           />
           <TextField
+            autoComplete="on"
             type="name"
             placeholder="NAME"
             value={name}
@@ -115,6 +117,7 @@ function SignupPage() {
             }}
           />
           <TextField
+            autoComplete="on"
             type="email"
             name="name"
             placeholder="EMAIL"
@@ -129,6 +132,7 @@ function SignupPage() {
             }}
           />
           <TextField
+            autoComplete="on"
             type="number"
             placeholder="PHONE"
             value={phone_number}
@@ -143,6 +147,7 @@ function SignupPage() {
           />
 
           <TextField
+            autoComplete="on"
             type={showPassword ? "text" : "password"}
             placeholder="PASSWORD"
             value={Password}

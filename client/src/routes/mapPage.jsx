@@ -15,6 +15,7 @@ import Container from "../components/container";
 import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
 import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 
+const lib = ["places"];
 Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 Geocode.enableDebug();
 const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -91,7 +92,7 @@ function Map() {
     <Container bgimage={1}>
       <Header />
       <Menu>
-        <LoadScript googleMapsApiKey={api} libraries={["places"]}>
+        <LoadScript googleMapsApiKey={api} libraries={lib}>
           <GoogleMap
             mapContainerStyle={ContainerStyle}
             center={dataLocation.mapPosition}

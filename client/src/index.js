@@ -9,8 +9,11 @@ const useStyles = {
     margin: "0",
     padding: "0",
   },
+  "& h1,&h2,&h3": {
+    fontFamily: "Times New Roman, sans-serif",
+  },
   body: {
-    fontFamily: `'Poppins', sans-serif`,
+    fontFamily: "Times New Roman",
     minHeight: "100vh",
   },
   a: {

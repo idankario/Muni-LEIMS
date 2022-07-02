@@ -4,10 +4,10 @@ const ImagesCtl = {
   async uplaodImage(req, res) {
     const { userId, scale, lat, lng, consumption, switchboards, fileName } =
       req.body;
-    try {
-      const query = `INSERT INTO MuniLEIMS.image
+    const query = `INSERT INTO MuniLEIMS.image
       (user_id, scale, lat, lng,consumption,image_name)
       VALUES ('${userId}', '${scale}', '${lat}', '${lng}','${consumption}','${fileName}');`;
+    try {
       db.query(query, function (err, result) {
         if (err) throw err;
         const newImageId = result.insertId;
@@ -32,7 +32,21 @@ const ImagesCtl = {
         res.send(result);
       });
     } catch (error) {
-      console.error(error);
+      res.send(error);
+    }
+  },
+  async insertEnergyIntensity(req, res) {
+    const { streetlightAmount, fileName } = req.body;
+    const query = `UPDATE MuniLEIMS.image
+    SET energy_intensity = consumption/${streetlightAmount}>>0
+    WHERE image_name = '${fileName}'`;
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      });
+    } catch (error) {
+      res.send(error);
     }
   },
 };

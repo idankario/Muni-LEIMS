@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
@@ -41,7 +40,7 @@ function ImageUpload() {
   }, []);
   async function handleFileInput(file) {
     if (file) {
-      const res = await UploadImage(file, file.name, data);
+      await UploadImage(file, file.name, data);
       navigate("/homePage");
     }
   }

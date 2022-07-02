@@ -134,17 +134,16 @@ export async function getAllSwLocation() {
   const json = await res.json();
   return json;
 }
-
-export async function postUploadImage(data, fileName) {
+export async function setEnergyIntesityImage(enertyIntensity, fileName) {
   try {
     const res = await axios({
       method: "post",
-      url: `${APIURL}/images`,
-      data: { ...data, fileName },
-      headers: { "x-access-token": localStorage.getItem("token") },
+      url: `${APIURL}/images/energyintensity`,
+      data: { enertyIntensity, fileName },
     });
     if (res.data) {
-      // console.log(res.data);
+      // eslint-disable-next-line no-console
+      console.log(res.data);
       return;
     }
   } catch (error) {
@@ -152,3 +151,28 @@ export async function postUploadImage(data, fileName) {
     console.log(error);
   }
 }
+
+//   const res = await fetch(`${APIURL}/images/energyintensity`, {
+//     method: "p",
+//   });
+//   const json = await res.json();
+//   return json;
+// }
+
+// export async function postUploadImage(data, fileName) {
+//   try {
+//     const res = await axios({
+//       method: "post",
+//       url: `${APIURL}/images`,
+//       data: { ...data, fileName },
+//       headers: { "x-access-token": localStorage.getItem("token") },
+//     });
+//     if (res.data) {
+//       // eslint-disable-next-line no-console
+//       console.log(res.data);
+//       return;
+//     }
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.log(error);
+//   }

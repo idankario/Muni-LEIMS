@@ -8,7 +8,6 @@ const MenuMinistryConfig = [
     title: "TOP/LAST MUNICIPALITIES",
     path: "/municipalities",
   },
-
   {
     title: "STATISTICAL REPORTS MUNICIPALITIES",
     path: "/StatisticalReportsMunicipalties",

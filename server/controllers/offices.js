@@ -25,13 +25,14 @@ const OfficesCtl = {
     INNER JOIN MuniLEIMS.office_users  ON MuniLEIMS.office_users.office_id=MuniLEIMS.office.office_id
     WHERE user_id=${userId}
     LIMIT 1;`;
-    db.query(query, (err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
         res.send(result);
-      }
-    });
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 };
 
