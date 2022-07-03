@@ -1,5 +1,5 @@
 import axios from "axios";
-
+// const APIURL = `http://localhost:3000`;
 const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
 
@@ -10,13 +10,12 @@ export async function getLowestSwitchboard() {
   const json = await res.json();
   return json;
 }
+
 export async function getHighestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
     method: "GET",
   });
-
   const json = await res.json();
-
   return json;
 }
 
@@ -27,6 +26,7 @@ export async function getTopFiveSwitchboards() {
   const json = await res.json();
   return json;
 }
+
 export async function getLastFiveSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/last5/${id()}`, {
     method: "GET",
@@ -34,6 +34,7 @@ export async function getLastFiveSwitchboards() {
   const json = await res.json();
   return json;
 }
+
 export async function getSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/${id()}`, { method: "GET" });
   const json = await res.json();
@@ -81,6 +82,7 @@ export async function getLowestMunicipality() {
   const json = await res.json();
   return json;
 }
+
 export async function getHighestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
@@ -88,6 +90,7 @@ export async function getHighestMunicipality() {
   const json = await res.json();
   return json;
 }
+
 export async function getTopFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
@@ -115,6 +118,7 @@ export async function getSwitchboardsMap() {
   const json = await res.json();
   return json;
 }
+
 export async function getSwLocation() {
   const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
     method: "GET",
@@ -130,17 +134,16 @@ export async function getAllSwLocation() {
   const json = await res.json();
   return json;
 }
-
-export async function postUploadImage(data) {
+export async function setEnergyIntesityImage(enertyIntensity, fileName) {
   try {
     const res = await axios({
       method: "post",
-      url: `${APIURL}/images`,
-      data: { ...data },
-      headers: { "x-access-token": localStorage.getItem("token") },
+      url: `${APIURL}/images/energyintensity`,
+      data: { enertyIntensity, fileName },
     });
     if (res.data) {
-      // console.log(res.data);
+      // eslint-disable-next-line no-console
+      console.log(res.data);
       return;
     }
   } catch (error) {
@@ -148,3 +151,28 @@ export async function postUploadImage(data) {
     console.log(error);
   }
 }
+
+//   const res = await fetch(`${APIURL}/images/energyintensity`, {
+//     method: "p",
+//   });
+//   const json = await res.json();
+//   return json;
+// }
+
+// export async function postUploadImage(data, fileName) {
+//   try {
+//     const res = await axios({
+//       method: "post",
+//       url: `${APIURL}/images`,
+//       data: { ...data, fileName },
+//       headers: { "x-access-token": localStorage.getItem("token") },
+//     });
+//     if (res.data) {
+//       // eslint-disable-next-line no-console
+//       console.log(res.data);
+//       return;
+//     }
+//   } catch (error) {
+//     // eslint-disable-next-line no-console
+//     console.log(error);
+//   }

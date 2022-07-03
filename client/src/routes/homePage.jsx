@@ -1,42 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
-import Button from "../components/button";
-import { TypeOffice } from "../Api";
-import { MenuMunicipalityConfig, MenuMinistryConfig } from "./menuConfig";
-import { H2 } from "../components/h2";
+import MenuHome from "./menuHome";
 import Container from "../components/container";
-// import Profile from "../components/util/profile";
+import { H1 } from "../components/h1";
 
 function HomePage() {
-  const navigate = useNavigate();
-  const [menuConfig, setMenuConfig] = useState([{}]);
-  useEffect(() => {
-    async function getDataDB() {
-      const typeOffice = await TypeOffice();
-      if (typeOffice) setMenuConfig(MenuMinistryConfig);
-      else setMenuConfig(MenuMunicipalityConfig);
-    }
-    getDataDB();
-  }, []);
-
   return (
     <Container bgimage={1}>
       <Header />
+      <H1>Menu </H1>
       <Menu>
-        <section>
-          {menuConfig.map((navigation) => (
-            <Button
-              onClick={() => navigate(navigation.path)}
-              key={`${navigation.path}`}
-            >
-              <H2>{navigation.title} </H2>
-            </Button>
-          ))}
-        </section>
+        <MenuHome />
       </Menu>
     </Container>
   );
 }
+
 export default HomePage;

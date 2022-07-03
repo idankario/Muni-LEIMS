@@ -2,34 +2,27 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { OverlayView } from "@react-google-maps/api";
 import Logomap from "../images/logomap.png";
+import SteetLight from "../images/streetlight.png";
 
 export const Div = styled("div")({
   width: "55px",
-  // height: "125px",
   textAlign: "center",
   fontSize: "0.55rem;",
   opacity: "0.8",
   background: "#fff",
   borderRadius: "20%",
   fontWeight: "bold",
-  // verticalAlign: "center",
-  // margin: "auto",
   padding: "9px",
-  // "& >*": {
-  //   textAlign: "center",
-  //   verticalAlign: "middle",
-  // },
 });
 
-export const Section = styled("section")({});
-function InfoSW(props) {
+export function InfoSW(props) {
   const { marker } = props;
   return (
     <OverlayView
       isHeatmapVisible={false}
       position={{
-        lat: parseFloat(marker.lat),
-        lng: parseFloat(marker.lng),
+        lat: marker.lat,
+        lng: marker.lng,
       }}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
@@ -41,4 +34,25 @@ function InfoSW(props) {
     </OverlayView>
   );
 }
-export default InfoSW;
+
+export function InfoStreetlight(props) {
+  const { marker } = props;
+
+  return (
+    <OverlayView
+      isHeatmapVisible={false}
+      position={{
+        lat: parseFloat(marker.lat) + 0.001,
+        lng: parseFloat(marker.lng) + 0.001,
+      }}
+      mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+    >
+      <img
+        style={{ cursor: "pointer" }}
+        alt="steetLight"
+        title="steetLight"
+        src={SteetLight}
+      />
+    </OverlayView>
+  );
+}

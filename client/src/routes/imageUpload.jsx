@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Slider from "@mui/material/Slider";
@@ -9,16 +8,18 @@ import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
 import UploadImage from "../components/util/uploadImage";
-import { H3 } from "../components/h2";
+import { H3 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
 import { getSwLocation } from "../Api";
 
 function ImageUpload() {
+  const navigate = useNavigate();
   const OfficeName = JSON.parse(localStorage.getItem("office"));
   const [data, setData] = useState({
     userId: localStorage.getItem("user"),
@@ -39,7 +40,8 @@ function ImageUpload() {
   }, []);
   async function handleFileInput(file) {
     if (file) {
-      const res = await UploadImage(file, file.name, data);
+      await UploadImage(file, file.name, data);
+      navigate("/homePage");
     }
   }
 
@@ -90,7 +92,7 @@ function ImageUpload() {
               setData(() => ({ ...data, scale: e.target.value }))
             }
             min={100}
-            max={1000}
+            max={250}
             step={25}
             valueLabelDisplay="on"
           />

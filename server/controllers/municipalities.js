@@ -19,9 +19,14 @@ const MunicipalitiesCtl = {
         ss.is_active="active"
     Group By o.office_id
     Order By consumption_average asc;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
   async highestMunicipality(req, res) {
     const query = `
@@ -41,9 +46,14 @@ const MunicipalitiesCtl = {
     Group By o.office_id
     Order By energy_inetensity_average desc
     LIMIT 1;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 
   async lowestMunicipality(req, res) {
@@ -64,9 +74,14 @@ const MunicipalitiesCtl = {
     Group By o.office_id
     Order By energy_inetensity_average 
     LIMIT 1;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 
   async top5Municipalities(req, res) {
@@ -87,9 +102,14 @@ const MunicipalitiesCtl = {
     Group By o.office_id
     Order By energy_inetensity_average
     LIMIT 5;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 
   async last5Municipalities(req, res) {
@@ -110,9 +130,14 @@ const MunicipalitiesCtl = {
     Group By o.office_id
     Order By energy_inetensity_average desc
     LIMIT 5;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 };
 

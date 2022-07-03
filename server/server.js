@@ -1,5 +1,7 @@
 import express from "express";
-import multer from "multer";
+import bodyParser from "body-parser";
+
+// import multer from "multer";
 // import bodyParser from "body-parser";
 import cors from "cors";
 import SwitchboardsRouter from "./routers/switchboardsRouter";
@@ -8,8 +10,8 @@ import MunicipalitiesRouter from "./routers/municipalitiesRouter";
 import ImagesRouter from "./routers/imagesRouter";
 const app = express();
 const port = process.env.PORT || 3000;
-const router = express.Router();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json());
 app.set("port", port);

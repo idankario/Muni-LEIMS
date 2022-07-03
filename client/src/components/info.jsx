@@ -11,7 +11,7 @@ import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Draggable from "react-draggable";
 import Paper from "@mui/material/Paper";
-import InfoUpload from "./images/infoUpload.png";
+import InfoUpload from "./images/infoUpload.jpg";
 
 function PaperComponent(props) {
   return (

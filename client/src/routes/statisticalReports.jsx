@@ -12,12 +12,7 @@ import {
   getLastFiveSwitchboards,
 } from "../Api";
 import Container from "../components/container";
-import { H2 } from "../components/h2";
-
-const Title = styled(H2)(() => ({
-  textAlign: `center`,
-  margin: "15px",
-}));
+import { H1 } from "../components/h1";
 
 const CenterContainer = styled("div")(() => ({
   display: `flex`,
@@ -73,6 +68,7 @@ const DataInnerSep = styled("h2")((background) => ({
   width: `5px`,
   background: `${background.background}`,
 }));
+
 const DataInnerData = styled("div")(() => ({
   display: `flex`,
   flexDirection: `column`,
@@ -80,7 +76,7 @@ const DataInnerData = styled("div")(() => ({
   justifyContent: `center`,
   alignItems: `center`,
   "& > span": {
-    fontSize: `4em`,
+    fontSize: `5em`,
   },
   "& > p": {
     fontSize: `0.9em`,
@@ -130,7 +126,7 @@ function StatisticalReports() {
   return (
     <Container>
       <Header />
-      <Title>STATISTICAL REPORT</Title>
+      <H1>STATISTICAL REPORT</H1>
       <CenterContainer>
         {data.loading ? (
           <CircularProgress

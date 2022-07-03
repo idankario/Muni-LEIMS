@@ -12,20 +12,12 @@ import {
   getLastFiveMunicipality,
 } from "../Api";
 import Container from "../components/container";
-import { H2 } from "../components/h2";
-
-const Title = styled(H2)(() => ({
-  textAlign: `center`,
-  margin: "15px",
-}));
+import { H1 } from "../components/h1";
 
 const CenterContainer = styled("div")(() => ({
   display: `flex`,
   width: `80vw`,
-  minHeight: `calc(80vh - 150px)`,
-  justifyContent: `space-around`,
-  marginLeft: `auto`,
-  marginRight: `auto`,
+  margin: `auto`,
   position: `relative`,
 }));
 
@@ -39,7 +31,6 @@ const Sep = styled("div")(() => ({
 }));
 const PlotWrapper = styled("div")(() => ({
   width: `50%`,
-  height: `100%`,
   display: `grid`,
   placeItems: `center`,
 }));
@@ -48,7 +39,6 @@ const DataWrapper = styled("div")(() => ({
   flexDirection: `column`,
   width: `50%`,
   position: `relative`,
-  marginLeft: `auto`,
 }));
 const DataInner = styled("div")((color) => ({
   height: `50%`,
@@ -130,7 +120,7 @@ function StatisticalReportsminstry() {
   return (
     <Container>
       <Header />
-      <Title>STATISTICAL REPORT:</Title>
+      <H1>STATISTICAL REPORT:</H1>
       <CenterContainer>
         {data.loading ? (
           <CircularProgress

@@ -14,9 +14,14 @@ const SwitchboardsCtl = {
       WHERE
         o.user_id=${userId} AND ss.is_active="active"
       ORDER BY s.energy_inetensity ;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 
   async highestSwitchboard(req, res) {
@@ -38,9 +43,14 @@ const SwitchboardsCtl = {
         ss.is_active="active"      
     Order By s.energy_inetensity desc
     LIMIT 1;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
   async lowestSwitchboard(req, res) {
     const userId = req.params.id;
@@ -59,9 +69,14 @@ const SwitchboardsCtl = {
       o.user_id=${userId} and ss.is_active="active"
     ORDER BY s.energy_inetensity
     LIMIT 1;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 
   async top5Switchboards(req, res) {
@@ -81,9 +96,14 @@ const SwitchboardsCtl = {
         ss.is_active="active"
     ORDER BY s.energy_inetensity 
     LIMIT 5;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
   async last5Switchboards(req, res) {
     const userId = req.params.id;
@@ -100,9 +120,14 @@ const SwitchboardsCtl = {
       o.user_id=${userId} and ss.is_active="active"
     ORDER BY s.energy_inetensity desc
     LIMIT 5;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
   async switchboardsLocation(req, res) {
     const userId = req.params.id;
@@ -120,9 +145,14 @@ const SwitchboardsCtl = {
         ON ss.statisticalreport_id = s.statisticalreport_id  
     WHERE
         ou.user_id=${userId} AND ss.is_active='active';`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
   async allSwitchboardsLocation(req, res) {
     const query = `
@@ -141,9 +171,14 @@ const SwitchboardsCtl = {
     WHERE
         ss.is_active="active"
     Group By o.office_id;`;
-    db.query(query, (err, result) => {
-      res.send(JSON.stringify(result));
-    });
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(JSON.stringify(result));
+      });
+    } catch (error) {
+      res.send(error);
+    }
   },
 };
 

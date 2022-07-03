@@ -1,23 +1,22 @@
 import { styled } from "@mui/material/styles";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Menu = styled("main")({
   "& section": {
-    textAlign: "center",
     margin: "auto",
     width: "400px",
   },
   "& button": {
-    margin: "20px",
+    marginBottom: "5%",
   },
 });
 export const StyledLink = styled(Link)({
-  textDecoration: 'none',
-  color: '#CDFA00',
-  fontSize:'18px',
-  '&:focus, &:hover': {
-    textDecoration: 'none',
-    color: 'orange',
+  textDecoration: "none",
+  color: "#CDFA00",
+  fontSize: "18px",
+  "&:focus, &:hover": {
+    textDecoration: "none",
+    color: "orange",
   },
 });
 export const Login = styled("form")({
@@ -33,7 +32,6 @@ export const Login = styled("form")({
   },
   "& section >*:not(svg)": {
     marginBottom: "20px",
-
     minHeight: "52px",
     opacity: "0.9",
   },
