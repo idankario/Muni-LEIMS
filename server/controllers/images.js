@@ -79,6 +79,19 @@ const ImagesCtl = {
       res.send(error);
     }
   },
+  async getImages(req, res) {
+    const query = `
+    SELECT * FROM MuniLEIMS.image
+    WHERE status=2;`;
+    try {
+      db.query(query, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      });
+    } catch (error) {
+      res.send(error);
+    }
+  },
 };
 
 export default ImagesCtl;

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -24,7 +23,9 @@ function SiginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   const onSubmit = (event) => {
     event.preventDefault();
     const user = new CognitoUser({

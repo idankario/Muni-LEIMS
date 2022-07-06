@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import UploadImage from "../components/util/uploadImage";
+// import UploadImage from "../components/util/uploadImage";
 import { H1 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
@@ -38,11 +38,12 @@ function ImageUpload() {
     }
     getDataDB();
   }, []);
-  async function handleFileInput(file) {
-    if (file) {
-      await UploadImage(file, file.name, data);
-      navigate("/homePage");
-    }
+  async function handleFileInput() {
+    navigate("/homePage");
+    // if (file) {
+    //   await UploadImage(file, file.name, data);
+    //   navigate("/homePage");
+    // }
   }
 
   return (
@@ -124,12 +125,6 @@ function ImageUpload() {
           >
             Upload Image
             {/* Upload image file from file system */}
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={(e) => handleFileInput(e.target.files[0])}
-            />
           </Button>
         </section>
       </Main>

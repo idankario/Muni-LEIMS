@@ -8,7 +8,7 @@ export const Input = styled("input")({
   padding: `0 12px`,
   borderRadius: `3px`,
   boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
-  fontSize: `14px`,
+  fontSize: `1em`,
   outline: `none`,
   textOverflow: `ellipses`,
   position: "absolute",
@@ -24,7 +24,7 @@ export const H1 = styled("h1")({
   background: "#fff",
   color: "#b8e100",
   paddingTop: "10px",
-  fontSize: "45px",
+  fontSize: "1em",
 });
 
 export const ContainerStyle = {
