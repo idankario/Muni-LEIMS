@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
+// import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -25,7 +25,7 @@ function ImageUpload() {
     userId: localStorage.getItem("user"),
     lat: OfficeName.lat,
     lng: OfficeName.lng,
-    scale: 100,
+    scale: 250,
     consumption: "1000",
     switchboards: [],
   });
@@ -87,7 +87,7 @@ function ImageUpload() {
           />
 
           <Typography>Enter the scale of the image</Typography>
-          <Slider
+          {/* <Slider
             value={data.scale}
             onChange={(e) =>
               setData(() => ({ ...data, scale: e.target.value }))
@@ -96,7 +96,7 @@ function ImageUpload() {
             max={250}
             step={25}
             valueLabelDisplay="on"
-          />
+          /> */}
           <Typography>Select switchboards of the image</Typography>
           <Select
             multiple
