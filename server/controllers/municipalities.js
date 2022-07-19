@@ -16,7 +16,7 @@ const MunicipalitiesCtl = {
     INNER JOIN MuniLEIMS.office o
         ON o.office_id = ou.office_id
     WHERE
-        ss.is_active="active"
+        ss.is_active=1
     Group By o.office_id
     Order By consumption_average asc;`;
     try {
@@ -25,7 +25,7 @@ const MunicipalitiesCtl = {
         res.send(JSON.stringify(result));
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
   async highestMunicipality(req, res) {
@@ -42,7 +42,8 @@ const MunicipalitiesCtl = {
         ON a.area_id = sw.area_id
     INNER JOIN MuniLEIMS.office o
         ON o.office_id = ou.office_id
-    WHERE ss.is_active="active"
+    WHERE 
+      ss.is_active=1
     Group By o.office_id
     Order By energy_inetensity_average desc
     LIMIT 1;`;
@@ -52,7 +53,7 @@ const MunicipalitiesCtl = {
         res.send(JSON.stringify(result));
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
 
@@ -70,7 +71,8 @@ const MunicipalitiesCtl = {
         ON a.area_id = sw.area_id
     INNER JOIN MuniLEIMS.office o
         ON o.office_id = ou.office_id
-    WHERE ss.is_active="active"
+    WHERE 
+      ss.is_active=1 
     Group By o.office_id
     Order By energy_inetensity_average 
     LIMIT 1;`;
@@ -80,7 +82,7 @@ const MunicipalitiesCtl = {
         res.send(JSON.stringify(result));
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
 
@@ -97,8 +99,9 @@ const MunicipalitiesCtl = {
     INNER JOIN MuniLEIMS.area a
         ON a.area_id = sw.area_id
     INNER JOIN MuniLEIMS.office o
-        ON o.office_id = ou.office_id
-    WHERE ss.is_active="active"
+      ON o.office_id = ou.office_id
+    WHERE 
+      ss.is_active=1
     Group By o.office_id
     Order By energy_inetensity_average
     LIMIT 5;`;
@@ -108,7 +111,7 @@ const MunicipalitiesCtl = {
         res.send(JSON.stringify(result));
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
 
@@ -126,7 +129,8 @@ const MunicipalitiesCtl = {
         ON a.area_id = sw.area_id
     INNER JOIN MuniLEIMS.office o
         ON o.office_id = ou.office_id
-    WHERE ss.is_active="active"
+    WHERE 
+      ss.is_active=1
     Group By o.office_id
     Order By energy_inetensity_average desc
     LIMIT 5;`;
@@ -136,7 +140,7 @@ const MunicipalitiesCtl = {
         res.send(JSON.stringify(result));
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
 };

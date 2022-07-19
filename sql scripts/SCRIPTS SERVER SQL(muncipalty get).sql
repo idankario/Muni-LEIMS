@@ -46,7 +46,7 @@ INNER JOIN MuniLEIMS.area a
 WHERE
     o.user_id=4
     and
-    ss.is_active="active"
+    ss.is_active=1
     ;
     
     
@@ -81,7 +81,7 @@ INNER JOIN MuniLEIMS.area a
 WHERE
     o.user_id=4 
     and 
-    ss.is_active="active"
+   ss.is_active=1
 LIMIT 5;
 
 /*  update switchboard to active/not active  */ 

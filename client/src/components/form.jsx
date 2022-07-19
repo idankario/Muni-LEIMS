@@ -19,19 +19,18 @@ export const Main = styled("main")({
   },
 
   "& section >*": {
-    textAlign: "center",
     margin: "0.8em 0px",
   },
-  "& p:not(h1+p)": {
+  "& p": {
     textAlign: "left",
   },
   "& .MuiButton-root": {
-    width: "16em",
+    width: "14em",
     height: "4em",
     margin: "30px 100px",
     color: "#000",
-    textAlign: "center",
-    verticalAlign: "center",
+    // textAlign: "center",
+    // verticalAlign: "center",
     ":hover": {
       backgroundColor: "#ECB22F",
     },

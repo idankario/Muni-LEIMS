@@ -29,6 +29,8 @@ function Info() {
   const [description, setDescription] = useState("");
   const handleClickOpen = () => {
     const info = `Enter switchboard/s number/s </br> 
+    The type you can upload is PNG TIF and JPEG </br> 
+    The max size is 50mb </br> 
     The details appear in the image as in the example picture below`;
     setOpen(true);
     setDescription(info);

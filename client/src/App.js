@@ -1,22 +1,27 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SiginPage from "./routes/loginPage";
+import ImgUpload from "./routes/imageUpload";
+import SiginPage1 from "./routes/loginPage";
 import HomePage from "./routes/homePage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
-import ImgUpload from "./routes/upload";
+import ImgUpload1 from "./routes/upload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
 import PrivateRoute from "./routes/privateRouter/privateRouter";
 import SignupPage from "./routes/signupPage";
+import SiginPage from "./routes/siginPage";
+import Switchboards from "./routes/switchboards";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<SiginPage />} />
+        <Route exact path="/" element={<SiginPage1 />} />
+        <Route exact path="/siginPage" element={<SiginPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
+        <Route exact path="/imgUpload1" element={<ImgUpload />} />
         <Route
           exact
           path="/statisticalReports"
@@ -37,7 +42,7 @@ function App() {
         />
         <Route
           exact
-          path="/switchboards"
+          path="/toplast"
           element={
             <PrivateRoute>
               <TopLastReports dataType="switchboards" />
@@ -58,7 +63,7 @@ function App() {
           path="/imgUpload"
           element={
             <PrivateRoute>
-              <ImgUpload />
+              <ImgUpload1 />
             </PrivateRoute>
           }
         />
@@ -71,6 +76,16 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          exact
+          path="/switchboards"
+          element={
+            <PrivateRoute>
+              <Switchboards />
+            </PrivateRoute>
+          }
+        />
+
         <Route
           exact
           element={

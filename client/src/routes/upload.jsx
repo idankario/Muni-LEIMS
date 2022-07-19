@@ -59,7 +59,7 @@ function ImageUpload() {
             autoComplete="off"
             value={data.lat}
             id="standard-basic"
-            label="lat"
+            label="x"
             variant="standard"
             onChange={(e) => setData(() => ({ ...data, lat: e.target.value }))}
           />
@@ -68,7 +68,7 @@ function ImageUpload() {
             autoComplete="off"
             value={data.lng}
             id="standard-basic"
-            label="lng"
+            label="y"
             variant="standard"
             onChange={(e) => setData(() => ({ ...data, lng: e.target.value }))}
           />

@@ -18,6 +18,7 @@ import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
 import { H_1 } from "../components/h1";
 import Container from "../components/container";
+import checkSignUp from "../components/util/regexValidation";
 import Shenkar from "../components/images/shenkar.png";
 
 function SignupPage() {
@@ -26,41 +27,40 @@ function SignupPage() {
   const [phone_number, setPhone] = useState("");
   const [username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const attributeList = [];
-
   const dataUserRole = {
     Name: "custom:user_role",
-    Value: "manager",
+    Value: "0",
   };
-
-  const dataEmail = {
-    Name: "email",
-    Value: email,
-  };
-
-  const dataPhoneNumber = {
-    Name: "phone_number",
-    Value: phone_number,
-  };
-
-  const dataName = {
-    Name: "name",
-    Value: name,
-  };
-
-  const attributeDataUserRole = new CognitoUserAttribute(dataUserRole);
-  const attributeEmail = new CognitoUserAttribute(dataEmail);
-  const attributeName = new CognitoUserAttribute(dataName);
-  const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
-  attributeList.push(attributeDataUserRole);
-  attributeList.push(attributeEmail);
-  attributeList.push(attributePhoneNumber);
-  attributeList.push(attributeName);
-
+  const isFull = email && phone_number && username && Password;
   const onSubmit = (event) => {
     event.preventDefault();
+    if (checkSignUp()) return;
+    const dataEmail = {
+      Name: "email",
+      Value: email,
+    };
+
+    const dataPhoneNumber = {
+      Name: "phone_number",
+      Value: `+972${phone_number.substring(1)}`,
+    };
+
+    const dataName = {
+      Name: "name",
+      Value: `"${username}"`,
+    };
+
+    const attributeDataUserRole = new CognitoUserAttribute(dataUserRole);
+    const attributeEmail = new CognitoUserAttribute(dataEmail);
+    const attributeName = new CognitoUserAttribute(dataName);
+    const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
+    attributeList.push(attributeDataUserRole);
+    attributeList.push(attributeEmail);
+    attributeList.push(attributePhoneNumber);
+    attributeList.push(attributeName);
+
     PoolData.signUp(username, Password, attributeList, null, (err, result) => {
       if (err) {
         // eslint-disable-next-line no-alert
@@ -91,7 +91,6 @@ function SignupPage() {
             autoComplete="on"
             type="USERNAME"
             placeholder="USERNAME"
-            name="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             InputProps={{
@@ -104,22 +103,7 @@ function SignupPage() {
           />
           <TextField
             autoComplete="on"
-            type="name"
-            placeholder="NAME"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircleIcon />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            autoComplete="on"
             type="email"
-            name="name"
             placeholder="EMAIL"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
@@ -166,7 +150,9 @@ function SignupPage() {
               ),
             }}
           />
-          <Button type="submit">SIGNUP</Button>
+          <Button disabled={!isFull} type="submit">
+            SIGNUP
+          </Button>
           <StyledLink to="/">Already have an account? &nbsp;</StyledLink>
         </section>
       </Login>

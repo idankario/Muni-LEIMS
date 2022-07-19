@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
+// import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -20,18 +20,17 @@ import { getSwLocation } from "../Api";
 
 function ImageUpload() {
   const navigate = useNavigate();
-  const OfficeName = JSON.parse(localStorage.getItem("office"));
   const [data, setData] = useState({
     userId: localStorage.getItem("user"),
-    lat: OfficeName.lat,
-    lng: OfficeName.lng,
-    scale: 100,
+    x: 165900,
+    y: 635900,
+    scale: 250,
     consumption: "1000",
     switchboards: [],
   });
   const [names, setNames] = useState([]);
   const isFull =
-    data.lat && data.lng && data.consumption && data.switchboards.length;
+    data.x && data.y && data.consumption && data.switchboards.length;
   useEffect(() => {
     async function getDataDB() {
       setNames(await getSwLocation());
@@ -56,20 +55,20 @@ function ImageUpload() {
           <TextField
             type="number"
             autoComplete="off"
-            value={data.lat}
+            value={data.x}
             id="standard-basic"
-            label="lat"
+            label="x"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, lat: e.target.value }))}
+            onChange={(e) => setData(() => ({ ...data, x: e.target.value }))}
           />
           <TextField
             type="number"
             autoComplete="off"
-            value={data.lng}
+            value={data.y}
             id="standard-basic"
-            label="lng"
+            label="y"
             variant="standard"
-            onChange={(e) => setData(() => ({ ...data, lng: e.target.value }))}
+            onChange={(e) => setData(() => ({ ...data, y: e.target.value }))}
           />
           <Typography>
             Enter the total consamption switchboards of the image
@@ -85,7 +84,7 @@ function ImageUpload() {
             }
           />
 
-          <Typography>Enter the scale of the image</Typography>
+          {/* <Typography>Enter the scale of the image</Typography>
           <Slider
             value={data.scale}
             onChange={(e) =>
@@ -95,7 +94,7 @@ function ImageUpload() {
             max={250}
             step={25}
             valueLabelDisplay="on"
-          />
+          /> */}
           <Typography>Select switchboards of the image</Typography>
           <Select
             multiple

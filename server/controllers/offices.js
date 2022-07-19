@@ -7,11 +7,14 @@ const OfficesCtl = {
     SELECT count(o.office_name) AS res
     FROM MuniLEIMS.office o
     INNER JOIN  MuniLEIMS.office_users ou on ou.office_id=o.office_id
-    WHERE o.office_name="Ministry of Energy"AND ou.user_id=${userId}
+    WHERE 
+      o.office_name="Ministry of Energy"
+    AND 
+      ou.user_id=${userId}
     LIMIT 1;`;
     db.query(query, (err, result) => {
       if (err) {
-        console.log(err);
+        res.send("err");
       } else {
         res.send(result);
       }
@@ -31,7 +34,7 @@ const OfficesCtl = {
         res.send(result);
       });
     } catch (error) {
-      res.send(error);
+      res.send("error");
     }
   },
 };

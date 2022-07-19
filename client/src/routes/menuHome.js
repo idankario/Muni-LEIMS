@@ -24,7 +24,7 @@ const MenuMinistryConfig = [
 const MenuMunicipalityConfig = [
   {
     title: "TOP/LAST SWITCHBOARDS",
-    path: "/switchboards",
+    path: "/toplast",
   },
   {
     title: "STATISTICAL REPORTS",
@@ -35,9 +35,14 @@ const MenuMunicipalityConfig = [
     path: "/imgUpload",
   },
   {
+    title: "UPDATE/INSERT SWITCHBOARDS",
+    path: "/switchboards",
+  },
+  {
     title: "VISUALIZED MAP",
     path: "/map",
   },
+
   // {
   //   title: "MANAGE USERS",
   //   path: "/mangeuser",

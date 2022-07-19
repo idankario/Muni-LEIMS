@@ -7,12 +7,22 @@ import SteetLight from "../images/streetlight.png";
 export const Div = styled("div")({
   width: "55px",
   textAlign: "center",
-  fontSize: "0.55rem;",
+  fontSize: "0.8em;",
   opacity: "0.8",
-  background: "#fff",
   borderRadius: "20%",
   fontWeight: "bold",
-  padding: "9px",
+  padding: "12px",
+  "& h3 ": {
+    color: "red",
+  },
+  "& p ": {
+    visibility: "hidden",
+  },
+  ":hover ": {
+    "& p ": {
+      visibility: "visible",
+    },
+  },
 });
 
 export function InfoSW(props) {
@@ -26,8 +36,13 @@ export function InfoSW(props) {
       }}
       mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
     >
-      <Div>
-        <h3 style={{ color: "red" }}>Switchboard {marker.name}</h3>
+      <Div
+        style={{
+          backgroundColor:
+            marker.energy_inetensity > 321 ? "#ffc6c4" : "#90EE90",
+        }}
+      >
+        <h3>Switchboard {marker.name}</h3>
         <img alt="switchboard" title="switchboard" src={Logomap} />
         <p>Average consumption {marker.energy_inetensity}</p>
       </Div>

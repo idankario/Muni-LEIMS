@@ -12,7 +12,7 @@ INNER JOIN MuniLEIMS.area a
 INNER JOIN MuniLEIMS.office o
     ON o.office_id = ou.office_id
 WHERE
-    ss.is_active="active"
+   ss.is_active=1
 group by o.office_id
 order by energy_inetensity_average asc;
 
@@ -51,7 +51,7 @@ INNER JOIN MuniLEIMS.area a
 INNER JOIN MuniLEIMS.office o
     ON o.office_id = ou.office_id
 WHERE
-    ss.is_active="active"
+    ss.is_active=1
 
 group by o.office_id
 order by energy_inetensity_average desc
