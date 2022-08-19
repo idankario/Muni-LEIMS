@@ -60,6 +60,7 @@ export async function officebyId(idUser) {
     const res = await axios({
       method: "GET",
       // headers: { 'x-access-token': localStorage.getItem('token') },
+      // url: `${APIURL}/offices/${idUser}`,
       url: `${APIURL}/offices/${idUser}`,
     });
 
@@ -185,4 +186,11 @@ export async function insertSwitchboards(data) {
     // eslint-disable-next-line no-console
     console.log(error);
   }
+}
+export async function getImagesName() {
+  const res = await fetch(`${APIURL}/images/imagesname/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
 }

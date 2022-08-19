@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -28,7 +29,7 @@ function SiginPage() {
   }, []);
   const onSubmit = (event) => {
     event.preventDefault();
-    const user = new CognitoUser({
+    const cognitoUser = new CognitoUser({
       Username: email,
       Pool: PoolData,
     });
@@ -36,7 +37,7 @@ function SiginPage() {
       Username: email,
       Password: password,
     });
-    user.authenticateUser(authDetails, {
+    cognitoUser.authenticateUser(authDetails, {
       onSuccess: (data) => {
         async function storeOffice() {
           const id = await data.idToken.payload["custom:user_id"];
@@ -56,6 +57,49 @@ function SiginPage() {
       },
     });
   };
+  // eslint-disable-next-line no-unused-vars
+  function resetPassword(username) {
+    const cognitoUser = new CognitoUser({
+      Username: email,
+      Pool: PoolData,
+    });
+    // call forgotPassword on cognitoUser
+    cognitoUser.forgotPassword({
+      onSuccess(result) {
+        console.log(`call result: ${result}`);
+      },
+      onFailure(err) {
+        // eslint-disable-next-line no-alert
+        alert(err);
+      },
+      inputVerificationCode() {
+        // this is optional, and likely won't be implemented as in AWS's example (i.e, prompt to get info)
+        const verificationCode = prompt("Please input verification code ", "");
+        const newPassword = prompt("Enter new password ", "");
+        cognitoUser.confirmPassword(verificationCode, newPassword, this);
+      },
+    });
+  }
+
+  // confirmPassword can be separately built out as follows...
+  // eslint-disable-next-line no-unused-vars
+  function confirmPassword(verificationCode, newPassword) {
+    const cognitoUser = new CognitoUser({
+      Username: email,
+      Pool: PoolData,
+    });
+
+    return new Promise((resolve, reject) => {
+      cognitoUser.confirmPassword(verificationCode, newPassword, {
+        onFailure(err) {
+          reject(err);
+        },
+        onSuccess() {
+          resolve();
+        },
+      });
+    });
+  }
   return (
     <Container>
       <img

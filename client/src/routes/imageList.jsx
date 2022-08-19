@@ -2,11 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
-import { getSwitchboards, loadMunicipalities } from "../Api";
+import { getImagesName } from "../Api";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
-import Table from "../components/table";
-import { H1 } from "../components/h1";
+import Tableimages from "../components/Tableimages";
+import { H1, H6 } from "../components/h1";
 import Container from "../components/container";
 
 const MainStyle = styled("div")(() => ({
@@ -14,15 +14,15 @@ const MainStyle = styled("div")(() => ({
   flexDirection: `column`,
 }));
 
-function TopLastReports({ dataType }) {
+function ImagesName() {
   const [rows, setRows] = useState(null);
   useEffect(() => {
     async function getDataDB() {
-      const data =
-        dataType === "municipalities"
-          ? await loadMunicipalities()
-          : await getSwitchboards();
+      const data = await getImagesName();
       setRows(data);
+
+      // eslint-disable-next-line no-console
+      console.log(data);
     }
     getDataDB();
   }, []);
@@ -31,18 +31,10 @@ function TopLastReports({ dataType }) {
     <Container>
       <Header />
       <MainStyle>
-        <H1>
-          {dataType === "municipalities"
-            ? "Top/Last Municipalities"
-            : "Top/Last Switchboards"}
-        </H1>
+        <H1>IMAGE LIST</H1>
+        <H6>CHOOSE IMAGE FILE TO DISTANCE</H6>
         {rows ? (
-          <Table
-            rows={rows}
-            dataName={
-              dataType === "municipalities" ? "Municipalities" : "Switchboards"
-            }
-          />
+          <Tableimages rows={rows} />
         ) : (
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
         )}
@@ -52,4 +44,4 @@ function TopLastReports({ dataType }) {
   );
 }
 
-export default TopLastReports;
+export default ImagesName;

@@ -30,7 +30,11 @@ export const Login = styled("form")({
     margin: "auto",
     width: "20em",
   },
-  "& section >*:not(svg)": {
+  "& p": {
+    color: "red",
+    fontSize: "15px",
+  },
+  "& section >*:not(svg,p)": {
     marginBottom: "20px",
     minHeight: "52px",
     opacity: "0.9",

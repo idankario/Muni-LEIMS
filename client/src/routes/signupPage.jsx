@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 import React, { useState } from "react";
@@ -18,7 +19,7 @@ import { Login, StyledLink } from "../components/util/board";
 import Header from "../components/header";
 import { H_1 } from "../components/h1";
 import Container from "../components/container";
-import checkSignUp from "../components/util/regexValidation";
+import { checkSignUp } from "../components/util/regexValidation";
 import Shenkar from "../components/images/shenkar.png";
 
 function SignupPage() {
@@ -28,15 +29,34 @@ function SignupPage() {
   const [username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState({
+    eUsername: "",
+    eEmail: "",
+    ePhone: "",
+    ePassword: "",
+  });
+
   const attributeList = [];
   const dataUserRole = {
     Name: "custom:user_role",
     Value: "0",
   };
   const isFull = email && phone_number && username && Password;
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    if (checkSignUp()) return;
+
+    if (
+      await checkSignUp(
+        {
+          email,
+          phone_number,
+          Password,
+          username,
+        },
+        setError
+      )
+    )
+      return;
     const dataEmail = {
       Name: "email",
       Value: email,
@@ -101,6 +121,7 @@ function SignupPage() {
               ),
             }}
           />
+          {error.eUsername ? <p>{error.eUsername}</p> : ""}
           <TextField
             autoComplete="on"
             type="email"
@@ -115,6 +136,7 @@ function SignupPage() {
               ),
             }}
           />
+          {error.eEmail ? <p>{error.eEmail}</p> : ""}
           <TextField
             autoComplete="on"
             type="number"
@@ -129,7 +151,7 @@ function SignupPage() {
               ),
             }}
           />
-
+          {error.ePhone ? <p>{error.ePhone}</p> : ""}
           <TextField
             autoComplete="on"
             type={showPassword ? "text" : "password"}
@@ -150,6 +172,7 @@ function SignupPage() {
               ),
             }}
           />
+          {error.ePassword ? <p>{error.ePassword}</p> : ""}
           <Button disabled={!isFull} type="submit">
             SIGNUP
           </Button>

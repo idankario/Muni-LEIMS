@@ -25,10 +25,9 @@ const HeaderTemplate = styled("header")({
   backgroundColor: "#2E2E2E ",
 });
 
-const P = styled("p")({
-  position: "absolute",
-  right: "10px",
-  top: "6px",
+const H5 = styled("h5")({
+  float: "right",
+  marginRight: "10px",
   fontSize: "1.2em",
   color: "#b8e100",
   "& button": {
@@ -56,12 +55,12 @@ export default function Header() {
         <span>Muni-LEIMS</span>
       </a>
       {officeName ? (
-        <P>
+        <H5>
           <IconButton onClick={() => signOut()} aria-label="exitToAppIcon">
             <ExitToAppIcon />
           </IconButton>
           {officeName.office_name}
-        </P>
+        </H5>
       ) : (
         ""
       )}

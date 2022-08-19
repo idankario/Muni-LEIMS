@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ImgUpload from "./routes/imageUpload";
-import SiginPage1 from "./routes/loginPage";
 import HomePage from "./routes/homePage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
-import ImgUpload1 from "./routes/upload";
+// import ImgUpload1 from "./routes/upload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
@@ -13,15 +12,15 @@ import PrivateRoute from "./routes/privateRouter/privateRouter";
 import SignupPage from "./routes/signupPage";
 import SiginPage from "./routes/siginPage";
 import Switchboards from "./routes/switchboards";
+import DistancePage from "./routes/distancePage";
+import ImagesNames from "./routes/imageList";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<SiginPage1 />} />
-        <Route exact path="/siginPage" element={<SiginPage />} />
+        <Route exact path="/" element={<SiginPage />} />
         <Route exact path="/signup" element={<SignupPage />} />
-        <Route exact path="/imgUpload1" element={<ImgUpload />} />
         <Route
           exact
           path="/statisticalReports"
@@ -31,6 +30,52 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* <Route
+          exact
+          path="/statisticalReports"
+          element={
+            <PrivateRoute>
+              <StatisticalReports />
+            </PrivateRoute>
+          }
+        /> */}
+        {/* <Route
+          exact
+          path="/images"
+          element={
+            <PrivateRoute>
+              <ImagesNames />
+            </PrivateRoute>
+          }
+        /> */}
+        <Route
+          exact
+          path="/distance"
+          element={
+            <PrivateRoute>
+              <ImagesNames />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          exact
+          path="/about"
+          element={
+            <PrivateRoute>
+              <DistancePage />
+            </PrivateRoute>
+          }
+        />
+        {/* <Route
+          exact
+          path="/mesuredistances"
+          element={
+            <PrivateRoute>
+              <DistancePage filename="27-7-2022 19:40:26 Untitled.jpg" />
+            </PrivateRoute>
+          }
+        /> */}
+
         <Route
           exact
           path="/homepage"
@@ -63,7 +108,7 @@ function App() {
           path="/imgUpload"
           element={
             <PrivateRoute>
-              <ImgUpload1 />
+              <ImgUpload />
             </PrivateRoute>
           }
         />

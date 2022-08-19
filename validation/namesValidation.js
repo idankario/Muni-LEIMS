@@ -1,11 +1,10 @@
 names = [
-  "054304533",
   "Jon Doe",
   "Jonathan Taylor Thomas",
   "Julia Louis-Dreyfus",
   "Jean-Paul Sartre",
   "Pat O'Brien",
-  "Þór Eldon",
+  "Eldon",
   "Marcus Wells-O'Shaugnessy",
   "Stephen Wells-O'Shaugnessy Marcus",
   "This-Is-A-Crazy-Name Jones",
@@ -16,13 +15,18 @@ names = [
   "'-'c -'-'-'-d",
   "e-'f g'-'-'-h",
   "'ij- -klmnop'",
+  "054304533",
+  "idan",
+  "idan33",
+  ".idan",
+  "id.an",
 ];
 names.forEach(validationNames);
 function validationNames(name) {
   console.log(
     name +
       ": " +
-      /^(([A-Za-z]+[\-\']?)*([A-Za-z]+)?\s)+([A-Za-z]+[\-\']?)*([A-Za-z]+)?$/.test(
+      /(^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z][a-zA-Z0-9._]+(?<![_.])$)/.test(
         name
       )
   );
