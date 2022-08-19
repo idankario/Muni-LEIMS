@@ -73,16 +73,14 @@ const ImagesCtl = {
       res.send("error");
     }
     const query = `
-    SELECT image_id  
-    FROM MuniLEIMS.image
+    INSERT INTO MuniLEIMS.BoundingBox
+    (image_id,x, y,width,height)
+    SELECT i.image_id,'${x}', '${y}', '${width}', '${height}'
+    FROM MuniLEIMS.image i 
     WHERE image_name = '${fileName}'`;
     try {
       db.query(query, (err, result) => {
         if (err) throw err;
-        const query1 = `
-        INSERT INTO MuniLEIMS.BoundingBox
-        (x, y,width,height,image_id)
-        VALUES ('${x}', '${y}', '${width}', '${height}',${result[0].image_id});`;
       });
     } catch (error) {
       res.send("error");
@@ -105,8 +103,8 @@ const ImagesCtl = {
   async getImagesName(req, res) {
     const userId = req.params.id;
     const query = `
-    select MuniLEIMS.image.image_name,a.is_active
-    from MuniLEIMS.image 
+    Select MuniLEIMS.image.image_name,a.is_active
+    From MuniLEIMS.image 
     INNER JOIN MuniLEIMS.switchboard_statisticalreport a 
     ON a.image_id=MuniLEIMS.image.image_id
     WHERE user_id=${userId} 
@@ -122,15 +120,27 @@ const ImagesCtl = {
     }
   },
   async activeStatisticalReport(req, res) {
-    const userId = req.params.id;
+    const { image_name, distance } = req.body;
     const query = `
-    select MuniLEIMS.image.image_name,a.is_active
-    from MuniLEIMS.image 
-    INNER JOIN MuniLEIMS.switchboard_statisticalreport a 
-    ON a.image_id=MuniLEIMS.image.image_id
-    WHERE user_id=${userId} 
-    And a.is_active >1 
-    order by MuniLEIMS.image.upload_date desc;`;
+    Update MuniLEIMS.switchboard_statisticalreport ss
+    INNER JOIN MuniLEIMS.switchboard_statisticalreport s_s 
+    ON s_s.switchboard_id=ss.switchboard_id
+    INNER JOIN MuniLEIMS.image i ON i.image_id=ss.image_id
+    SET s_s.is_active = 0 
+    WHERE s_s.is_active=1 
+    AND i.image_name='image_name'; 
+    Update MuniLEIMS.switchboard_statisticalreport ss
+    INNER JOIN MuniLEIMS.image i ON i.image_id=ss.image_id
+    SET ss.is_active = 1
+    WHERE 
+    ss.is_active=2 
+    AND
+    i.image_name=${image_name}
+    Update MuniLEIMS.statisticalreport s 
+    SET s.average_density_streetlight = ${distance} 
+    INNER JOIN MuniLEIMS.switchboard_statisticalreport ss ON s.statisticalreport_id = ss.statisticalreport_id
+    INNER JOIN MuniLEIMS.image i ON i.image_id=ss.image_id
+    where i.imageName=${image_name}`;
     try {
       db.query(query, (err, result) => {
         if (err) throw err;
@@ -141,15 +151,15 @@ const ImagesCtl = {
     }
   },
   async disactiveStatisticalReport(req, res) {
-    const userId = req.params.id;
+    const { image_name } = req.body;
     const query = `
-    select MuniLEIMS.image.image_name,a.is_active
-    from MuniLEIMS.image 
-    INNER JOIN MuniLEIMS.switchboard_statisticalreport a 
-    ON a.image_id=MuniLEIMS.image.image_id
-    WHERE user_id=${userId} 
-    And a.is_active >1 
-    order by MuniLEIMS.image.upload_date desc;`;
+    Update MuniLEIMS.switchboard_statisticalreport ss
+    INNER JOIN MuniLEIMS.image i ON i.image_id=ss.image_id
+    SET ss.is_active = 0
+    WHERE 
+    ss.is_active=2 
+    AND
+    i.image_name=${image_name}`;
     try {
       db.query(query, (err, result) => {
         if (err) throw err;

@@ -194,3 +194,23 @@ export async function getImagesName() {
   const json = await res.json();
   return json;
 }
+
+export async function disactiveStatisticalReport(data) {
+  const res = await axios({
+    method: "PUT",
+    url: `${APIURL}/images/disactive/`,
+    data,
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function activeStatisticalReport(data) {
+  const res = await axios({
+    method: "PUT",
+    url: `${APIURL}/images/active/`,
+    data,
+  });
+  const json = await res.json();
+  return json;
+}
