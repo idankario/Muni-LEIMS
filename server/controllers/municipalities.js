@@ -1,4 +1,5 @@
 import db from "../db_connection";
+import {DataBaseErr,GetSuc} from "../myEvents";
 
 const MunicipalitiesCtl = {
   async municipalities(req, res) {
@@ -21,7 +22,8 @@ const MunicipalitiesCtl = {
     Order By consumption_average asc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -49,7 +51,8 @@ const MunicipalitiesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -78,7 +81,8 @@ const MunicipalitiesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -107,7 +111,8 @@ const MunicipalitiesCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -136,7 +141,8 @@ const MunicipalitiesCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {

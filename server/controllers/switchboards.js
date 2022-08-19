@@ -1,4 +1,5 @@
 import db from "../db_connection";
+import {DataBaseErr,GetSuc,PutSuc,InsertSuc,UpdateFormSwitchboard,InserFormSwitchboard} from "../myEvents";
 
 const SwitchboardsCtl = {
   async switchboardsById(req, res) {
@@ -18,7 +19,8 @@ const SwitchboardsCtl = {
       ORDER BY s.energy_inetensity ;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -47,7 +49,8 @@ const SwitchboardsCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -75,7 +78,8 @@ const SwitchboardsCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -104,7 +108,8 @@ const SwitchboardsCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -132,7 +137,8 @@ const SwitchboardsCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -159,7 +165,8 @@ const SwitchboardsCtl = {
       ss.is_active=1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -185,7 +192,8 @@ const SwitchboardsCtl = {
     Group By o.office_id;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -194,6 +202,12 @@ const SwitchboardsCtl = {
   },
   async updateSwitchboards(req, res) {
     const { userId, lat, lng, switchboard } = req.body;
+    if (
+      !(userId && lat && lng && switchboard )
+    ) {
+      UpdateFormSwitchboard();
+      res.send("error");
+    }
     const query = `
     UPDATE MuniLEIMS.switchboard s
     INNER JOIN  MuniLEIMS.area a  ON a.area_id = s.area_id
@@ -207,7 +221,8 @@ const SwitchboardsCtl = {
       ou.user_id=${userId};`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        PutSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
@@ -216,6 +231,12 @@ const SwitchboardsCtl = {
   },
   async insertSwitchboards(req, res) {
     const { userId, lat, lng, switchboard } = req.body;
+    if (
+      !(userId && lat && lng && switchboard )
+    ) {
+      InserFormSwitchboard();
+      res.send("error");
+    }
     const query = `
     INSERT INTO MuniLEIMS.area(lat,lng)
     VALUES ('${lat}', '${lng}'); 
@@ -226,7 +247,8 @@ const SwitchboardsCtl = {
     WHERE ou.user_id=${userId};`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {DataBaseErr();throw err;}
+        InsertSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {

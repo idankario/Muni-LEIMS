@@ -28,8 +28,7 @@ function DistancePage() {
   const location = useLocation();
   useEffect(() => {
     async function setImageDimensions() {
-      const url = `https://api.muni-leims.ml/presignedurl?filename=${await location
-        .state.name}`;
+      const url = `https://api.muni-leims.ml/presignedurl?filename=${await location.state.name}`;
       try {
         const res = await axios({
           method: "get",
