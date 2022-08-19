@@ -178,7 +178,7 @@ const SwitchboardsCtl = {
         ON ou.office_id = sw.office_id    
     INNER JOIN MuniLEIMS.office o
         ON o.office_id = ou.office_id
-	INNER JOIN MuniLEIMS.area a
+	  INNER JOIN MuniLEIMS.area a
         ON a.area_id = o.area_id
     WHERE
         ss.is_active=1
