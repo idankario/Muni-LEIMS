@@ -4,7 +4,7 @@ export const H1 = styled("h1")(() => ({
   fontSize: "4em",
 }));
 export const H3 = styled("h3")(() => ({
-  fontSize: "45px",
+  fontSize: "4em",
 }));
 export const H_1 = styled(H1)(() => ({
   display: "inline-block",

@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
+// import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuProps, Main } from "../components/form";
 import BackButton from "../components/backButton";
 import Header from "../components/header";
-import UploadImage from "../components/util/uploadImage";
+// import UploadImage from "../components/util/uploadImage";
 import { H1 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
@@ -25,7 +25,7 @@ function ImageUpload() {
     userId: localStorage.getItem("user"),
     lat: OfficeName.lat,
     lng: OfficeName.lng,
-    scale: 100,
+    scale: 250,
     consumption: "1000",
     switchboards: [],
   });
@@ -38,11 +38,12 @@ function ImageUpload() {
     }
     getDataDB();
   }, []);
-  async function handleFileInput(file) {
-    if (file) {
-      await UploadImage(file, file.name, data);
-      navigate("/homePage");
-    }
+  async function handleFileInput() {
+    navigate("/homePage");
+    // if (file) {
+    //   await UploadImage(file, file.name, data);
+    //   navigate("/homePage");
+    // }
   }
 
   return (
@@ -86,7 +87,7 @@ function ImageUpload() {
           />
 
           <Typography>Enter the scale of the image</Typography>
-          <Slider
+          {/* <Slider
             value={data.scale}
             onChange={(e) =>
               setData(() => ({ ...data, scale: e.target.value }))
@@ -95,7 +96,7 @@ function ImageUpload() {
             max={250}
             step={25}
             valueLabelDisplay="on"
-          />
+          /> */}
           <Typography>Select switchboards of the image</Typography>
           <Select
             multiple
@@ -124,12 +125,6 @@ function ImageUpload() {
           >
             Upload Image
             {/* Upload image file from file system */}
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={(e) => handleFileInput(e.target.files[0])}
-            />
           </Button>
         </section>
       </Main>

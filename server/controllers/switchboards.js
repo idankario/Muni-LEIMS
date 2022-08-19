@@ -91,9 +91,11 @@ const SwitchboardsCtl = {
     INNER JOIN MuniLEIMS.office_users o
         ON o.office_id = sw.office_id 
     WHERE
-        o.user_id=${userId} 
-        and
+        o.user_id=1
+    And
         ss.is_active="active"
+    And
+        s.energy_inetensity<321
     ORDER BY s.energy_inetensity 
     LIMIT 5;`;
     try {
@@ -117,7 +119,11 @@ const SwitchboardsCtl = {
     INNER JOIN MuniLEIMS.office_users o
       ON o.office_id = sw.office_id 
     WHERE
-      o.user_id=${userId} and ss.is_active="active"
+      o.user_id=${userId} 
+    And
+      ss.is_active="active"
+    And    
+        s.energy_inetensity>320
     ORDER BY s.energy_inetensity desc
     LIMIT 5;`;
     try {

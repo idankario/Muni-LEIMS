@@ -14,7 +14,7 @@ const MenuMinistryConfig = [
   },
   {
     title: "VISUALIZED MAP",
-    path: "/mappage",
+    path: "/map",
   },
   // {
   //   title: "MANAGE USERS",
@@ -36,7 +36,7 @@ const MenuMunicipalityConfig = [
   },
   {
     title: "VISUALIZED MAP",
-    path: "/mappage",
+    path: "/map",
   },
   // {
   //   title: "MANAGE USERS",

@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SiginPage from "./routes/siginPage";
+import SiginPage from "./routes/loginPage";
 import HomePage from "./routes/homePage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
-import ImgUpload from "./routes/imageUpload";
+import ImgUpload from "./routes/upload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
@@ -64,7 +64,7 @@ function App() {
         />
         <Route
           exact
-          path="/mappage"
+          path="/map"
           element={
             <PrivateRoute>
               <MapPage />

@@ -105,13 +105,14 @@ function StatisticalReports() {
     topFive: [],
     lastFive: [],
   });
-
+  const avg = 321;
   useEffect(() => {
     async function getDataDB() {
       const highestSwitchboard = await getHighestSwitchboard();
       const lowestSwitchboard = await getLowestSwitchboard();
       const topFive = await getTopFiveSwitchboards();
       const lastFive = await getLastFiveSwitchboards();
+
       setData({
         highestSwitchboard: highestSwitchboard[0],
         lowestSwitchboard: lowestSwitchboard[0],
@@ -140,78 +141,93 @@ function StatisticalReports() {
         ) : (
           <>
             <PlotWrapper>
-              <Plot
-                data={[
-                  {
-                    x: [null, ...data.topFive.map((o) => `num:${o.area}`)],
-                    y: [
-                      `0 kWh `,
-                      ...data.topFive.map((o) => `${o.intensity} kWh `),
-                    ],
+              {data.lowestSwitchboard.intensity <= avg ? (
+                <Plot
+                  data={[
+                    {
+                      x: [null, ...data.topFive.map((o) => `num:${o.area}`)],
+                      y: [
+                        `0 kWh `,
+                        ...data.topFive.map((o) => `${o.intensity} kWh `),
+                      ],
 
-                    type: "bar",
-                    mode: "lines+markers",
-                    marker: { color: "green" },
-                  },
-                ]}
-                layout={{
-                  width: 350,
-                  height: 300,
-                  xaxis: {
-                    tickangle: -50,
-                  },
+                      type: "bar",
+                      mode: "lines+markers",
+                      marker: { color: "green" },
+                    },
+                  ]}
+                  layout={{
+                    width: 350,
+                    height: 300,
+                    xaxis: {
+                      tickangle: -50,
+                    },
 
-                  title: "Top 5 Switchboards ",
-                  font: { color: "white" },
-                  plot_bgcolor: "black",
-                  paper_bgcolor: "black",
-                }}
-                config={{ displayModeBar: false }}
-              />
+                    title: `Top ${data.topFive.length} Switchboards `,
+                    font: { color: "white" },
+                    plot_bgcolor: "black",
+                    paper_bgcolor: "black",
+                  }}
+                  config={{ displayModeBar: false }}
+                />
+              ) : (
+                ""
+              )}
+              {data.highestSwitchboard.intensity > avg ? (
+                <Plot
+                  data={[
+                    {
+                      x: [null, ...data.lastFive.map((o) => `num:${o.area}`)],
+                      y: [
+                        `0 kWh `,
+                        ...data.lastFive
+                          .slice(0)
+                          .reverse()
+                          .map((o) => `${o.intensity} kWh `),
+                      ],
+                      type: "bar",
+                      mode: "lines+markers",
+                      marker: { color: "red" },
+                    },
+                  ]}
+                  layout={{
+                    width: 350,
+                    height: 300,
+                    xaxis: {
+                      tickangle: -45,
+                    },
 
-              <Plot
-                data={[
-                  {
-                    x: [null, ...data.lastFive.map((o) => `num:${o.area}`)],
-                    y: [
-                      `0 kWh `,
-                      ...data.lastFive
-                        .slice(0)
-                        .reverse()
-                        .map((o) => `${o.intensity} kWh `),
-                    ],
-                    type: "bar",
-                    mode: "lines+markers",
-                    marker: { color: "red" },
-                  },
-                ]}
-                layout={{
-                  width: 350,
-                  height: 300,
-                  xaxis: {
-                    tickangle: -45,
-                  },
-
-                  title: "Last 5 Switchboards ",
-                  font: { color: "white" },
-                  plot_bgcolor: "black",
-                  paper_bgcolor: "black",
-                }}
-                config={{ displayModeBar: false }}
-              />
+                    title: `Last ${data.lastFive.length} Switchboards `,
+                    font: { color: "white" },
+                    plot_bgcolor: "black",
+                    paper_bgcolor: "black",
+                  }}
+                  config={{ displayModeBar: false }}
+                />
+              ) : (
+                ""
+              )}
             </PlotWrapper>
             <Sep />
             <DataWrapper>
-              <ConsumptionData
-                title="The lowest energy intensity per switchboard"
-                kWh={data.lowestSwitchboard.intensity}
-                color="green"
-              />
-              <ConsumptionData
-                title="The highest energy intensity per switchboard"
-                kWh={data.highestSwitchboard.intensity}
-                color="red"
-              />
+              {data.lowestSwitchboard.intensity <= avg ? (
+                <ConsumptionData
+                  title="The lowest energy intensity per switchboard"
+                  kWh={data.lowestSwitchboard.intensity}
+                  color="green"
+                />
+              ) : (
+                ""
+              )}
+              {data.highestSwitchboard.intensity > avg ? (
+                <ConsumptionData
+                  title="The highest energy intensity per switchboard"
+                  kWh={data.highestSwitchboard.intensity}
+                  color="red"
+                />
+              ) : (
+                ""
+              )}
             </DataWrapper>
           </>
         )}

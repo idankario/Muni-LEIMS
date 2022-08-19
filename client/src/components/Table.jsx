@@ -15,7 +15,7 @@ const TableStyle = styled("table")({
   "&::-webkit-scrollbar": {
     width: `15px`,
   },
-  
+
   /* Track */
   "&::--webkit-scrollbar-track ": {
     background: `rgba(255, 255, 255, 0.5)`,
@@ -55,7 +55,6 @@ const Th = styled("th")({
 const Td = styled("td")({
   borderLeft: `8px solid white`,
   borderRight: `8px solid white`,
-
 });
 export default function Table({ rows, dataName }) {
   const avg = 321;
@@ -67,7 +66,7 @@ export default function Table({ rows, dataName }) {
           <Th>{dataName}</Th>
           <Th>
             Energy Intensity{" "}
-            <p style={{ fontSize: "23px" }}>
+            <p style={{ fontSize: "2vw" }}>
               Average Consumption per Streetlight
             </p>
           </Th>
@@ -78,7 +77,10 @@ export default function Table({ rows, dataName }) {
           <tr
             // eslint-disable-next-line react/no-array-index-key
             key={row.municipality || row.area}
-            style={{textShadow: "3px 3px black",color: row.consumption_average > avg ? "red" : "green" }}
+            style={{
+              textShadow: "3px 3px black",
+              color: row.consumption_average > avg ? "red" : "green",
+            }}
           >
             <td>{index + 1}</td>
             <Td>{row.municipality || row.area}</Td>

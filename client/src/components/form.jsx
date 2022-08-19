@@ -6,15 +6,12 @@ export const Main = styled("main")({
     opacity: "0.9",
     borderRadius: "50px",
     background: "#fff",
-    maxWidth: "30em",
-    padding: "2px 0px 5px 40px",
+    width: "25em",
+
+    padding: "0px 5vw 0px 5vw ",
   },
   "& .MuiFormControl-root": {
-    width: "14em",
-    textAlign: "center",
-  },
-  "& p:not(h3+p)": {
-    textAlign: "left",
+    width: "12em",
   },
 
   "& .MuiInputBase-root": {
@@ -23,8 +20,10 @@ export const Main = styled("main")({
 
   "& section >*": {
     textAlign: "center",
-    maxWidth: "80%",
     margin: "0.8em 0px",
+  },
+  "& p:not(h1+p)": {
+    textAlign: "left",
   },
   "& .MuiButton-root": {
     width: "16em",
