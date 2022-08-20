@@ -23,7 +23,7 @@ const ImagesCtl = {
         VALUES
         ('${consumption}');`;
         db.query(query2, function (err, result) {
-          if (err) {DataBaseErr();throw err;}
+          if (err) {throw err;}
           const statisticalreport_id = result.insertId;
           //For each switchboard connect image and statistical report
           switchboards.forEach((switchboardName) => {
@@ -44,6 +44,7 @@ const ImagesCtl = {
         });
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -65,11 +66,12 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}';`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         InsertSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -85,13 +87,14 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}'`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         const query1 = `
         INSERT INTO MuniLEIMS.BoundingBox
         (x, y,width,height,image_id)
         VALUES ('${x}', '${y}', '${width}', '${height}',${result[0].image_id});`;
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -102,11 +105,12 @@ const ImagesCtl = {
     WHERE status=2;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         GetSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -122,11 +126,12 @@ const ImagesCtl = {
     order by MuniLEIMS.image.upload_date desc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },
@@ -142,11 +147,12 @@ const ImagesCtl = {
     order by MuniLEIMS.image.upload_date desc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },
@@ -162,11 +168,12 @@ const ImagesCtl = {
     order by MuniLEIMS.image.upload_date desc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },

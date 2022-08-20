@@ -1,15 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { useLocation ,useNavigate} from "react-router-dom";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
+import AproveButton from "../components/aproveButton";
 import BackButton from "../components/backButton";
+import ClearButton from "../components/clearButton";
 import Container from "../components/container";
 import { H1 } from "../components/h1";
+import { setEnergyIntesityImage} from "../Api";
 
 function DistancePage() {
   const canvas = useRef();
+  const navigate = useNavigate();
   const [canvasDimensions, setCanvasDimensions] = useState({
     height: 300,
     width: 300,
@@ -17,7 +22,7 @@ function DistancePage() {
   // const history = useNavigate();
   // const data22 = history.location.state.fileName;
   const { dd } = useLocation();
-
+  
   const [distance, setDistance] = useState(0);
   const [count, setCount] = useState(0);
   const distancePerPixel = 74 / 1174;
@@ -85,12 +90,26 @@ function DistancePage() {
       i = 1;
     }
   };
+  async function handleAprove() {
+    // eslint-disable-next-line no-unused-expressions
+    setEnergyIntesityImage(3, await location.state.name);
+    navigate("/homePage");
+  }
+  async function handleClear() {
+    // eslint-disable-next-line no-unused-expressions
+    setDistance(0);
+    const ctx = canvas.current.getContext("2d");
+    ctx.clearRect(0, 0, canvasDimensions.width, canvasDimensions.height);
+   
+  }
 
   return (
     <Container bgimage={1} width={canvasDimensions.width}>
       <Header />
       <Menu>
+      
         <H1>DISTANCE {count ? `${(distance / count).toFixed(2)}m` : ""}</H1>
+        
         <div>
           <canvas
             id="hi"
@@ -103,10 +122,11 @@ function DistancePage() {
             }}
           />
         </div>
+        <Button onClick={() => {handleAprove()}}><AproveButton /></Button>
+        <Button onClick={() => {handleClear()}}><ClearButton /></Button>
         <BackButton />
       </Menu>
     </Container>
   );
 }
-
 export default DistancePage;

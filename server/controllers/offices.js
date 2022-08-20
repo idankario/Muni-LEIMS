@@ -37,11 +37,12 @@ const OfficesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {throw err;}
         GetSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
