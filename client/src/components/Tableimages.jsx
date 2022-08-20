@@ -60,13 +60,13 @@ export default function Table({ rows }) {
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              onClick={() => moveDistanseMesure(row.image_name)}
+              onClick={() => row.is_active === 2 ? moveDistanseMesure(row.image_name) : console.log("not ready")}
               // eslint-disable-next-line react/no-array-index-key
               key={row.image_name}
               sx={{
                 "&:last-child td, &:last-child th": { border: 0 },
                 "&:hover": {
-                  background: `linear-gradient(45deg, #CDFA00 40%, #ECB22F 90%)`,
+                  background: row.is_active === 2 ? `linear-gradient(45deg, #CDFA00 40%, #ECB22F 90%)`:`linear-gradient(45deg, #606060 40%, #606060 90%)`,
                 },
               }}
               // style={{textShadow: "3px 3px black",color:  "green"  }}
@@ -81,7 +81,7 @@ export default function Table({ rows }) {
                 <strong>{row.image_name.split(" ")[1]} </strong>
               </TableCell>
               <TableCell sx={{ fontSize: "18px" }}>
-                <strong>{row.is_active === 2 ? "Progress" : "Ready"} </strong>
+                <strong>{row.is_active === 2 ? "Ready" : "Progress"} </strong>
               </TableCell>
             </TableRow>
           ))}
