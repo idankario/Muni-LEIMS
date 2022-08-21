@@ -1,4 +1,5 @@
 import db from "../db_connection";
+import {DataBaseErr,GetSuc} from "../myEvents";
 
 const OfficesCtl = {
   async typeOffice(req, res) {
@@ -16,8 +17,10 @@ const OfficesCtl = {
     LIMIT 1;`;
     db.query(query, (err, result) => {
       if (err) {
+       DataBaseErr();
         res.send("err");
       } else {
+        GetSuc();
         res.send(result);
       }
     });
@@ -34,10 +37,12 @@ const OfficesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {throw err;}
+        GetSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
