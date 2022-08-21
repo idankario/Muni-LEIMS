@@ -1,8 +1,9 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Slider from "@mui/material/Slider";
+// import Slider from "@mui/material/Slider";
 import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -20,18 +21,18 @@ import { getSwLocation } from "../Api";
 
 function ImageUpload() {
   const navigate = useNavigate();
-  const OfficeName = JSON.parse(localStorage.getItem("office"));
   const [data, setData] = useState({
     userId: localStorage.getItem("user"),
-    lat: OfficeName.lat,
-    lng: OfficeName.lng,
-    scale: 100,
+    x: 165900,
+    y: 635900,
+    scale: 250,
     consumption: "1000",
     switchboards: [],
   });
+  const [isUpolad, setIsUpolad] = useState(1);
   const [names, setNames] = useState([]);
   const isFull =
-    data.lat && data.lng && data.consumption && data.switchboards.length;
+    data.x && data.y && data.consumption && data.switchboards.length;
   useEffect(() => {
     async function getDataDB() {
       setNames(await getSwLocation());
@@ -40,7 +41,9 @@ function ImageUpload() {
   }, []);
   async function handleFileInput(file) {
     if (file) {
+      setIsUpolad(0);
       await UploadImage(file, file.name, data);
+      setIsUpolad(1);
       navigate("/homePage");
     }
   }
@@ -48,44 +51,50 @@ function ImageUpload() {
   return (
     <Container>
       <Header />
-      <Main>
-        <section>
-          <H1>Upload Image </H1>
-          <Info />
-          <Typography>Enter the cordinate of the image</Typography>
-          <TextField
-            type="number"
-            autoComplete="off"
-            value={data.lat}
-            id="standard-basic"
-            label="lat"
-            variant="standard"
-            onChange={(e) => setData(() => ({ ...data, lat: e.target.value }))}
-          />
-          <TextField
-            type="number"
-            autoComplete="off"
-            value={data.lng}
-            id="standard-basic"
-            label="lng"
-            variant="standard"
-            onChange={(e) => setData(() => ({ ...data, lng: e.target.value }))}
-          />
-          <Typography>
-            Enter the total consamption switchboards of the image
-          </Typography>
-          <TextField
-            type="number"
-            autoComplete="off"
-            value={data.consumption}
-            label="Consumption"
-            variant="standard"
-            onChange={(e) =>
-              setData(() => ({ ...data, consumption: e.target.value }))
-            }
-          />
+      {isUpolad ? (
+        <>
+          <Main>
+            <section>
+              <H1>Upload Image </H1>
+              <Info />
+              <Typography>Enter the cordinate of the image</Typography>
+              <TextField
+                type="number"
+                autoComplete="off"
+                value={data.x}
+                id="standard-basic"
+                label="x"
+                variant="standard"
+                onChange={(e) =>
+                  setData(() => ({ ...data, x: e.target.value }))
+                }
+              />
+              <TextField
+                type="number"
+                autoComplete="off"
+                value={data.y}
+                id="standard-basic"
+                label="y"
+                variant="standard"
+                onChange={(e) =>
+                  setData(() => ({ ...data, y: e.target.value }))
+                }
+              />
+              <Typography>
+                Enter the total consamption switchboards of the image
+              </Typography>
+              <TextField
+                type="number"
+                autoComplete="off"
+                value={data.consumption}
+                label="Consumption"
+                variant="standard"
+                onChange={(e) =>
+                  setData(() => ({ ...data, consumption: e.target.value }))
+                }
+              />
 
-          <Typography>Enter the scale of the image</Typography>
+              {/* <Typography>Enter the scale of the image</Typography>
           <Slider
             value={data.scale}
             onChange={(e) =>
@@ -95,45 +104,51 @@ function ImageUpload() {
             max={250}
             step={25}
             valueLabelDisplay="on"
-          />
-          <Typography>Select switchboards of the image</Typography>
-          <Select
-            multiple
-            value={data.switchboards}
-            onChange={(e) =>
-              setData(() => ({ ...data, switchboards: e.target.value }))
-            }
-            input={<OutlinedInput label="Tag" />}
-            renderValue={(selected) => selected.join(", ")}
-            MenuProps={MenuProps}
-          >
-            {names.map((name) => (
-              <MenuItem key={name.name} value={name.name}>
-                <Checkbox checked={data.switchboards.indexOf(name.name) > -1} />
-                <ListItemText primary={name.name} />
-              </MenuItem>
-            ))}
-          </Select>
-          <Typography>Arial images are available in Govmap etc.</Typography>
-          <Button
-            disabled={!isFull}
-            variant="contained"
-            component="label"
-            style={{ textAlign: "center" }}
-            onClick={() => handleFileInput()}
-          >
-            Upload Image
-            {/* Upload image file from file system */}
-            <input
-              type="file"
-              accept="image/*"
-              hidden
-              onChange={(e) => handleFileInput(e.target.files[0])}
-            />
-          </Button>
-        </section>
-      </Main>
-      <BackButton />
+          /> */}
+              <Typography>Select switchboards of the image</Typography>
+              <Select
+                multiple
+                value={data.switchboards}
+                onChange={(e) =>
+                  setData(() => ({ ...data, switchboards: e.target.value }))
+                }
+                input={<OutlinedInput label="Tag" />}
+                renderValue={(selected) => selected.join(", ")}
+                MenuProps={MenuProps}
+              >
+                {names.map((name) => (
+                  <MenuItem key={name.name} value={name.name}>
+                    <Checkbox
+                      checked={data.switchboards.indexOf(name.name) > -1}
+                    />
+                    <ListItemText primary={name.name} />
+                  </MenuItem>
+                ))}
+              </Select>
+              <Typography>Arial images are available in Govmap etc.</Typography>
+              <Button
+                disabled={!isFull}
+                variant="contained"
+                component="label"
+                style={{ textAlign: "center" }}
+                onClick={() => handleFileInput()}
+              >
+                Upload Image
+                {/* Upload image file from file system */}
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onChange={(e) => handleFileInput(e.target.files[0])}
+                />
+              </Button>
+            </section>
+          </Main>
+          <BackButton />
+        </>
+      ) : (
+        <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
+      )}
     </Container>
   );
 }

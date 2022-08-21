@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
@@ -5,7 +6,7 @@ import { TypeOffice } from "../Api";
 
 const MenuMinistryConfig = [
   {
-    title: "TOP/LAST MUNICIPALITIES",
+    title: "TOP/LAST RATED MUNICIPALITIES",
     path: "/municipalities",
   },
   {
@@ -23,8 +24,8 @@ const MenuMinistryConfig = [
 ];
 const MenuMunicipalityConfig = [
   {
-    title: "TOP/LAST SWITCHBOARDS",
-    path: "/switchboards",
+    title: "TOP/LAST RATED SWITCHBOARDS",
+    path: "/toplast",
   },
   {
     title: "STATISTICAL REPORTS",
@@ -35,9 +36,18 @@ const MenuMunicipalityConfig = [
     path: "/imgUpload",
   },
   {
+    title: "UPDATE/INSERT SWITCHBOARDS",
+    path: "/switchboards",
+  },
+  {
     title: "VISUALIZED MAP",
     path: "/map",
   },
+  {
+    title: "STREETLIGHT DISTANCE COMPOTATION",
+    path: "/distance",
+  },
+
   // {
   //   title: "MANAGE USERS",
   //   path: "/mangeuser",

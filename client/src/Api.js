@@ -60,6 +60,7 @@ export async function officebyId(idUser) {
     const res = await axios({
       method: "GET",
       // headers: { 'x-access-token': localStorage.getItem('token') },
+      // url: `${APIURL}/offices/${idUser}`,
       url: `${APIURL}/offices/${idUser}`,
     });
 
@@ -152,27 +153,64 @@ export async function setEnergyIntesityImage(enertyIntensity, fileName) {
   }
 }
 
-//   const res = await fetch(`${APIURL}/images/energyintensity`, {
-//     method: "p",
-//   });
-//   const json = await res.json();
-//   return json;
-// }
+export async function updateSwitchboards(data) {
+  try {
+    const res = await axios({
+      method: "put",
+      url: `${APIURL}/switchboards`,
+      data,
+    });
+    if (res.data) {
+      // eslint-disable-next-line no-console
+      console.log(res.data);
+      return;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+}
+export async function insertSwitchboards(data) {
+  try {
+    const res = await axios({
+      method: "post",
+      url: `${APIURL}/switchboards`,
+      data,
+    });
+    if (res.data) {
+      // eslint-disable-next-line no-console
+      console.log(res.data);
+      return;
+    }
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+}
+export async function getImagesName() {
+  const res = await fetch(`${APIURL}/images/imagesname/${id()}`, {
+    method: "GET",
+  });
+  const json = await res.json();
+  return json;
+}
 
-// export async function postUploadImage(data, fileName) {
-//   try {
-//     const res = await axios({
-//       method: "post",
-//       url: `${APIURL}/images`,
-//       data: { ...data, fileName },
-//       headers: { "x-access-token": localStorage.getItem("token") },
-//     });
-//     if (res.data) {
-//       // eslint-disable-next-line no-console
-//       console.log(res.data);
-//       return;
-//     }
-//   } catch (error) {
-//     // eslint-disable-next-line no-console
-//     console.log(error);
-//   }
+export async function disactiveStatisticalReport(data) {
+  const res = await axios({
+    method: "PUT",
+    url: `${APIURL}/images/disactive/`,
+    data,
+  });
+  const json = await res.json();
+  return json;
+}
+
+export async function activeStatisticalReport(data) {
+  const res = await axios({
+    method: "PUT",
+    url: `${APIURL}/images/active/`,
+    data,
+  });
+  const json = await res.json();
+  return json;
+}

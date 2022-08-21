@@ -9,16 +9,15 @@ import Geocode from "react-geocode";
 import { Typography } from "@mui/material";
 import { Menu } from "../components/util/board";
 import Header from "../components/header";
-import { Input, ContainerStyle } from "../components/map";
+import { Api, Lib, Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
 import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
 import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 
-const lib = ["places"];
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+Geocode.setApiKey(Api);
 Geocode.enableDebug();
-const api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 function Map() {
   const office = JSON.parse(localStorage.getItem("office"));
   const [place, setPlace] = useState("");
@@ -26,6 +25,7 @@ function Map() {
   const [zoom, setZoom] = useState(0);
   const [directionsResponse, setdirectionsResponse] = useState(null);
   const [avgDistance, setAvgDistance] = useState("");
+  const [isMinistry, setIsMinistry] = useState(0);
   const [destination, setDestination] = useState({
     lat: 41.756795,
     lng: -78.954298,
@@ -42,8 +42,9 @@ function Map() {
 
   useEffect(() => {
     async function getDataDB() {
-      const typeOffice = await TypeOffice();
-      if (typeOffice) {
+      const IsMinistry = await TypeOffice();
+      setIsMinistry(IsMinistry);
+      if (IsMinistry) {
         setMarkers(await getAllSwLocation());
         setZoom(10);
       } else {
@@ -92,7 +93,7 @@ function Map() {
     <Container bgimage={1}>
       <Header />
       <Menu>
-        <LoadScript googleMapsApiKey={api} libraries={lib}>
+        <LoadScript googleMapsApiKey={Api} libraries={Lib}>
           <GoogleMap
             mapContainerStyle={ContainerStyle}
             center={dataLocation.mapPosition}
@@ -109,36 +110,38 @@ function Map() {
             }}
           >
             {markers.map((marker) => (
-              <InfoSW
-                key={`${marker.lat}${marker.lat}`}
-                style={{ backgroundColor: "none" }}
-                marker={marker}
-              />
+              <InfoSW key={`${marker.lat}${marker.lat}`} marker={marker} />
             ))}
-            {markers.map((marker) => (
-              <InfoStreetlight
-                key={`${marker.lng}${marker.lat}`}
-                marker={marker}
-              />
-            ))}
+            {isMinistry
+              ? ""
+              : markers.map((marker) => (
+                  <InfoStreetlight
+                    key={`${marker.lng}${marker.lat}`}
+                    marker={marker}
+                  />
+                ))}
             {directionsResponse && (
               <DirectionsRenderer directions={directionsResponse} />
             )}
             <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceSelected}>
               <Input type="text" placeholder="Search location" />
             </Autocomplete>
-            <Typography
-              style={{
-                fontSize: "18px",
-                background: "white",
-                position: "absolute",
-                left: "11.8%",
-                top: "1.5%",
-                padding: "5px",
-              }}
-            >
-              Avg Distance:{avgDistance}
-            </Typography>
+            {isMinistry ? (
+              ""
+            ) : (
+              <Typography
+                style={{
+                  fontSize: "18px",
+                  background: "white",
+                  position: "absolute",
+                  left: "11.8%",
+                  top: "1.5%",
+                  padding: "5px",
+                }}
+              >
+                Avg Distance:{avgDistance}
+              </Typography>
+            )}
           </GoogleMap>
         </LoadScript>
       </Menu>

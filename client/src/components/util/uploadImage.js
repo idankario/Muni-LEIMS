@@ -17,8 +17,6 @@ async function UploadImage(file, filename, data) {
       return 1;
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
     return 0;
   }
 }

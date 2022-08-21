@@ -33,3 +33,5 @@ export const ContainerStyle = {
   marginTop: "10px",
   margin: "auto",
 };
+export const Lib = ["places"];
+export const Api = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "";
