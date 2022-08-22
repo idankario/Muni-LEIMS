@@ -10,8 +10,8 @@ import { H1, H6 } from "../components/h1";
 import Container from "../components/container";
 
 const MainStyle = styled("div")(() => ({
-  display: `flex`,
-  flexDirection: `column`,
+  // display: `flex`,
+  // flexDirection: `column`,
 }));
 
 function ImagesName() {
@@ -20,9 +20,6 @@ function ImagesName() {
     async function getDataDB() {
       const data = await getImagesName();
       setRows(data);
-
-      // eslint-disable-next-line no-console
-      console.log(data);
     }
     getDataDB();
   }, []);

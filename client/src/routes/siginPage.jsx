@@ -24,6 +24,7 @@ function SiginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [Incorrect, setIncorrect] = useState(false);
   useEffect(() => {
     localStorage.clear();
   }, []);
@@ -45,12 +46,13 @@ function SiginPage() {
           localStorage.setItem("office", await office);
           localStorage.setItem("user", await id);
           localStorage.setItem("token", await data.idToken.jwtToken);
+          setIncorrect(0);
           navigate("/homePage");
         }
         storeOffice();
       },
-      onFailure: (err) => {
-        console.error("onFailure:", err);
+      onFailure: () => {
+        setIncorrect(1);
       },
       newPasswordRequired: (data) => {
         console.log("newPasswordRequired:", data);
@@ -150,6 +152,8 @@ function SiginPage() {
             }}
           />
           <Button type="submit">LOGIN</Button>
+          {Incorrect ? <p>Incorrect username or password.</p> : ""}
+
           <StyledLink to="/signup">New user? Register Now</StyledLink>
         </section>
       </Login>

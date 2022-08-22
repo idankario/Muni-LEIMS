@@ -12,7 +12,11 @@ import Header from "../components/header";
 import { Api, Lib, Input, ContainerStyle } from "../components/map";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
-import { getSwLocation, getAllSwLocation, TypeOffice } from "../Api";
+import {
+  getSwEnergyIntensity,
+  getAllSwEnergyIntensity,
+  TypeOffice,
+} from "../Api";
 import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 
 Geocode.setApiKey(Api);
@@ -45,12 +49,13 @@ function Map() {
       const IsMinistry = await TypeOffice();
       setIsMinistry(IsMinistry);
       if (IsMinistry) {
-        setMarkers(await getAllSwLocation());
+        setMarkers(await getAllSwEnergyIntensity());
         setZoom(10);
       } else {
-        setMarkers(await getSwLocation());
+        setMarkers(await getSwEnergyIntensity());
         setZoom(14);
       }
+      console.log(await markers);
     }
     getDataDB();
   }, []);

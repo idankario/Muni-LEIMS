@@ -6,7 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
-// import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Table({ rows }) {
@@ -58,33 +57,43 @@ export default function Table({ rows }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              onClick={() => row.is_active === 2 ? moveDistanseMesure(row.image_name) : console.log("not ready")}
-              // eslint-disable-next-line react/no-array-index-key
-              key={row.image_name}
-              sx={{
-                "&:last-child td, &:last-child th": { border: 0 },
-                "&:hover": {
-                  background: row.is_active === 2 ? `linear-gradient(45deg, #CDFA00 40%, #ECB22F 90%)`:`linear-gradient(45deg, #606060 40%, #606060 90%)`,
-                },
-              }}
-              // style={{textShadow: "3px 3px black",color:  "green"  }}
-            >
-              <TableCell sx={{ fontSize: "18px" }}>
-                <strong>{row.image_name.split(" ")[2]} </strong>
-              </TableCell>
-              <TableCell sx={{ fontSize: "18px" }}>
-                <strong>{row.image_name.split(" ")[0]} </strong>
-              </TableCell>
-              <TableCell sx={{ fontSize: "18px" }}>
-                <strong>{row.image_name.split(" ")[1]} </strong>
-              </TableCell>
-              <TableCell sx={{ fontSize: "18px" }}>
-                <strong>{row.is_active === 2 ? "Ready" : "Progress"} </strong>
-              </TableCell>
-            </TableRow>
-          ))}
+          {rows.map((row) =>
+            row.image_name.split(".").length > 1 ? (
+              <TableRow
+                onClick={() =>
+                  row.is_active === 2 ? moveDistanseMesure(row.image_name) : ""
+                }
+                key={`${row.image_name}`}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  "&:hover": {
+                    background:
+                      row.is_active === 2
+                        ? `linear-gradient(45deg, #CDFA00 40%, #ECB22F 90%)`
+                        : `linear-gradient(45deg, #606060 40%, #606060 90%)`,
+                  },
+                }}
+              >
+                <TableCell sx={{ fontSize: "18px" }}>
+                  <strong>
+                    {row.image_name.split(".").length > 2}
+                    {row.image_name.split(" ")[2]}
+                  </strong>
+                </TableCell>
+                <TableCell sx={{ fontSize: "18px" }}>
+                  <strong>{row.image_name.split(" ")[0]} </strong>
+                </TableCell>
+                <TableCell sx={{ fontSize: "18px" }}>
+                  <strong>{row.image_name.split(" ")[1]} </strong>
+                </TableCell>
+                <TableCell sx={{ fontSize: "18px" }}>
+                  <strong>{row.is_active === 2 ? "Ready" : "Progress"} </strong>
+                </TableCell>
+              </TableRow>
+            ) : (
+              ""
+            )
+          )}
         </TableBody>
       </Table1>
     </TableContainer>

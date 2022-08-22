@@ -3,8 +3,6 @@ import {DataBaseErr,GetSuc} from "../myEvents";
 
 const OfficesCtl = {
   async typeOffice(req, res) {
-    console.log(req.params.id);
-
     const userId = req.params.id;
     const query = `
     SELECT count(o.office_name) AS res

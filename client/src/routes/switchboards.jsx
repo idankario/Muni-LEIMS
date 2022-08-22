@@ -12,7 +12,11 @@ import BackButton from "../components/backButton";
 import Header from "../components/header";
 import { H1 } from "../components/h1";
 import Container from "../components/container";
-import { getSwLocation, insertSwitchboards, updateSwitchboards } from "../Api";
+import {
+  getAllSwLocation,
+  insertSwitchboards,
+  updateSwitchboards,
+} from "../Api";
 
 function Switchboards() {
   const navigate = useNavigate();
@@ -28,7 +32,7 @@ function Switchboards() {
   const isFull = data.lat && data.lng && data.switchboard;
   useEffect(() => {
     async function getDataDB() {
-      setNames(await getSwLocation());
+      setNames(await getAllSwLocation());
     }
     getDataDB();
   }, []);
@@ -119,7 +123,7 @@ function Switchboards() {
             style={{ textAlign: "center" }}
             onClick={() => handleFileInput()}
           >
-            update Switchboard
+            {data.isUpdate ? "Update" : "Insert"} Switchboard
           </Button>
         </section>
       </Main>

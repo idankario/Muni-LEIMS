@@ -9,6 +9,7 @@ const db = mysql.createConnection({
   database: "MuniLEIMS",
   acquireTimeout: 1000000,
   connectTimeout: 0,
+  multipleStatements: true,
 });
 
 db.connect((err) => {
