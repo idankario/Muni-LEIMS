@@ -40,7 +40,10 @@ function ImageUpload() {
     getDataDB();
   }, []);
   async function handleFileInput(file) {
+    const fileSize = file.size / 1024 / 1024; // in MiB
+    if(fileSize < 25){
     if (file) {
+      
       setIsUpolad(0);
       const res = await UploadImage(file, file.name, data);
       setIsUpolad(1);
@@ -51,6 +54,10 @@ function ImageUpload() {
       else alert("Error Coud Not Upload Image");
       navigate("/homePage");
     }
+  }
+  else{
+    alert('File size exceeds 25 MiB');
+  }
   }
 
   return (

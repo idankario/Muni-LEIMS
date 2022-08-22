@@ -169,7 +169,7 @@ export async function getSwitchboardsMap() {
 }
 
 export async function getAllSwLocation() {
-  const res = await fetch(`${APIURL}/switchboards/locations/${id()}`, {
+  const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
     method: "GET",
     headers: new Headers({
       
