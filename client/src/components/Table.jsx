@@ -70,6 +70,9 @@ export default function Table({ rows, dataName }) {
               Average Consumption per Streetlight
             </p>
           </Th>
+          <Th>
+            Average Distance{" "}
+          </Th>
         </tr>
       </thead>
       <tbody>
@@ -84,8 +87,11 @@ export default function Table({ rows, dataName }) {
           >
             <td>{index + 1}</td>
             <Td>{row.municipality || row.area}</Td>
-            <td>
+            <Td>
               {row.consumption_average || row["consumption average"]} kWh{" "}
+            </Td>
+            <td>
+              {row.distance || row.distance} 
             </td>
           </tr>
         ))}

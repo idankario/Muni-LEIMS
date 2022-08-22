@@ -5,7 +5,7 @@ import {DataBaseErr,GetSuc,PutSuc,InsertSuc,UpdateFormSwitchboard,InserFormSwitc
 const SwitchboardsCtl = {
   async switchboardsById(req, res) {
     const userId = req.params.id;
-    const query = `SELECT s.energy_inetensity AS consumption_average,sw.name AS municipality
+    const query = `SELECT s.energy_inetensity AS consumption_average,s.average_density_streetlight AS distance,sw.name AS municipality
     FROM MuniLEIMS.statisticalreport s
       INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
     ON ss.statisticalreport_id = s.statisticalreport_id 
