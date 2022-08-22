@@ -9,7 +9,7 @@ import getWindowDimensions from "../components/util/useWindowDimensions";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
-import { H1 } from "../components/h1";
+import { H1,H6} from "../components/h1";
 import { disactiveStatisticalReport, activeStatisticalReport } from "../Api";
 
 function DistancePage() {
@@ -117,6 +117,7 @@ function DistancePage() {
         }}
       >
         <H1>DISTANCE {count ? `${(distance / count).toFixed(2)}m` : ""}</H1>
+        <H6>Select Pairs of Streetlight to Compute the Average Distances</H6>
         <Button
           variant="contained"
           color="error"
