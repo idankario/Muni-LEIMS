@@ -17,7 +17,7 @@ import UploadImage from "../components/util/uploadImage";
 import { H1 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
-import { getSwLocation } from "../Api";
+import { getAllSwLocation } from "../Api";
 
 function ImageUpload() {
   const navigate = useNavigate();
@@ -35,15 +35,20 @@ function ImageUpload() {
     data.x && data.y && data.consumption && data.switchboards.length;
   useEffect(() => {
     async function getDataDB() {
-      setNames(await getSwLocation());
+      setNames(await getAllSwLocation());
     }
     getDataDB();
   }, []);
   async function handleFileInput(file) {
     if (file) {
       setIsUpolad(0);
-      await UploadImage(file, file.name, data);
+      const res = await UploadImage(file, file.name, data);
       setIsUpolad(1);
+      if (res)
+        // eslint-disable-next-line no-alert
+        alert("Succes Upload Image");
+      // eslint-disable-next-line no-alert
+      else alert("Error Coud Not Upload Image");
       navigate("/homePage");
     }
   }

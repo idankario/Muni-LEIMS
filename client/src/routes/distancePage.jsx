@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-import { Menu } from "../components/util/board";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
+import { useLocation, useNavigate } from "react-router-dom";
+import getWindowDimensions from "../components/util/useWindowDimensions";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
 import { H1 } from "../components/h1";
+import { disactiveStatisticalReport, activeStatisticalReport } from "../Api";
 
 function DistancePage() {
   const canvas = useRef();
@@ -14,22 +18,26 @@ function DistancePage() {
     height: 300,
     width: 300,
   });
-  // const history = useNavigate();
-  // const data22 = history.location.state.fileName;
-  const { dd } = useLocation();
-
+  const { width } = getWindowDimensions();
   const [distance, setDistance] = useState(0);
   const [count, setCount] = useState(0);
-  const distancePerPixel = 74 / 1174;
+  const [imageSize, setImageSize] = useState(width);
+  const distancePixel = 74 / 1174;
+  const [distancePerPixel, setDistancePerPixel] = useState(distancePixel);
+  const navigate = useNavigate();
   let i = 1;
+  let ctx = null;
   let clientx1;
   let clienty1;
   const [backgroundCanvas, setBackgroundCanvas] = useState("");
   const location = useLocation();
   useEffect(() => {
     async function setImageDimensions() {
-      const url = `https://api.muni-leims.ml/presignedurl?filename=${await location
-        .state.name}`;
+      const file = `${location.state.name
+        .split(".")
+        .slice(0, -1)
+        .join("")}.jpg`;
+      const url = `https://api.muni-leims.ml/presignedurl?filename=${file}`;
       try {
         const res = await axios({
           method: "get",
@@ -39,16 +47,16 @@ function DistancePage() {
         const img = new Image();
         img.src = await res.data.body;
         setBackgroundCanvas(img.src);
-
         img.onload = () => {
+          setImageSize(img.width);
+          setDistancePerPixel((distancePixel * img.width) / (width * 0.8));
           setCanvasDimensions({
             height: img.height,
-            width: img.width,
+            width: width * 0.8,
           });
         };
         img.onerror = () => {
-          // eslint-disable-next-line no-console
-          // console.error(err);
+          throw new Error("image not found");
         };
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -57,18 +65,34 @@ function DistancePage() {
     }
     setImageDimensions();
   }, []);
+  useEffect(() => {
+    setCanvasDimensions({
+      ...canvasDimensions,
+      width: width * 0.8,
+    });
+    setDistancePerPixel((distancePixel * imageSize) / (width * 0.8));
+  }, [width]);
   const getDistance = (clientx2, clienty2) => {
     const disX = Math.abs(clientx1 - clientx2);
     const disY = Math.abs(clienty1 - clienty2);
+    const dT = Math.sqrt(disX * disX + disY * disY) * distancePerPixel;
+    if (dT > 0.5) {
+      setCount(count + 1);
+      ctx.moveTo(clientx1, clienty1);
+      ctx.lineTo(clientx2, clienty2);
+      ctx.stroke();
+      setDistance(distance + dT);
+    }
+  };
 
-    setCount(count + 1);
-
-    setDistance(
-      distance + Math.sqrt(disX * disX + disY * disY) * distancePerPixel
-    );
+  const clear = () => {
+    setCount(0);
+    setDistance(0);
+    ctx = canvas.current.getContext("2d");
+    ctx.clearRect(0, 0, canvasDimensions.width, canvasDimensions.height);
   };
   const getCursorPosition = (e) => {
-    const ctx = canvas.current.getContext("2d");
+    ctx = canvas.current.getContext("2d");
     ctx.lineWidth = 5;
     if (i) {
       i = 0;
@@ -78,11 +102,7 @@ function DistancePage() {
     } else {
       const clientx2 = e.pageX - canvas.current.offsetLeft;
       const clienty2 = e.pageY - canvas.current.offsetTop;
-      getDistance(clientx2, clienty2);
-
-      ctx.moveTo(clientx1, clienty1);
-      ctx.lineTo(clientx2, clienty2);
-      ctx.stroke();
+      getDistance(clientx2, clienty2, ctx);
       i = 1;
     }
   };
@@ -90,22 +110,59 @@ function DistancePage() {
   return (
     <Container bgimage={1} width={canvasDimensions.width}>
       <Header />
-      <Menu>
+
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
         <H1>DISTANCE {count ? `${(distance / count).toFixed(2)}m` : ""}</H1>
-        <div>
-          <canvas
-            id="hi"
-            ref={canvas}
-            onClick={getCursorPosition}
-            width={canvasDimensions.width}
-            height={canvasDimensions.height}
-            style={{
-              backgroundImage: `url(${backgroundCanvas})`,
-            }}
-          />
-        </div>
-        <BackButton />
-      </Menu>
+        <Button
+          variant="contained"
+          color="error"
+          startIcon={<DeleteIcon />}
+          onClick={() => {
+            disactiveStatisticalReport({ imageName: location.state.name });
+            navigate("/homePage");
+          }}
+        >
+          Delete
+        </Button>
+        <Button
+          variant="contained"
+          color="error"
+          startIcon={<DeleteIcon />}
+          onClick={() => clear()}
+        >
+          Clear
+        </Button>
+        <Button
+          variant="contained"
+          color="success"
+          startIcon={<DoneAllIcon />}
+          onClick={() => {
+            activeStatisticalReport({
+              imageName: location.state.name,
+              distance: count ? `${(distance / count).toFixed(2)}m` : "",
+            });
+            navigate("/homePage");
+          }}
+        >
+          Approve
+        </Button>
+        <canvas
+          id="hi"
+          ref={canvas}
+          onClick={getCursorPosition}
+          width={canvasDimensions.width}
+          height={canvasDimensions.height}
+          style={{
+            backgroundImage: `url(${backgroundCanvas})`,
+            backgroundSize: "100% 100%",
+          }}
+        />
+      </div>
+      <BackButton />
     </Container>
   );
 }

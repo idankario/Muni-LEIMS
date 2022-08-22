@@ -1,8 +1,8 @@
 import axios from "axios";
+
 // const APIURL = `http://localhost:3000`;
 const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
-
 export async function getLowestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/lowest/${id()}`, {
     method: "GET",
@@ -120,18 +120,29 @@ export async function getSwitchboardsMap() {
   return json;
 }
 
-export async function getSwLocation() {
-  const res = await fetch(`${APIURL}/switchboards/location/${id()}`, {
+export async function getAllSwLocation() {
+  const res = await fetch(`${APIURL}/switchboards/locations/${id()}`, {
     method: "GET",
   });
   const json = await res.json();
   return json;
 }
 
-export async function getAllSwLocation() {
-  const res = await fetch(`${APIURL}/switchboards/locations`, {
+export async function getAllSwEnergyIntensity() {
+  const res = await fetch(`${APIURL}/switchboards/location/energyintensity`, {
     method: "GET",
   });
+  const json = await res.json();
+  return json;
+}
+
+export async function getSwEnergyIntensity() {
+  const res = await fetch(
+    `${APIURL}/switchboards/location/energyintensity/${id()}`,
+    {
+      method: "GET",
+    }
+  );
   const json = await res.json();
   return json;
 }
@@ -197,17 +208,17 @@ export async function getImagesName() {
 
 export async function disactiveStatisticalReport(data) {
   const res = await axios({
-    method: "PUT",
-    url: `${APIURL}/images/disactive/`,
+    method: "patch",
+    url: `${APIURL}/images/disactive`,
     data,
   });
-  const json = await res.json();
+  const json = await res;
   return json;
 }
 
 export async function activeStatisticalReport(data) {
   const res = await axios({
-    method: "PUT",
+    method: "patch",
     url: `${APIURL}/images/active/`,
     data,
   });
