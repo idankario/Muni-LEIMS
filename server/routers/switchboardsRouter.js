@@ -7,6 +7,8 @@ SwitchboardsRouter.get("/highest/:id",VerifyToken,SwitchboardsCtl.highestSwitchb
 SwitchboardsRouter.get("/lowest/:id",VerifyToken, SwitchboardsCtl.lowestSwitchboard);
 SwitchboardsRouter.get("/top5/:id",VerifyToken, SwitchboardsCtl.top5Switchboards);
 SwitchboardsRouter.get("/last5/:id",VerifyToken, SwitchboardsCtl.last5Switchboards);
+SwitchboardsRouter.get("/location/energyintensity",SwitchboardsCtl.getAllSwEnergyIntensity);
+SwitchboardsRouter.get("/location/energyintensity/:id",SwitchboardsCtl.getSwEnergyIntensity);
 SwitchboardsRouter.get("/locations", VerifyToken,SwitchboardsCtl.allSwitchboardsLocation);
 SwitchboardsRouter.get("/location/:id",VerifyToken, SwitchboardsCtl.switchboardsLocation);
 SwitchboardsRouter.get("/:id",VerifyToken, SwitchboardsCtl.switchboardsById);
