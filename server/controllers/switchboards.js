@@ -29,7 +29,6 @@ const SwitchboardsCtl = {
       res.send("error");
     }
   },
-
   async highestSwitchboard(req, res) {
   
    
@@ -92,7 +91,6 @@ const SwitchboardsCtl = {
       res.send("error");
     }
   },
-
   async top5Switchboards(req, res) {
     const userId = req.params.id;
     const query = `
