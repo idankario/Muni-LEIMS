@@ -1,5 +1,5 @@
 export function isImage(imageName) {
-  return /\.(?=jpeg|jpg|png|tiff|tif)/.test(imageName);
+  return /\.(?=jpeg|jpg|png|tiff|tif)/.test(imageName.toLowerCase());
 }
 export function isMobileIsraelPhone(phoneNumber) {
   if (/[0][5][0|2|3|4|5|9]{1}[-]{0,1}[0-9]{7}/.test(phoneNumber)) return "";

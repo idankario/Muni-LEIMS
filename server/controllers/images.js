@@ -184,7 +184,7 @@ const ImagesCtl = {
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss ON s.statisticalreport_id = ss.statisticalreport_id
     INNER JOIN MuniLEIMS.image i ON i.image_id=ss.image_id
     SET s.average_density_streetlight = '${distance}'
-    Where i.imageName='${imageName}';`;
+    Where i.image_name='${imageName}';`;
     console.log(query);
     try {
       db.query(query, (err, result) => {

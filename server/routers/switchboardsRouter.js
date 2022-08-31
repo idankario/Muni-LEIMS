@@ -33,7 +33,6 @@ SwitchboardsRouter.get(
   VerifyToken,
   SwitchboardsCtl.getSwEnergyIntensity
 );
-
 SwitchboardsRouter.get(
   "/location/:id",
   VerifyToken,
