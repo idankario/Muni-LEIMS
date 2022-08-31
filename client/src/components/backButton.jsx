@@ -21,7 +21,6 @@ export const Button = styled("button")({
 });
 function BackButton() {
   const navigate = useNavigate();
-
   return (
     <Button onClick={() => navigate("/homePage")}>
       <ArrowCircleLeftIcon

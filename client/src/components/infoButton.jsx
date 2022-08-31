@@ -1,7 +1,6 @@
 import { styled } from "@mui/material/styles";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 
 export const Button = styled("button")({

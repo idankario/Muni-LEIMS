@@ -8,7 +8,6 @@ async function UploadImage(file, filename, data) {
       data: { data, filename },
       headers: { Authorization: localStorage.getItem("token") },
     });
-    // console.log(res.data);
     if (res.data) {
       await fetch(res.data.presigned_url, {
         method: "PUT",

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -9,7 +8,7 @@ import getWindowDimensions from "../components/util/useWindowDimensions";
 import Header from "../components/header";
 import BackButton from "../components/backButton";
 import Container from "../components/container";
-import { H1,H6} from "../components/h1";
+import { H1, H6 } from "../components/h1";
 import { disactiveStatisticalReport, activeStatisticalReport } from "../Api";
 
 function DistancePage() {

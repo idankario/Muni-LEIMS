@@ -1,6 +1,5 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import multer from "multer";
 import cors from "cors";
 import SwitchboardsRouter from "./routers/switchboardsRouter";
 import OfficesRouter from "./routers/officesRouter";

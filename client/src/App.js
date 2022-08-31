@@ -4,7 +4,6 @@ import ImgUpload from "./routes/imageUpload";
 import HomePage from "./routes/homePage";
 import NotFoundPage from "./routes/page404";
 import MapPage from "./routes/mapPage";
-// import ImgUpload1 from "./routes/upload";
 import TopLastReports from "./routes/topLastReports";
 import StatisticalReports from "./routes/statisticalReports";
 import StatisticalReportsMunicipalties from "./routes/statisticalReportsMunicipalties";
@@ -13,7 +12,7 @@ import SignupPage from "./routes/signupPage";
 import SiginPage from "./routes/siginPage";
 import Switchboards from "./routes/switchboards";
 import DistancePage from "./routes/distancePage";
-import ImagesNames from "./routes/imageList";
+import ImageList from "./routes/imageList";
 
 function App() {
   return (
@@ -30,52 +29,24 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* <Route
-          exact
-          path="/statisticalReports"
-          element={
-            <PrivateRoute>
-              <StatisticalReports />
-            </PrivateRoute>
-          }
-        /> */}
-        {/* <Route
-          exact
-          path="/images"
-          element={
-            <PrivateRoute>
-              <ImagesNames />
-            </PrivateRoute>
-          }
-        /> */}
         <Route
           exact
-          path="/distance"
+          path="/imagelist"
           element={
             <PrivateRoute>
-              <ImagesNames />
+              <ImageList />
             </PrivateRoute>
           }
         />
         <Route
           exact
-          path="/about"
+          path="/distance"
           element={
             <PrivateRoute>
               <DistancePage />
             </PrivateRoute>
           }
         />
-        {/* <Route
-          exact
-          path="/mesuredistances"
-          element={
-            <PrivateRoute>
-              <DistancePage filename="27-7-2022 19:40:26 Untitled.jpg" />
-            </PrivateRoute>
-          }
-        /> */}
-
         <Route
           exact
           path="/homepage"

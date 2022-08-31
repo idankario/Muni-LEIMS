@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
@@ -17,10 +16,6 @@ const MenuMinistryConfig = [
     title: "VISUALIZED MAP",
     path: "/map",
   },
-  // {
-  //   title: "MANAGE USERS",
-  //   path: "/mangeuser",
-  // },
 ];
 const MenuMunicipalityConfig = [
   {
@@ -45,13 +40,8 @@ const MenuMunicipalityConfig = [
   },
   {
     title: "STREETLIGHT DISTANCE COMPOTATION",
-    path: "/distance",
+    path: "/imagelist",
   },
-
-  // {
-  //   title: "MANAGE USERS",
-  //   path: "/mangeuser",
-  // },
 ];
 function MenuHome() {
   const navigate = useNavigate();

@@ -29,8 +29,6 @@ export const Main = styled("main")({
     height: "4em",
     margin: "30px 100px",
     color: "#000",
-    // textAlign: "center",
-    // verticalAlign: "center",
     ":hover": {
       backgroundColor: "#ECB22F",
     },

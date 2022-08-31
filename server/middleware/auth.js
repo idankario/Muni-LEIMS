@@ -1,9 +1,8 @@
-
 import axios from "axios";
 
-  export async function VerifyToken(req, res, next){
+export async function VerifyToken(req, res, next) {
   if (!req.headers.authorization) {
-    return res.status(403).send('A token is required for authentication');
+    return res.status(403).send("A token is required for authentication");
   }
   try {
     axios({
@@ -11,11 +10,9 @@ import axios from "axios";
       url: "https://api.muni-leims.ml/auth",
       headers: { Authorization: req.headers.authorization },
     });
-    console.log("good")
+    console.log("good");
   } catch (error) {
-   console.log("err")
+    console.log("err");
   }
   return next();
 }
-
-

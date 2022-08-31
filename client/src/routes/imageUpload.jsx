@@ -18,6 +18,7 @@ import { H1 } from "../components/h1";
 import Container from "../components/container";
 import Info from "../components/info";
 import { getAllSwLocation } from "../Api";
+import { isImage } from "../components/util/regexValidation";
 
 function ImageUpload() {
   const navigate = useNavigate();
@@ -40,26 +41,32 @@ function ImageUpload() {
     getDataDB();
   }, []);
   async function handleFileInput(file) {
-    const fileSize = file.size / 1024 / 1024; // in MiB
-    if(fileSize < 25){
-    if (file) {
-      
-      setIsUpolad(0);
-      const res = await UploadImage(file, file.name, data);
-      setIsUpolad(1);
-      if (res)
+    const fileSize = file ? file.size / 1024 / 1024 : 0;
+    const fileName = file ? file.name : "";
+    if (fileName) {
+      if (isImage(fileName)) {
+        if (fileSize < 25) {
+          if (file) {
+            setIsUpolad(0);
+            const res = await UploadImage(file, file.name, data);
+            setIsUpolad(1);
+            if (res)
+              // eslint-disable-next-line no-alert
+              alert("Succes Upload Image");
+            // eslint-disable-next-line no-alert
+            else alert("Error Coud Not Upload Image");
+            navigate("/homePage");
+          }
+        } else {
+          // eslint-disable-next-line no-alert
+          alert("File size exceeds 25 MB");
+        }
+      } else {
         // eslint-disable-next-line no-alert
-        alert("Succes Upload Image");
-      // eslint-disable-next-line no-alert
-      else alert("Error Coud Not Upload Image");
-      navigate("/homePage");
+        alert("Support only jpeg|jpg|png|tiff|tif");
+      }
     }
   }
-  else{
-    alert('File size exceeds 25 MiB');
-  }
-  }
-
   return (
     <Container>
       <Header />
@@ -105,18 +112,6 @@ function ImageUpload() {
                   setData(() => ({ ...data, consumption: e.target.value }))
                 }
               />
-
-              {/* <Typography>Enter the scale of the image</Typography>
-          <Slider
-            value={data.scale}
-            onChange={(e) =>
-              setData(() => ({ ...data, scale: e.target.value }))
-            }
-            min={100}
-            max={250}
-            step={25}
-            valueLabelDisplay="on"
-          /> */}
               <Typography>Select switchboards of the image</Typography>
               <Select
                 multiple

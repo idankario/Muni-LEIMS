@@ -41,11 +41,12 @@ function SiginPage() {
     cognitoUser.authenticateUser(authDetails, {
       onSuccess: (data) => {
         async function storeOffice() {
+          localStorage.setItem("token", await data.idToken.jwtToken);
           const id = await data.idToken.payload["custom:user_id"];
           const office = JSON.stringify(await officebyId(id));
           localStorage.setItem("office", await office);
           localStorage.setItem("user", await id);
-          localStorage.setItem("token", await data.idToken.jwtToken);
+
           setIncorrect(0);
           navigate("/homePage");
         }

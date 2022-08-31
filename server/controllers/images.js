@@ -1,5 +1,13 @@
 import db from "../db_connection";
-import {DataBaseErr,ImgaeFormErr,ImgaeFormSuc,InsertSuc,GetSuc,FileName,InsertFormBounding} from "../myEvents";
+import {
+  DataBaseErr,
+  ImgaeFormErr,
+  ImgaeFormSuc,
+  InsertSuc,
+  GetSuc,
+  FileName,
+  InsertFormBounding,
+} from "../myEvents";
 
 const ImagesCtl = {
   async uplaodImage(req, res) {
@@ -16,14 +24,19 @@ const ImagesCtl = {
       VALUES ('${userId}', '${scale}', '${x}', '${y}','${fileName}');`;
     try {
       db.query(query, function (err, result) {
-        if (err) {DataBaseErr();throw err;}
+        if (err) {
+          DataBaseErr();
+          throw err;
+        }
         const newImageId = result.insertId;
         const query2 = `
         INSERT INTO MuniLEIMS.statisticalreport(consumption)
         VALUES
         ('${consumption}');`;
         db.query(query2, function (err, result) {
-          if (err) {throw err;}
+          if (err) {
+            throw err;
+          }
           const statisticalreport_id = result.insertId;
           //For each switchboard connect image and statistical report
           switchboards.forEach((switchboardName) => {
@@ -36,7 +49,10 @@ const ImagesCtl = {
               WHERE user_id=${userId}
               AND sw.name=${switchboardName};`;
             db.query(query3, (err, result) => {
-              if (err) {DataBaseErr();throw err;}
+              if (err) {
+                DataBaseErr();
+                throw err;
+              }
             });
           });
           ImgaeFormSuc();
@@ -66,7 +82,9 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}';`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         InsertSuc();
         res.send(result);
       });
@@ -89,7 +107,9 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}'`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         const query1 = `
         INSERT INTO MuniLEIMS.BoundingBox
         (x, y,width,height,image_id)
@@ -100,14 +120,16 @@ const ImagesCtl = {
       res.send("error");
     }
   },
-  //
+
   async getImages(req, res) {
     const query = `
     SELECT * FROM MuniLEIMS.image
     WHERE status=2;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(result);
       });
@@ -130,7 +152,9 @@ const ImagesCtl = {
     Order By MuniLEIMS.image.upload_date desc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
@@ -164,7 +188,9 @@ const ImagesCtl = {
     console.log(query);
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
@@ -185,7 +211,9 @@ const ImagesCtl = {
     i.image_name='${imageName}';`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });

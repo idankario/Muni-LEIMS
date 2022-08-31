@@ -1,10 +1,10 @@
 import db from "../db_connection";
-import {DataBaseErr,GetSuc} from "../myEvents";
+import { DataBaseErr, GetSuc } from "../myEvents";
 
 const MunicipalitiesCtl = {
   async municipalities(req, res) {
     const query = `
-    SELECT o.office_name AS municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average
+    SELECT o.office_name AS municipality, ROUND(AVG( s.energy_inetensity)) AS consumption_average, ROUND(AVG( s.average_density_streetlight))  AS distance
     FROM MuniLEIMS.statisticalreport s
     INNER JOIN MuniLEIMS.switchboard_statisticalreport ss
         ON ss.statisticalreport_id = s.statisticalreport_id 
@@ -22,14 +22,15 @@ const MunicipalitiesCtl = {
     Order By consumption_average asc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
       DataBaseErr();
       res.send("error");
-      
     }
   },
   async highestMunicipality(req, res) {
@@ -53,7 +54,9 @@ const MunicipalitiesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
@@ -84,7 +87,9 @@ const MunicipalitiesCtl = {
     LIMIT 1;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
@@ -115,7 +120,9 @@ const MunicipalitiesCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });
@@ -146,7 +153,9 @@ const MunicipalitiesCtl = {
     LIMIT 5;`;
     try {
       db.query(query, (err, result) => {
-        if (err) {throw err;}
+        if (err) {
+          throw err;
+        }
         GetSuc();
         res.send(JSON.stringify(result));
       });

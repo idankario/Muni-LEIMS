@@ -21,7 +21,6 @@ import { InfoSW, InfoStreetlight } from "../components/util/infoSW";
 
 Geocode.setApiKey(Api);
 Geocode.enableDebug();
-
 function Map() {
   const office = JSON.parse(localStorage.getItem("office"));
   const [place, setPlace] = useState("");
@@ -55,7 +54,6 @@ function Map() {
         setMarkers(await getSwEnergyIntensity());
         setZoom(14);
       }
-      console.log(await markers);
     }
     getDataDB();
   }, []);

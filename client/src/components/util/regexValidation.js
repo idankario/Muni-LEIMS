@@ -1,10 +1,5 @@
 export function isImage(imageName) {
-  if (
-    // eslint-disable-next-line no-useless-escape
-    /\.(?=jpeg|jpg|png|tiff)/.test(imageName)
-  )
-    return "";
-  return "Please enter a valid image type jpeg jpg png tiff";
+  return /\.(?=jpeg|jpg|png|tiff|tif)/.test(imageName);
 }
 export function isMobileIsraelPhone(phoneNumber) {
   if (/[0][5][0|2|3|4|5|9]{1}[-]{0,1}[0-9]{7}/.test(phoneNumber)) return "";

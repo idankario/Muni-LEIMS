@@ -9,11 +9,6 @@ import Tableimages from "../components/Tableimages";
 import { H1, H6 } from "../components/h1";
 import Container from "../components/container";
 
-const MainStyle = styled("div")(() => ({
-  // display: `flex`,
-  // flexDirection: `column`,
-}));
-
 function ImagesName() {
   const [rows, setRows] = useState(null);
   useEffect(() => {
@@ -27,7 +22,7 @@ function ImagesName() {
   return (
     <Container>
       <Header />
-      <MainStyle>
+      <div>
         <H1>IMAGE LIST</H1>
         <H6>CHOOSE IMAGE FILE TO DISTANCE</H6>
         {rows ? (
@@ -36,7 +31,7 @@ function ImagesName() {
           <CircularProgress style={{ marginTop: "20vh", color: "yellow" }} />
         )}
         <BackButton />
-      </MainStyle>
+      </div>
     </Container>
   );
 }

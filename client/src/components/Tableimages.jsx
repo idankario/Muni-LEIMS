@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Table({ rows }) {
   const navigate = useNavigate();
-
-  const moveDistanseMesure = (dd) => {
-    navigate("/about", { state: { name: dd } });
+  const moveDistanseMesure = (imageName) => {
+    navigate("/distance", { state: { name: imageName } });
   };
   return (
     <TableContainer
