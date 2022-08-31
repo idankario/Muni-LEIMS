@@ -1,11 +1,15 @@
 import axios from "axios";
 
-// const APIURL = `http://localhost:3000`;
-const APIURL = `https://muni-leims.herokuapp.com`;
+const APIURL = `http://localhost:3000`;
+// const APIURL = `https://muni-leims.herokuapp.com`;
 const id = () => localStorage.getItem("user");
+const token = () => localStorage.getItem("token");
 export async function getLowestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/lowest/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -14,6 +18,9 @@ export async function getLowestSwitchboard() {
 export async function getHighestSwitchboard() {
   const res = await fetch(`${APIURL}/switchboards/highest/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -22,6 +29,9 @@ export async function getHighestSwitchboard() {
 export async function getTopFiveSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/top5/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -30,13 +40,21 @@ export async function getTopFiveSwitchboards() {
 export async function getLastFiveSwitchboards() {
   const res = await fetch(`${APIURL}/switchboards/last5/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
 }
 
 export async function getSwitchboards() {
-  const res = await fetch(`${APIURL}/switchboards/${id()}`, { method: "GET" });
+  const res = await fetch(`${APIURL}/switchboards/${id()}`, {
+    method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
+  });
   const json = await res.json();
   return json;
 }
@@ -45,7 +63,7 @@ export async function TypeOffice() {
   try {
     const res = await axios({
       method: "GET",
-      headers: { "x-access-token": localStorage.getItem("token") },
+      headers: { "x-access-token": token() },
       url: `${APIURL}/offices/type/${id()}`,
     });
 
@@ -59,7 +77,9 @@ export async function officebyId(idUser) {
   try {
     const res = await axios({
       method: "GET",
+
       // headers: { 'x-access-token': localStorage.getItem('token') },
+
       // url: `${APIURL}/offices/${idUser}`,
       url: `${APIURL}/offices/${idUser}`,
     });
@@ -71,7 +91,12 @@ export async function officebyId(idUser) {
 }
 
 export async function loadMunicipalities() {
-  const res = await fetch(`${APIURL}/municipalities`, { method: "GET" });
+  const res = await fetch(`${APIURL}/municipalities`, {
+    method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
+  });
   const json = await res.json();
   return json;
 }
@@ -79,6 +104,9 @@ export async function loadMunicipalities() {
 export async function getLowestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/lowest`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -87,6 +115,9 @@ export async function getLowestMunicipality() {
 export async function getHighestMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/highest`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -95,6 +126,9 @@ export async function getHighestMunicipality() {
 export async function getTopFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/top5`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   // eslint-disable-next-line no-console
@@ -105,6 +139,9 @@ export async function getTopFiveMunicipality() {
 export async function getLastFiveMunicipality() {
   const res = await fetch(`${APIURL}/municipalities/last5`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   // eslint-disable-next-line no-console
@@ -115,6 +152,9 @@ export async function getLastFiveMunicipality() {
 export async function getSwitchboardsMap() {
   const res = await fetch(`${APIURL}/switchboards/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -123,6 +163,9 @@ export async function getSwitchboardsMap() {
 export async function getAllSwLocation() {
   const res = await fetch(`${APIURL}/switchboards/locations/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -131,6 +174,9 @@ export async function getAllSwLocation() {
 export async function getAllSwEnergyIntensity() {
   const res = await fetch(`${APIURL}/switchboards/location/energyintensity`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;
@@ -150,6 +196,9 @@ export async function setEnergyIntesityImage(enertyIntensity, fileName) {
   try {
     const res = await axios({
       method: "post",
+      headers: new Headers({
+        Authorization: localStorage.getItem("token"),
+      }),
       url: `${APIURL}/images/energyintensity`,
       data: { enertyIntensity, fileName },
     });
@@ -168,6 +217,9 @@ export async function updateSwitchboards(data) {
   try {
     const res = await axios({
       method: "put",
+      headers: new Headers({
+        Authorization: localStorage.getItem("token"),
+      }),
       url: `${APIURL}/switchboards`,
       data,
     });
@@ -185,6 +237,9 @@ export async function insertSwitchboards(data) {
   try {
     const res = await axios({
       method: "post",
+      headers: new Headers({
+        Authorization: localStorage.getItem("token"),
+      }),
       url: `${APIURL}/switchboards`,
       data,
     });
@@ -201,6 +256,9 @@ export async function insertSwitchboards(data) {
 export async function getImagesName() {
   const res = await fetch(`${APIURL}/images/imagesname/${id()}`, {
     method: "GET",
+    headers: new Headers({
+      Authorization: localStorage.getItem("token"),
+    }),
   });
   const json = await res.json();
   return json;

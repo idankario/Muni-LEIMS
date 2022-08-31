@@ -11,7 +11,6 @@ const TableStyle = styled("table")({
   borderCollapse: `collapse`,
   maxHeight: `70vh`,
   overflow: `auto`,
-
   "&::-webkit-scrollbar": {
     width: `15px`,
   },

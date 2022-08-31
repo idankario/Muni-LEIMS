@@ -1,4 +1,14 @@
 import db from "../db_connection";
+import {
+  DataBaseErr,
+  ImgaeFormErr,
+  ImgaeFormSuc,
+  InsertSuc,
+  GetSuc,
+  FileName,
+  InsertFormBounding,
+} from "../myEvents";
+
 const ImagesCtl = {
   async uplaodImage(req, res) {
     const { userId, scale, x, y, consumption, switchboards, fileName } =
@@ -6,6 +16,7 @@ const ImagesCtl = {
     if (
       !(userId && scale && x && y && consumption && switchboards && fileName)
     ) {
+      ImgaeFormErr();
       res.send("error");
     }
     const query = `INSERT INTO MuniLEIMS.image
@@ -13,14 +24,19 @@ const ImagesCtl = {
       VALUES ('${userId}', '${scale}', '${x}', '${y}','${fileName}');`;
     try {
       db.query(query, function (err, result) {
-        if (err) throw err;
+        if (err) {
+          DataBaseErr();
+          throw err;
+        }
         const newImageId = result.insertId;
         const query2 = `
         INSERT INTO MuniLEIMS.statisticalreport(consumption)
         VALUES
         ('${consumption}');`;
         db.query(query2, function (err, result) {
-          if (err) throw err;
+          if (err) {
+            throw err;
+          }
           const statisticalreport_id = result.insertId;
           //For each switchboard connect image and statistical report
           switchboards.forEach((switchboardName) => {
@@ -33,19 +49,25 @@ const ImagesCtl = {
               WHERE user_id=${userId}
               AND sw.name=${switchboardName};`;
             db.query(query3, (err, result) => {
-              if (err) throw err;
+              if (err) {
+                DataBaseErr();
+                throw err;
+              }
             });
           });
+          ImgaeFormSuc();
           res.send(result);
         });
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
   async insertEnergyIntensity(req, res) {
     const { streetlightAmount, fileName } = req.body;
     if (!fileName) {
+      FileName();
       res.send("error");
     }
     const sl = streetlightAmount == 0 ? 1 : streetlightAmount;
@@ -60,16 +82,21 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}';`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        InsertSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
   async insertBoundingBox(req, res) {
     const { x, y, width, height, fileName } = req.body;
     if (!(width && height && fileName)) {
+      InsertFormBounding();
       res.send("error");
     }
     const query = `
@@ -80,9 +107,16 @@ const ImagesCtl = {
     WHERE image_name = '${fileName}'`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        const query1 = `
+        INSERT INTO MuniLEIMS.BoundingBox
+        (x, y,width,height,image_id)
+        VALUES ('${x}', '${y}', '${width}', '${height}',${result[0].image_id});`;
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -93,10 +127,14 @@ const ImagesCtl = {
     WHERE status=2;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        GetSuc();
         res.send(result);
       });
     } catch (error) {
+      DataBaseErr();
       res.send("error");
     }
   },
@@ -114,10 +152,14 @@ const ImagesCtl = {
     Order By MuniLEIMS.image.upload_date desc;`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },
@@ -146,10 +188,14 @@ const ImagesCtl = {
     console.log(query);
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },
@@ -165,10 +211,14 @@ const ImagesCtl = {
     i.image_name='${imageName}';`;
     try {
       db.query(query, (err, result) => {
-        if (err) throw err;
+        if (err) {
+          throw err;
+        }
+        GetSuc();
         res.send(JSON.stringify(result));
       });
     } catch (error) {
+      DataBaseErr();
       res.send(error);
     }
   },

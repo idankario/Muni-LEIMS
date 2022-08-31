@@ -1,21 +1,44 @@
 import { Router } from "express";
 import SwitchboardsCtl from "../controllers/switchboards";
+import { VerifyToken } from "../middleware/auth";
 const SwitchboardsRouter = new Router();
 
-SwitchboardsRouter.get("/highest/:id", SwitchboardsCtl.highestSwitchboard);
-SwitchboardsRouter.get("/lowest/:id", SwitchboardsCtl.lowestSwitchboard);
-SwitchboardsRouter.get("/top5/:id", SwitchboardsCtl.top5Switchboards);
-SwitchboardsRouter.get("/last5/:id", SwitchboardsCtl.last5Switchboards);
+SwitchboardsRouter.get(
+  "/highest/:id",
+  VerifyToken,
+  SwitchboardsCtl.highestSwitchboard
+);
+SwitchboardsRouter.get(
+  "/lowest/:id",
+  VerifyToken,
+  SwitchboardsCtl.lowestSwitchboard
+);
+SwitchboardsRouter.get(
+  "/top5/:id",
+  VerifyToken,
+  SwitchboardsCtl.top5Switchboards
+);
+SwitchboardsRouter.get(
+  "/last5/:id",
+  VerifyToken,
+  SwitchboardsCtl.last5Switchboards
+);
 SwitchboardsRouter.get(
   "/location/energyintensity",
+  VerifyToken,
   SwitchboardsCtl.getAllSwEnergyIntensity
 );
 SwitchboardsRouter.get(
   "/location/energyintensity/:id",
+  VerifyToken,
   SwitchboardsCtl.getSwEnergyIntensity
 );
-SwitchboardsRouter.get("/locations/:id", SwitchboardsCtl.switchboardsLocation);
-SwitchboardsRouter.get("/:id", SwitchboardsCtl.switchboardsById);
-SwitchboardsRouter.put("/", SwitchboardsCtl.updateSwitchboards);
-SwitchboardsRouter.post("/", SwitchboardsCtl.insertSwitchboards);
+SwitchboardsRouter.get(
+  "/locations/:id",
+  VerifyToken,
+  SwitchboardsCtl.switchboardsLocation
+);
+SwitchboardsRouter.get("/:id", VerifyToken, SwitchboardsCtl.switchboardsById);
+SwitchboardsRouter.put("/", VerifyToken, SwitchboardsCtl.updateSwitchboards);
+SwitchboardsRouter.post("/", VerifyToken, SwitchboardsCtl.insertSwitchboards);
 export default SwitchboardsRouter;
