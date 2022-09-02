@@ -109,6 +109,7 @@ function DistancePage() {
   return (
     <Container bgimage={1} width={canvasDimensions.width}>
       <Header />
+
       <div
         style={{
           textAlign: "center",

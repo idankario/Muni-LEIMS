@@ -4,40 +4,63 @@
 
 <p>Muni-Light	Energy Intensity  Mapping System </p>
 
-<h2> :floppy_disk: Project Files Description</h2>
+<h2> :floppy_disk: Project Features Library and Languages Description</h2>
 
-<p>This Project includes object detction react hooks nodejs python sql googe api aws eslint airbnb prettier and more</p>
+### Front-End
+* HTML.
+* JavaScript.
+* Google Map for visualized map and located switchboards.
+* Material-UI for component and style.
+* React-plotly for Graph.
+* Google Map for visualized map and located switchboards.
+* Material-UI for component and style.
+* React-plotly for Graph.
+
+### Backend
+* Node.js.
+* Python.
+* Layers.
+* S3 AWS.
+* RDS MySQL.
+* Cognito AWS.
+
+![Architecture](./architecture/features.png) 
+
+
+### Cloud – AWS Architecture
+
+![Architecture Cloud AWS](./architecture/CloudAWS.png) 
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 <h2> :book: Introduction</h2>
 
-<p>Global electricity consumption is increasing by around 3% each year. Outdoor lighting is responsible for 15–19%
-    of global electricity consumption, where lighting represents about 2.4% of the annual energetic resources of
-    humanity, accounting for 5–6% of the total greenhouse gas emissions to the atmosphere and causing air pollution.
-    In recent years, there have been significant changes in the global energy economy to reduce greenhouse gas
-    emissions and air pollutants .
-    Street lighting is an important part of municipalities’ infrastructure, but its planning poses many challenges:
-    lack of mapping of the street lighting network, the main malfunctions that feed the street lighting network, the
-    presence of lighting poles in the middle of the road, illegal electrical connections, the lack of reference to
-    the lighting system as a cause of road accidents and more .
-    An annual report is conducted to help the Ministry of Energy to obtain data on the consumption of the
-    municipalities and examine ways to improve efficiency. Still, many municipalities do not have a reasonable
-    mapping of their streetlights and cannot give the details in their report, thus, pay high fines for filling out
-    the report incorrectly. Existing such mapping systems for managing and identifying lighting poles are expensive
-    and do not meet all the needs of the municipalities.
-    Our system, Muni-LEIMS (=Municipal Light Energy Intensity Mapping System), is developed to support
-    municipalities’ efforts to manage their energy resources and promote energy efficiency with regard to
-    streetlights. The system maps streetlight poles using artificial intelligence and computer vision, incorporating
-    a calculation of an innovative measure of energy intensity that compares the average power consumption of a
-    lighting pole to evaluate the energy efficiency of municipalities. The system is designed to be used by both
-    municipalities and the Ministry of Energy.
-    Muni-LEIMS was developed as part of a final project in Shenkar supervised by Prof. Avivit Levy, advised by Dr.
-    Tal Goldrath, in collaboration of the Ministry of Energy, the municipalities: Ashdod, Tel Aviv, Kafr Qara, Tira,
-    and using the support of AWS.
+<p>Our approach to the solution of the streetlights mapping problem is based on image processing and computer vision. The system gets aerial images of the streets to be analyzed. These images are supplied by municipalities workers that also assign the relevant switchboards to the given image and provide the electricity consumption data of each switchboard. Our computer vision algorithm recognizes the streetlights in the given image, estimate their number, and computes the energy intensity measure per assigned.
+The system is then able to analyze the data, compute the appropriate energy intensity measures and the appropriate alerts and indicate anomalies and irregularities. The user interface also provides a visualized map, provide statistical and comparative data according to the user request and according to their permissions.
 </p>
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
+## Screenshots
+
+Login Page  |  SignUp Page 
+:------------------------:|:-------------------------:
+![Login page](./screen/siginin.png)  |  ![SignUp page](./screen/siginup.png)
+
+
+Home Page Ministry  |  Home Page Muncipality
+:------------------------:|:-------------------------:
+![Home Page Ministry](./screen/home-page-ministry.png)  |  ![Home Page Muncipality](./screen/home-page-muncipality.png) 
+
+Map Page Ministry  |  Map Page Muncipality
+:------------------------:|:-------------------------:
+![Top/Last Ranking Page Ministry](./screen/map-page-ministry.png)  |  ![Map Page Muncipality](./screen/map-page-muncipality.png) 
+
+Top/Last Ranking Page Ministry  |  Top/Last Ranking Page Muncipality
+:------------------------:|:-------------------------:
+![Top/Last Ranking Page Ministry](./screen/top-last-ranking-page-ministry.png)  |  ![Top/Last Ranking Page Muncipality](./screen/top-last-ranking-page-muncipality.png) 
+
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 <h2> :clipboard: Execution Instruction</h2>
 <p>The order of execution of the program files is as follows:</p>
 <p>First, git clone https://github.com/idankario/Muni-LEIMS

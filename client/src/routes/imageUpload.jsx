@@ -100,7 +100,7 @@ function ImageUpload() {
                 }
               />
               <Typography>
-                Enter the total consamption switchboards of the image
+                Enter the total consamption switchboards of the image kWh
               </Typography>
               <TextField
                 type="number"
